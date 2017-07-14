@@ -7,7 +7,7 @@
 
   function <%= controllerName %>Controller() {
     let vm = this;
-    
+
   }
 
 })();
