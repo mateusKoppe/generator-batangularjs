@@ -1,0 +1,16 @@
+{
+  "name": "generator-batangularjs",
+  "version": "1.0.0",
+  "description": "Epic AngularJs base code, this is batAngularJs",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Mateus Koppe",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^1.1.1"
+  }
+}
