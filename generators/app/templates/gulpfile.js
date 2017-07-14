@@ -1,24 +1,24 @@
-const distDir = './src/app/dist';
-const indexPage = './src/index.php';
+const distDir = './app/dist';
+const indexPage = './app/index.html';
 
 /* Sass */
-const sassStart = './src/app/app.style.scss';
-const sassWatch = './src/app/**/*.scss';
+const sassStart = './app/app.style.scss';
+const sassWatch = 'app/**/*.scss';
 const sassName = 'app.css';
-const sassDist = './src/app/dist';
+const sassDist = './app/dist';
 
 /* Js */
-const jsDir = ['./src/**/*.js', '!./src/libraries/**/*.js', '!**/dist/**.js'];
+const jsDir = ['./app/**/*.js', '!./app/bower_components/**/*.js', '!./app/dist/**.js'];
 const jsName = 'app.js';
-const jsDist = './src/app/dist';
+const jsDist = './app/dist';
 
 /* Html */
-const htmlDir = ['./src/**/*.html', './src/index.php', '!**/dist/*.html'];
-const htmlDist = './src/';
+const htmlDir = ['./app/**/*.html'];
+const htmlDist = './';
 
 /* Images */
-const imagesDir = ['./src/app/**/*.png', './src/app/**/*.jpg', './src/app/**/*.PNG', './src/app/**/*.JPG'];
-const imagesDist = './src';
+const imagesDir = ['./app/**/*.png', './app/**/*.jpg', './app/**/*.PNG', './app/**/*.JPG'];
+const imagesDist = '.';
 
 const gulp = require('gulp'),
 	order = require('gulp-order'),
@@ -42,7 +42,7 @@ const gulp = require('gulp'),
 gulp.task('develop', ['watchs'], () => {
 	browserSync.init({
 		server: {
-			baseDir: "./src/"
+			baseDir: "./"
 		}
 	});
 });
@@ -50,7 +50,7 @@ gulp.task('develop', ['watchs'], () => {
 gulp.task('server', () => {
 	browserSync.init({
 		server: {
-			baseDir: "./src/"
+			baseDir: "./"
 		}
 	});
 });
@@ -86,14 +86,14 @@ gulp.task('vendors', () => {
 });
 
 gulp.task('remove-vendors', ['vendors', 'delete-develop-files'], () => {
-	return del(['./src/libraries']);
+	return del(['./bower_components']);
 })
 
 gulp.task('javascript-development', () => {
 	return gulp.src(jsDir)
 		.pipe(sourcemaps.init())
 		.pipe(order([
-			'**/*module.js',
+			'**/*.module.js',
 			'**/*.js'
 		]))
 		.pipe(concat(jsName))
@@ -110,7 +110,6 @@ gulp.task('sass-development', () => {
 		.pipe(gulp.dest(sassDist));
 });
 
-
 gulp.task('javascript-deploy', () => {
 	return gulp.src(jsDir)
 		.pipe(babel({
@@ -119,7 +118,7 @@ gulp.task('javascript-deploy', () => {
 		.pipe(ngAnnotate())
 		.pipe(uglify())
 		.pipe(order([
-			'**/*module.js',
+			'**/*.module.js',
 			'**/*.js'
 		]))
 		.pipe(concat(jsName))
@@ -144,7 +143,7 @@ gulp.task('javascript-transpiler', () => {
 		}))
 		.pipe(ngAnnotate())
 		.pipe(order([
-			'**/*module.js',
+			'**/*.module.js',
 			'**/*.js'
 		]))
 		.pipe(concat(jsName))
@@ -169,9 +168,9 @@ gulp.task('html-deploy', () => {
 })
 
 gulp.task('delete-develop-files', ['javascript-deploy', 'sass-deploy'], () => {
-	return gulp.src(['./src/app/**/*.js','./src/app/**/*.scss', '!./src/app/dist/*.js'])
+	return gulp.src(['./app/**/*.js','./app/**/*.scss', '!./app/dist/*.js'])
 		.pipe(clean({force: true}));
-	deleteEmpty('./src/app', (a, b) => {
+	deleteEmpty('./app', (a, b) => {
 		console.log(a);
 	});
 })
