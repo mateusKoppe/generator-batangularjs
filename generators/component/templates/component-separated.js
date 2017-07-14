@@ -5,8 +5,10 @@
     .module('app.<%= moduleName %>')
     .component('<%= componentName %>', {
       templateUrl: '<%= folder %>/<%= componentName %>.template.html',
+      bindings: {},
       controller: <%= capitalizeComponentName %>Controller,
-      controllerAs: ''
+      controllerAs: '$ctrl',
+      transclude: false
     });
 
   function <%= capitalizeComponentName %>Controller() {
