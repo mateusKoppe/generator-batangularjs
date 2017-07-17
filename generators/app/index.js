@@ -21,7 +21,10 @@ module.exports = class extends Generator{
   }
 
   _writeProject(){
-    this.fs.copy(this.templatePath('.'), this.destinationPath(`${this.app}/.`));
+    this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath(`${this.app}/.`));
+    this.fs.copy(this.templatePath('app/'), this.destinationPath(`${this.app}/app/`));
+    this.fs.copy(this.templatePath('_.bowerrc'), this.destinationPath(`${this.app}/.bowerrc`));
+    this.fs.copy(this.templatePath('_.gitignore'), this.destinationPath(`${this.app}/.gitignore`));
   }
 
 }

@@ -2,6 +2,16 @@
 	'use strict';
 
 	angular
+	.module('app', [
+		'ui.router',
+	])
+
+})();
+
+(function(){
+	'use strict';
+
+	angular
 		.module('app')
 		.config(routes);
 
@@ -26,3 +36,32 @@
 	}
 
 })();
+
+(function(){
+  'use strict';
+
+  angular
+    .module('app')
+    .controller('HomeController', HomeController);
+
+  function HomeController(){
+    let vm = this;
+  }
+
+})();
+
+(function(){
+	'use strict';
+
+	angular
+		.module('app')
+		.controller('MainController', MainController);
+
+		function MainController(){
+			let vm = this;
+
+		}
+
+})();
+
+//# sourceMappingURL=app.js.map
