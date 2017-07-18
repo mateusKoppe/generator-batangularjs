@@ -47,4 +47,4 @@ $ yo batangularjs:factory [module] [factory] <-t>
 $ yo batangularjs:filter [module] [filter] <-t>
 ```
 
-MIT © Mateus Koppe
+Mateus Koppe
