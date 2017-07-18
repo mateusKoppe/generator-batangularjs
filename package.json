@@ -1,8 +1,8 @@
 {
   "name": "generator-batangularjs",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Epic AngularJs base code, this is batAngularJs",
-  "repository": "/mateusKoppe/BatAngularJs",
+  "repository": "mateusKoppe/BatAngularJs",
   "files": [
     "generators"
   ],
@@ -13,7 +13,7 @@
     "name": "Mateus Koppe",
     "email": "mateus.koppe@gmail.com",
     "url": "https://github.com/mateusKoppe"
-},
+  },
   "license": "ISC",
   "dependencies": {
     "yeoman-generator": "^1.1.1"
