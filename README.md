@@ -24,7 +24,7 @@ $ npm install -g generator-batangularjs
   $ yo angular-next
   ```
 
-If you created out of '.' folder, use `cd` and run:
+* If you created your project out of the `.` folder, use `cd` and run:
 
   ```
   $ npm i && bower i
