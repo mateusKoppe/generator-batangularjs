@@ -1,184 +1,132 @@
-const distDir = './app/dist';
-const indexPage = './app/index.html';
+const indexPage = 'app/index.html';
 
 /* Sass */
-const sassStart = './app/app.style.scss';
-const sassWatch = 'app/**/*.scss';
-const sassName = 'app.css';
-const sassDist = './app/dist';
+const cssStart = 'app/app.style.scss';
+const cssWatch = 'app/**/*.scss';
+const cssName = 'app.css';
+const cssDist = 'app/dist';
 
 /* Js */
-const jsDir = ['./app/**/*.js', '!./app/bower_components/**/*.js', '!./app/dist/**.js'];
+const jsDir = ['app/**/*.js', '!app/bower_components/**/*.js', '!app/dist/**.js'];
+const jsOrder = ['**/*.module.js','**/*.js'];
 const jsName = 'app.js';
-const jsDist = './app/dist';
+const jsDist = 'app/dist';
 
 /* Html */
-const htmlDir = ['./app/**/*.html'];
-const htmlDist = './';
+const htmlDir = ['app/**/*.html'];
+const htmlDist = 'app';
 
 /* Images */
-const imagesDir = ['./app/**/*.png', './app/**/*.jpg', './app/**/*.PNG', './app/**/*.JPG'];
-const imagesDist = '.';
+const imagesDir = ['app/**/*.png', 'app/**/*.jpg', 'app/**/*.PNG', 'app/**/*.JPG'];
+const imagesDist = 'app';
 
-const gulp = require('gulp'),
-	order = require('gulp-order'),
-	babel = require('gulp-babel'),
-	concat = require('gulp-concat'),
-	rename = require('gulp-rename'),
-	uglify = require('gulp-uglify'),
-	sourcemaps = require('gulp-sourcemaps'),
-	sass = require('gulp-sass'),
-	cleanCSS = require('gulp-clean-css'),
-	autoprefixer = require('gulp-autoprefixer'),
-	ngAnnotate = require('gulp-ng-annotate'),
-	htmlmin = require('gulp-htmlmin'),
-	clean = require('gulp-clean'),
-	deleteEmpty = require('delete-empty'),
-	image = require('gulp-imagemin'),
-	browserSync = require('browser-sync').create(),
-	useref = require('gulp-useref'),
-	del = require('del');
+const prodDist = 'production/';
 
-gulp.task('develop', ['watchs'], () => {
-	browserSync.init({
-		server: {
-			baseDir: "./"
-		}
-	});
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')({
+	camelize: true,
+	lazy: true
 });
 
-gulp.task('server', () => {
-	browserSync.init({
-		server: {
-			baseDir: "./"
-		}
-	});
-});
+/* Server */
+gulp.task('server-dev', ['server', 'watch'])
 
-gulp.task('old-browser', ['sass-deploy', 'javascript-deploy']);
-gulp.task('deploy', ['html-deploy', 'images-deploy', 'remove-vendors']);
+gulp.task('server', () =>
+	$.connect.server({
+		root: 'app',
+		livereload: false
+	})
+)
 
-/* Watchs  */
-gulp.task('watchs', ['sass-watch', 'javascript-watch']);
-gulp.task('watchs-transpilers', ['javascript-transpiler-watch', 'sass-transpiler-watch']);
+/* Watchs */
+gulp.task('watch', ['js:watch', 'css:watch']);
 
-gulp.task('sass-transpiler-watch', ['sass-deploy'], () => {
-	return gulp.watch(sassWatch, ['sass-deploy']);
-});
+gulp.task('js:watch', ['js'], () =>
+	$.watch(jsDir, () => gulp.start('js'))
+)
 
-gulp.task('javascript-transpiler-watch', ['javascript-transpiler'], () => {
-	return gulp.watch(jsDir, ['javascript-transpiler']);
-});
+gulp.task('css:watch', ['css'], () =>
+	$.watch(cssWatch, () => gulp.start('css'))
+)
 
-gulp.task('sass-watch', ['sass-development'], () => {
-	return gulp.watch(sassWatch, ['sass-development']);
-});
+/* Basic functions */
+gulp.task('js', () =>
+	gulp.src(jsDir)
+		.pipe($.sourcemaps.init())
+		.pipe($.order(jsOrder))
+		.pipe($.concat(jsName))
+		.pipe($.sourcemaps.write('./'))
+		.pipe(gulp.dest(jsDist))
+)
 
-gulp.task('javascript-watch', ['javascript-development'], () => {
-	return gulp.watch(jsDir, ['javascript-development']);
-});
+gulp.task('css', () =>
+	gulp.src(cssStart)
+		.pipe($.sourcemaps.init())
+		.pipe($.sass().on('error', $.sass.logError))
+		.pipe($.rename(cssName))
+		.pipe($.sourcemaps.write('./'))
+		.pipe(gulp.dest(cssDist))
+)
 
-/**  Basic functions **/
-gulp.task('vendors', () => {
-	return gulp.src(indexPage)
-    .pipe(useref())
-    .pipe(gulp.dest(htmlDist));
-});
+/* Old browsers */
+gulp.task('oldbrowser', ['js:oldbrowser', 'css:oldbrowser'])
 
-gulp.task('remove-vendors', ['vendors', 'delete-develop-files'], () => {
-	return del(['./bower_components']);
-})
+gulp.task('js:oldbrowser', () =>
+	gulp.src(jsDir)
+		.pipe($.sourcemaps.init())
+		.pipe($.order(jsOrder))
+		.pipe($.ngAnnotate())
+		.pipe($.babel({presets: ['es2015']}))
+		.pipe($.concat(jsName))
+		.pipe($.sourcemaps.write('./'))
+		.pipe(gulp.dest(jsDist))
+)
 
-gulp.task('javascript-development', () => {
-	return gulp.src(jsDir)
-		.pipe(sourcemaps.init())
-		.pipe(order([
-			'**/*.module.js',
-			'**/*.js'
-		]))
-		.pipe(concat(jsName))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(jsDist));
-});
+gulp.task('css:oldbrowser', () =>
+	gulp.src(cssStart)
+		.pipe($.sourcemaps.init())
+		.pipe($.sass().on('error', $.sass.logError))
+		.pipe($.autoprefixer())
+		.pipe($.rename(cssName))
+		.pipe($.sourcemaps.write('./'))
+		.pipe(gulp.dest(cssDist))
+)
 
-gulp.task('sass-development', () => {
-	return gulp.src(sassStart)
-		.pipe(sourcemaps.init())
-		.pipe(sass().on('error', sass.logError))
-		.pipe(rename('app.css'))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(sassDist));
-});
+/* Production */
+gulp.task('js:prod', () =>
+	gulp.src(jsDir)
+		.pipe($.order(jsOrder))
+		.pipe($.ngAnnotate())
+		.pipe($.babel({presets: ['es2015']}))
+		.pipe($.concat(jsName))
+		.pipe($.uglify())
+		.pipe(gulp.dest(prodDist + jsDist))
+)
 
-gulp.task('javascript-deploy', () => {
-	return gulp.src(jsDir)
-		.pipe(babel({
-			presets: ['es2015']
-		}))
-		.pipe(ngAnnotate())
-		.pipe(uglify())
-		.pipe(order([
-			'**/*.module.js',
-			'**/*.js'
-		]))
-		.pipe(concat(jsName))
-		.pipe(gulp.dest(jsDist));
-});
+gulp.task('css:prod', () =>
+	gulp.src(cssStart)
+		.pipe($.sass({outputStyle: 'compressed'}).on('error', $.sass.logError))
+		.pipe($.autoprefixer())
+		.pipe($.rename(cssName))
+		.pipe(gulp.dest(prodDist + cssDist))
+)
 
-gulp.task('sass-deploy', () => {
-	return gulp.src(sassStart)
-		.pipe(sass({
-			outputStyle: 'compressed'
-		}).on('error', sass.logError))
-		.pipe(rename(sassName))
-		.pipe(autoprefixer())
-		.pipe(gulp.dest(sassDist));
-});
+gulp.task('html:prod', ['vendors:prod'], () =>
+	gulp.src(htmlDir)
+		.pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
+		.pipe(gulp.dest(prodDist + htmlDist))
+)
 
-gulp.task('javascript-transpiler', () => {
-	return gulp.src(jsDir)
-		.pipe(sourcemaps.init())
-		.pipe(babel({
-			presets: ['es2015']
-		}))
-		.pipe(ngAnnotate())
-		.pipe(order([
-			'**/*.module.js',
-			'**/*.js'
-		]))
-		.pipe(concat(jsName))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(jsDist));
-});
+gulp.task('vendors:prod', () =>
+	gulp.src(indexPage)
+		.pipe($.useref())
+		.pipe(gulp.dest(prodDist))
+)
 
-gulp.task('sass-transpiler', () => {
-	return gulp.src(sassStart + '/app.style.scss')
-		.pipe(sourcemaps.init())
-		.pipe(sass({}).on('error', sass.logError))
-		.pipe(rename(sassName))
-		.pipe(autoprefixer())
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(sassDist));
-});
+gulp.task('images:prod', () =>
+	gulp.src(imagesDir)
+		.pipe($.smushit({verbose: true}))
+		.pipe(gulp.dest(prodDist + imagesDist))
+)
 
-gulp.task('html-deploy', () => {
-	return gulp.src(htmlDir)
-    .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
-    .pipe(gulp.dest(htmlDist));
-})
-
-gulp.task('delete-develop-files', ['javascript-deploy', 'sass-deploy'], () => {
-	return gulp.src(['./app/**/*.js','./app/**/*.scss', '!./app/dist/*.js'])
-		.pipe(clean({force: true}));
-	deleteEmpty('./app', (a, b) => {
-		console.log(a);
-	});
-})
-
-gulp.task('images-deploy', () => {
-	return gulp.src(imagesDir)
-		.pipe(image())
-		.pipe(gulp.dest(imagesDist));
-})
-
-gulp.task('default', ['javascript-development', 'sass-development']);
+gulp.task('default', ['server-dev']);
