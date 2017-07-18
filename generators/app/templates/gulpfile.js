@@ -120,7 +120,7 @@ gulp.task('css:prod', () =>
 )
 
 gulp.task('html:prod', () =>
-	return gulp.src(htmlDir.concat([`!${indexPage}`]))
+	gulp.src(htmlDir.concat([`!${indexPage}`]))
 		.pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
 		.pipe(gulp.dest(prodDist + htmlDist))
 )
