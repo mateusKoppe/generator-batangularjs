@@ -1,6 +1,6 @@
 {
   "name": "generator-batangularjs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Epic AngularJs base code, this is batAngularJs",
   "files": [
     "generators"

@@ -33,7 +33,7 @@ gulp.task('server-dev', ['server', 'watch'])
 
 gulp.task('server', () =>
 	$.connect.server({
-		root: 'app',
+		root: htmlDist,
 		livereload: false
 	})
 )
@@ -93,6 +93,14 @@ gulp.task('css:oldbrowser', () =>
 )
 
 /* Production */
+gulp.task('prod', ['html:prod', 'js:prod', 'css:prod', 'vendors:prod', 'images:prod'])
+
+gulp.task('server:prod', () =>
+	$.connect.server({
+		root: prodDist + htmlDist
+	})
+)
+
 gulp.task('js:prod', () =>
 	gulp.src(jsDir)
 		.pipe($.order(jsOrder))
@@ -111,8 +119,8 @@ gulp.task('css:prod', () =>
 		.pipe(gulp.dest(prodDist + cssDist))
 )
 
-gulp.task('html:prod', ['vendors:prod'], () =>
-	gulp.src(htmlDir)
+gulp.task('html:prod', () =>
+	return gulp.src(htmlDir.concat([`!${indexPage}`]))
 		.pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
 		.pipe(gulp.dest(prodDist + htmlDist))
 )
@@ -120,7 +128,7 @@ gulp.task('html:prod', ['vendors:prod'], () =>
 gulp.task('vendors:prod', () =>
 	gulp.src(indexPage)
 		.pipe($.useref())
-		.pipe(gulp.dest(prodDist))
+		.pipe(gulp.dest(prodDist + htmlDist))
 )
 
 gulp.task('images:prod', () =>
