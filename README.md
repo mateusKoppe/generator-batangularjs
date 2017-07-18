@@ -21,7 +21,7 @@ $ npm install -g generator-batangularjs
 * Scaffold the project:
 
   ```
-  $ yo angular-next
+  $ yo batangularjs
   ```
 
 * If you created your project out of the `.` folder, use `cd` and run:
