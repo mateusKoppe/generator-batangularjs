@@ -6,7 +6,7 @@ module.exports = class extends Generator{
     super(args, opts);
 
     if(!this._isArgsValids(args)){
-      this.log.error('Sintax error, you must use this sintax: batangularjs:directive [module] [directive] <-ti>');
+      this.log.error('Sintax error, you must use this sintax: batangularjs:directive [module] [directive] <-tci>');
       return;
     };
 
