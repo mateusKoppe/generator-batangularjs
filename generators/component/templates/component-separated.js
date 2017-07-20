@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('app.<%= moduleName %>')
+    .module('<%= moduleName %>')
     .component('<%= componentName %>', <%= componentName %>Component);
 
   function <%= componentName %>Component() {
     return {
-      templateUrl: '<%= folder %>/<%= componentName %>.template.html',
+      templateUrl: '<%= folder %><%= componentName %>.template.html',
       bindings: {},
       controller: <%= capitalizeComponentName %>Controller,
       controllerAs: '$ctrl',
@@ -17,6 +17,7 @@
 
   function <%= capitalizeComponentName %>Controller() {
     let vm = this;
+    
   }
 
 })();

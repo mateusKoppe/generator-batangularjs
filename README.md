@@ -41,7 +41,7 @@ $ npm install -g generator-batangularjs
 ```
 $ yo batangularjs:module [module]
 $ yo batangularjs:controller [module] [controller]
-$ yo batangularjs:component [module] [component] <-ti>
+$ yo batangularjs:component [module] [component] <-tci>
 $ yo batangularjs:directive [module] [directive] <-ti>
 $ yo batangularjs:factory [module] [factory] <-tc>
 $ yo batangularjs:filter [module] [filter] <-tc>

@@ -6,17 +6,28 @@ module.exports = class extends Generator{
     super(args, opts);
 
     if(!this._isArgsValids(args)){
-      this.log.error('Sintax error, you must use this sintax: batangularjs:component [module] [component] <-ti>');
+      this.log.error('Sintax error, you must use this sintax: batangularjs:component [module] [component] <-tci>');
       return;
     };
 
     this.moduleName = args[0];
     this.componentName = args[1];
 
-    this.preFolder = opts.t?'components':'';
+    if(this.moduleName == 'app') {
+      this.moduleFolder = 'app/';
+      this.moduleName = 'app';
+    }else{
+      this.moduleFolder = `app/${this.moduleName}/`;
+      this.moduleName = `app.${this.moduleName}`;
+    }
+
+    this.preFolder = '';
+    if (opts.c) this.preFolder += 'core/';
+    if (opts.t) this.preFolder += 'components/';
+
     this.isolated = opts.i;
 
-    this.folder = `app/${this.moduleName}/${this.preFolder}`;
+    this.folder = `${this.moduleFolder}${this.preFolder}`;
 
     this._writeProject();
   }
@@ -50,9 +61,10 @@ module.exports = class extends Generator{
 
   _copyComponentByTemplate(templateName, type = 'component'){
     let extension = templateName.split('.').reverse()[0];
+    console.log(this.folder);
     this.fs.copyTpl(
       this.templatePath(templateName),
-      this.destinationPath(`${this.folder}/${this.componentName}.${type}.${extension}`),
+      this.destinationPath(`${this.folder}${this.componentName}.${type}.${extension}`),
       {
         moduleName: this.moduleName,
         componentName: this.componentName,

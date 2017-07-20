@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.<%= moduleName %>')
+    .module('<%= moduleName %>')
     .component('<%= componentName %>', <%= componentName %>Component);
 
   function <%= componentName %>Component() {
