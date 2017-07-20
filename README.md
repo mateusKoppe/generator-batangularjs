@@ -47,4 +47,11 @@ $ yo batangularjs:factory [module] [factory] <-tc>
 $ yo batangularjs:filter [module] [filter] <-tc>
 ```
 
+## Gulp Tasks
+`$ gulp js` concat all your app scripts in `app/dist/app.js`
+`$ gulp css` execute your sass file and put the result in `app/dist/css.js`
+`$ gulp js:watch` observe your `.js` files and run `gulp js`
+`$ gulp css:watch` observe your `.scss` files and run `gulp css`
+`$ gulp watch` run `js:watch` and `css:watch`
+
 Mateus Koppe
