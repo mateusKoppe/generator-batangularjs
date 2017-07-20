@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.<%= moduleName %>')
+    .module('<%= moduleName %>')
     .filter('<%= filterName %>', <%= filterName %>Filter);
 
   function <%= filterName %>Filter() {

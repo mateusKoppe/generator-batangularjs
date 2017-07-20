@@ -21,7 +21,6 @@ module.exports = class extends Generator{
       this.moduleName = `app.${this.moduleName}`;
     }
 
-
     this.preFolder = '';
     if(opts.c) this.preFolder += 'core/';
     if(opts.t) this.preFolder += 'factories/';

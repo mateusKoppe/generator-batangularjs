@@ -43,8 +43,8 @@ $ yo batangularjs:module [module]
 $ yo batangularjs:controller [module] [controller]
 $ yo batangularjs:component [module] [component] <-ti>
 $ yo batangularjs:directive [module] [directive] <-ti>
-$ yo batangularjs:factory [module] [factory] <-t>
-$ yo batangularjs:filter [module] [filter] <-ct>
+$ yo batangularjs:factory [module] [factory] <-tc>
+$ yo batangularjs:filter [module] [filter] <-tc>
 ```
 
 Mateus Koppe

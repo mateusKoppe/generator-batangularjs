@@ -13,7 +13,13 @@ module.exports = class extends Generator{
     this.moduleName = args[0];
     this.filterName = args[1];
 
-    this.moduleFolder = this.moduleName!='app'?`app/${this.moduleName}/`:'app/';
+    if(this.moduleName == 'app') {
+      this.moduleFolder = 'app/';
+      this.moduleName = 'app';
+    }else{
+      this.moduleFolder = `app/${this.moduleName}/`;
+      this.moduleName = `app.${this.moduleName}`;
+    }
 
     this.preFolder = '';
     if(opts.c) this.preFolder += 'core/';
