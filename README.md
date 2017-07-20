@@ -43,8 +43,7 @@ $ npm install -g generator-batangularjs
 * `$ yo batangularjs:component [module] [component] <-tci>`
 * `$ yo batangularjs:directive [module] [directive] <-tci>`
 * `$ yo batangularjs:factory [module] [factory] <-tc>`
-
-$ yo batangularjs:filter [module] [filter] <-tc>`
+* `$ yo batangularjs:filter [module] [filter] <-tc>`
 
 ## Gulp Tasks
 * `$ gulp js` concat all your app scripts in `app/dist/app.js` (this task generate sourcemaps);

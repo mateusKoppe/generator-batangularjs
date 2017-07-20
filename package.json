@@ -1,13 +1,19 @@
 {
   "name": "generator-batangularjs",
   "version": "0.1.7",
-  "description": "Epic AngularJs base code, this is batAngularJs",
+  "description": "Epic AngularJs seed and code generator, this is batAngularJs",
   "repository": "mateusKoppe/BatAngularJs",
   "files": [
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "angularjs",
+    "scaffold",
+    "yeoman",
+    "framework",
+    "component",
+    "gulp"
   ],
   "author": {
     "name": "Mateus Koppe",
