@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.<%= moduleName %>')
+    .module('<%= moduleName %>')
     .factory('<%= factoryName %>', <%= factoryName %>Factory);
 
   function <%= factoryName %>Factory() {
