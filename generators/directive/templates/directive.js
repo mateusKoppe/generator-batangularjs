@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.<%= moduleName %>')
+    .module('<%= moduleName %>')
     .directive('<%= directiveName %>', <%= directiveName %>Directive);
 
   function <%= directiveName %>Directive() {

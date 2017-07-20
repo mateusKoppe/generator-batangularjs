@@ -5,7 +5,7 @@ module.exports = class extends Generator{
   constructor(args, opts) {
     super(args, opts);
 
-    if(!this._isArgsValids(args)){
+    if(!this._isArgsValids(args)) {
       this.log.error('Sintax error, you must use this sintax: batangularjs:component [module] [component] <-tci>');
       return;
     };

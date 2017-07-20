@@ -13,10 +13,21 @@ module.exports = class extends Generator{
     this.moduleName = args[0];
     this.directiveName = args[1];
 
-    this.preFolder = opts.t?'directives':'';
+    if(this.moduleName == 'app') {
+      this.moduleFolder = 'app/';
+      this.moduleName = 'app';
+    }else{
+      this.moduleFolder = `app/${this.moduleName}/`;
+      this.moduleName = `app.${this.moduleName}`;
+    }
+
+    this.preFolder = '';
+    if (opts.c) this.preFolder += 'core/';
+    if (opts.t) this.preFolder += 'directives/';
+
     this.isolated = opts.i;
 
-    this.folder = `app/${this.moduleName}/${this.preFolder}`;
+    this.folder = `${this.moduleFolder}${this.preFolder}`;
 
     this._writeProject();
   }
@@ -52,7 +63,7 @@ module.exports = class extends Generator{
     let extension = templateName.split('.').reverse()[0];
     this.fs.copyTpl(
       this.templatePath(templateName),
-      this.destinationPath(`${this.folder}/${this.directiveName}.${type}.${extension}`),
+      this.destinationPath(`${this.folder}${this.directiveName}.${type}.${extension}`),
       {
         moduleName: this.moduleName,
         directiveName: this.directiveName,
