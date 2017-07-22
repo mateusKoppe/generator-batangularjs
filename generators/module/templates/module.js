@@ -5,6 +5,5 @@
     .module('app.<%= moduleName %>', [
 
     ])
-    .config();
 
 })();
