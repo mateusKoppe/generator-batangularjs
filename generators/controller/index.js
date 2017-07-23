@@ -13,6 +13,14 @@ module.exports = class extends Generator{
     this.moduleName = args[0];
     this.controllerName = args[1];
 
+    if(this.moduleName == 'app') {
+      this.moduleFolder = 'app/';
+      this.moduleName = 'app';
+    }else{
+      this.moduleFolder = `app/${this.moduleName}/`;
+      this.moduleName = `app.${this.moduleName}`;
+    }
+
     this._writeProject();
 
   }
@@ -30,7 +38,7 @@ module.exports = class extends Generator{
   _writeProject() {
     this.fs.copyTpl(
       this.templatePath('controller.js'),
-      this.destinationPath(`app/${this.moduleName}/${this.controllerName}.controller.js`),
+      this.destinationPath(`${this.moduleFolder}${this.controllerName}.controller.js`),
       {
         controllerName: this._capitalize(this.controllerName),
         moduleName: this.moduleName

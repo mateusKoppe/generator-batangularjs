@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.<%= moduleName %>')
+    .module('<%= moduleName %>')
     .controller('<%= controllerName %>Controller', <%= controllerName %>Controller);
 
   function <%= controllerName %>Controller() {
