@@ -16,7 +16,7 @@
 			})
 			.state('home', {
 				url: '/',
-				templateUrl: 'pages/home.template.html',
+				templateUrl: 'layout/home.template.html',
 				controller: 'HomeController',
 				controllerAs: 'vm',
 				parent: 'main'
