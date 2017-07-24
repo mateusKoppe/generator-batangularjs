@@ -6,7 +6,7 @@ module.exports = class extends Generator{
     super(args, opts);
 
     if(!this._isArgsValids(args)){
-      this.log.error('Sintax error, you must use this sintax: batangularjs:route [module] [layout] <-t>');
+      this.log.error('Sintax error, you must use this sintax: batangularjs:layout [module] [layout] <-t>');
       return;
     };
 
@@ -34,7 +34,7 @@ module.exports = class extends Generator{
   }
 
   _isArgsValids(args){
-    return args.length;
+    return args.length >= 2;
   }
 
   _writeProject(){
