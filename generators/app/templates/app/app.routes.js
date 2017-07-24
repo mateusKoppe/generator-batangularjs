@@ -16,13 +16,13 @@
 			})
 			.state('home', {
 				url: '/',
-				templateUrl: 'layout/home.template.html',
+				templateUrl: 'layouts/home.template.html',
 				controller: 'HomeController',
 				controllerAs: 'vm',
 				parent: 'main'
 			})
 
-		$locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(false);
 	}
 
 })();
