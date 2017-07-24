@@ -1,6 +1,6 @@
 {
   "name": "generator-batangularjs",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Epic AngularJs seed and code generator, this is batAngularJs",
   "repository": "mateusKoppe/BatAngularJs",
   "files": [
