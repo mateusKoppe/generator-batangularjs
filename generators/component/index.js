@@ -1,29 +1,32 @@
 let Generator = require('yeoman-generator');
 
-module.exports = class extends Generator{
-
+module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    if(!this._isArgsValids(args)) {
+    if (!this._isArgsValids(args)) {
       this.log.error('Sintax error, you must use this sintax: batangularjs:component [module] [component] <-tci>');
       return;
-    };
+    }
 
     this.moduleName = args[0];
     this.componentName = args[1];
 
-    if(this.moduleName == 'app') {
+    if (this.moduleName == 'app') {
       this.moduleFolder = 'app/';
       this.moduleName = 'app';
-    }else{
+    } else {
       this.moduleFolder = `app/${this.moduleName}/`;
       this.moduleName = `app.${this.moduleName}`;
     }
 
     this.preFolder = '';
-    if (opts.c) this.preFolder += 'core/';
-    if (opts.t) this.preFolder += 'components/';
+    if (opts.c) {
+      this.preFolder += 'core/';
+    }
+    if (opts.t) {
+      this.preFolder += 'components/';
+    }
 
     this.isolated = opts.i;
 
@@ -32,34 +35,34 @@ module.exports = class extends Generator{
     this._writeProject();
   }
 
-  method(){}
+  method() {}
 
   _capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  _isArgsValids(args){
+  _isArgsValids(args) {
     return args.length >= 2;
   }
 
-  _writeProject(){
-    if(this.isolated){
+  _writeProject() {
+    if (this.isolated) {
       this._multipleFile();
-    }else{
+    } else {
       this._uniqueFile();
     }
   }
 
-  _multipleFile(){
+  _multipleFile() {
     this._copyComponentByTemplate('component-separated.js');
     this._copyComponentByTemplate('component-separated.html', 'template');
   }
 
-  _uniqueFile(){
+  _uniqueFile() {
     this._copyComponentByTemplate('component.js');
   }
 
-  _copyComponentByTemplate(templateName, type = 'component'){
+  _copyComponentByTemplate(templateName, type = 'component') {
     let extension = templateName.split('.').reverse()[0];
     console.log(this.folder);
     this.fs.copyTpl(
@@ -73,5 +76,4 @@ module.exports = class extends Generator{
       }
     );
   }
-
-}
+};

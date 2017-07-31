@@ -1,31 +1,29 @@
 var Generator = require('yeoman-generator');
 
-module.exports = class extends Generator{
-
+module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    if(!this._isArgsValids(args)){
+    if (!this._isArgsValids(args)) {
       this.log.error('Sintax error, you must use this sintax: batangularjs:controller [module] [controller]');
       return;
-    };
+    }
 
     this.moduleName = args[0];
     this.controllerName = args[1];
 
-    if(this.moduleName == 'app') {
+    if (this.moduleName == 'app') {
       this.moduleFolder = 'app/';
       this.moduleName = 'app';
-    }else{
+    } else {
       this.moduleFolder = `app/${this.moduleName}/`;
       this.moduleName = `app.${this.moduleName}`;
     }
 
     this._writeProject();
-
   }
 
-  method(){};
+  method() {}
 
   _isArgsValids(args) {
     return args.length >= 2;
@@ -45,5 +43,4 @@ module.exports = class extends Generator{
       }
     );
   }
-
-}
+};
