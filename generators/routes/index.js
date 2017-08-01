@@ -1,38 +1,42 @@
 let Generator = require('yeoman-generator');
 
-module.exports = class extends Generator {
+module.exports = class extends Generator{
+
   constructor(args, opts) {
     super(args, opts);
 
-    if (!this._isArgsValids(args)) {
-      this.log.error('Sintax error, you must use this sintax: batangularjs:route [module]');
-      return;
-    }
+    this.args = args;
+    this.opts = opts;
 
-    this.routeName = args[0];
-
-    if (this.routeName == 'app') {
-      this.moduleFolder = 'app/';
-      this.moduleName = 'app';
-    } else {
-      this.moduleFolder = `app/${this.routeName}/`;
-      this.moduleName = `app.${this.routeName}`;
-    }
-
-    this._writeProject();
   }
 
-  method() {}
-
-  _isArgsValids(args) {
-    return args.length;
+  validateArgs(args){
+    if(!this.args.length){
+      this.env.error('Sintax error, you must use the sintax: batangularjs:routes [module]');
+    }
   }
 
-  _writeProject() {
+  args(){
+    this.moduleName = this.args[0];
+  }
+
+  folder(){
+    this.dest = 'app/';
+    if(this.moduleName !== 'app') {
+      this.dest +=  `${this.moduleName}/`;
+    }
+  }
+
+  file(){
+    this.file = `${this.moduleName}.routes.js`;
+  }
+
+  writing(){
     this.fs.copyTpl(
-      this.templatePath('route.js'),
-      this.destinationPath(`${this.moduleFolder}${this.routeName}.routes.js`),
+      this.templatePath('routes.js'),
+      this.destinationPath(`${this.dest}${this.file}`),
       {moduleName: this.moduleName}
     );
   }
-};
+
+}

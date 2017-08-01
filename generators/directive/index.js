@@ -28,7 +28,7 @@ module.exports = class extends Generator{
   folder(){
     this.dest = 'app/';
     if(this.moduleName !== 'app') {
-      this.dest +=  `${this.moduleName}/`;
+      this.dest += `${this.moduleName}/`;
     }
     if(this.opts.c){
       this.dest +=  `core/`;
