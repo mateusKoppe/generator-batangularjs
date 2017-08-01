@@ -40,12 +40,11 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = props;
-      console.log(this.props);
     });
   }
 
   writing() {
-    this.fs.copy(this.templatePath('!(_*)'), this.destinationPath(`${this.props.dir}/.`));
+    this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath(`${this.props.dir}/.`));
     this.fs.copy(this.templatePath('app/'), this.destinationPath(`${this.props.dir}/app/`));
     this._installHideFiles(['bowerrc', 'editorconfig', 'gitignore', 'jscsrc', 'yo-rc.json']);
   }
