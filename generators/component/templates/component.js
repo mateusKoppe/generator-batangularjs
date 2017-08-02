@@ -3,7 +3,7 @@
 
   angular
     .module('<%= moduleName %>')
-    .component('<%= componentName %>', <%= componentName %>Component);
+    .component('<%= componentName %>', <%= componentName %>Component());
 
   function <%= componentName %>Component() {
     return {

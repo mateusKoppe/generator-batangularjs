@@ -3,7 +3,7 @@
 
   angular
     .module('<%= moduleName %>')
-    .component('<%= componentName %>', <%= componentName %>Component);
+    .component('<%= componentName %>', <%= componentName %>Component());
 
   function <%= componentName %>Component() {
     return {
@@ -17,7 +17,7 @@
 
   function <%= capitalizeComponentName %>Controller() {
     let vm = this;
-    
+
   }
 
 })();
