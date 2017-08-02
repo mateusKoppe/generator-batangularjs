@@ -33,7 +33,7 @@ $ npm install -g generator-batangularjs
 * Then start the application:
 
   ```
-  $ gulp serve-dev
+  $ gulp server-dev
   ```
 
 ## Subgenerators
