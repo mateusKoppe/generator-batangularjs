@@ -35,6 +35,11 @@ module.exports = class extends Generator {
             checked: true
           }
         ]
+      }, {
+        type: 'input',
+        name: 'autoInstall',
+        message: 'Can i install the dependencies?',
+        default: 'Y/n'
       }
     ];
 
@@ -50,7 +55,9 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies();
+		if(this.props.autoInstall === 'y' || this.props.autoInstall === 'Y' || this.props.autoInstall == 'Y/n'){
+			this.installDependencies();
+		}
   }
 
   _installHideFiles(files) {

@@ -7,7 +7,11 @@
 
   function <%= controllerName %>Controller() {
     let vm = this;
+		vm.publicFunction = publicFunction;
 
+		function publicFunction(){}
+
+		function _privateFunction(){}
   }
 
 })();
