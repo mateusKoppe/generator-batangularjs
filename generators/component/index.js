@@ -16,7 +16,7 @@ module.exports = class extends Generator{
 
   validateArgs(args){
     if(this.args.length < 2){
-      this.env.error('Sintax error, you must use the sintax: batangularjs:component [module] [component] <-tci>');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:component <module> <component> [-t][-c][-i]');
     }
   }
 

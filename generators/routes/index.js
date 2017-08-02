@@ -12,7 +12,7 @@ module.exports = class extends Generator{
 
   validateArgs(args){
     if(!this.args.length){
-      this.env.error('Sintax error, you must use the sintax: batangularjs:routes [module]');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:routes <module>');
     }
   }
 

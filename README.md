@@ -38,14 +38,15 @@ $ npm install -g generator-batangularjs
 
 ## Subgenerators
 
-* `$ yo batangularjs:module [module]`
-* `$ yo batangularjs:controller [module] [controller]`
-* `$ yo batangularjs:routes [module]`
-* `$ yo batangularjs:layout [module] [layout] <-t>`
-* `$ yo batangularjs:component [module] [component] <-tci>`
-* `$ yo batangularjs:directive [module] [directive] <-tci>`
-* `$ yo batangularjs:factory [module] [factory] <-tc>`
-* `$ yo batangularjs:filter [module] [filter] <-tc>`
+* `$ yo batangularjs:module <module>`
+* `$ yo batangularjs:controller <module> <controller>`
+* `$ yo batangularjs:routes <module>`
+* `$ yo batangularjs:layout <module> <layout> [-t]`
+* `$ yo batangularjs:component <module> <component> [-t][-c][-i]`
+* `$ yo batangularjs:directive <module> <directive> [-t][-c][-i]`
+* `$ yo batangularjs:factory <module> <factory> [-t][-c]`
+* `$ yo batangularjs:filter <module> <filter> [-t][-c]`
+* `$ yo batangularjs:value <module> <value> [<value's value>] [-t][-c]`
 
 ## Gulp Tasks
 * `$ gulp js` concat all your app scripts in `app/dist/app.js` (this task generate sourcemaps);
