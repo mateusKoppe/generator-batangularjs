@@ -17,18 +17,23 @@ module.exports = class extends Generator{
   }
 
   args(){
-    this.moduleName = this.args[0];
+    this.module = this.args[0];
+
+		this.moduleName = 'app';
+		if(this.module !== 'app'){
+			this.moduleName += `.${this.module}`;
+		}
   }
 
   folder(){
     this.dest = 'app/';
-    if(this.moduleName !== 'app') {
-      this.dest +=  `${this.moduleName}/`;
+    if(this.module !== 'app') {
+      this.dest +=  `${this.module}/`;
     }
   }
 
   file(){
-    this.file = `${this.moduleName}.module.js`;
+    this.file = `${this.module}.module.js`;
   }
 
   writing(){

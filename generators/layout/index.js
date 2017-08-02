@@ -21,14 +21,19 @@ module.exports = class extends Generator{
   }
 
   args(){
-    this.moduleName = this.args[0];
+    this.module = this.args[0];
     this.layoutName = this.args[1];
+
+		this.moduleName = 'app';
+		if(this.module !== 'app'){
+			this.moduleName += `.${this.module}`;
+		}
   }
 
   folder(){
     this.dest = 'app/';
-    if(this.moduleName !== 'app') {
-      this.dest +=  `${this.moduleName}/`;
+    if(this.module !== 'app') {
+      this.dest +=  `${this.module}/`;
     }
     if(this.opts.t){
       this.dest +=  `layouts/`;
