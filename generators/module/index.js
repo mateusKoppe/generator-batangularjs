@@ -26,14 +26,17 @@ module.exports = class extends Generator{
   }
 
   folder(){
+		let moduleFolder = this.module.replace('.', '/');
     this.dest = 'app/';
     if(this.module !== 'app') {
-      this.dest +=  `${this.module}/`;
+      this.dest +=  `${moduleFolder}/`;
     }
+
   }
 
   file(){
-    this.file = `${this.module}.module.js`;
+		let actualModule = this.module.split('.').reverse()[0];
+    this.file = `${actualModule}.module.js`;
   }
 
   writing(){

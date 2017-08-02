@@ -15,7 +15,7 @@ module.exports = class extends Generator{
   }
 
   validateArgs(args){
-    if(!this.args.length < 2){
+    if(this.args.length < 2){
       this.env.error('Sintax error, you must use the sintax: batangularjs:layout [module] [layout] -t');
     }
   }
@@ -31,9 +31,10 @@ module.exports = class extends Generator{
   }
 
   folder(){
+		let moduleFolder = this.module.replace('.', '/');
     this.dest = 'app/';
     if(this.module !== 'app') {
-      this.dest +=  `${this.module}/`;
+      this.dest +=  `${moduleFolder}/`;
     }
     if(this.opts.t){
       this.dest +=  `layouts/`;
