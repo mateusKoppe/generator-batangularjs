@@ -36,10 +36,9 @@ module.exports = class extends Generator {
           }
         ]
       }, {
-        type: 'input',
+        type: 'confirm',
         name: 'autoInstall',
-        message: 'Can i install the dependencies?',
-        default: 'Y/n'
+        message: 'Can i install the dependencies?'
       }
     ];
 
@@ -55,7 +54,7 @@ module.exports = class extends Generator {
   }
 
   install() {
-		if(this.props.autoInstall === 'y' || this.props.autoInstall === 'Y' || this.props.autoInstall == 'Y/n'){
+		if(this.props.autoInstall){
 			this.installDependencies();
 		}
   }
