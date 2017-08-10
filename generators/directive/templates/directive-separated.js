@@ -13,10 +13,10 @@
       transclude: false,
       link: <%= directiveName %>Link
     }
-  }
 
-  function <%= directiveName %>Link(scope, element, attrs){
+		function <%= directiveName %>Link(scope, element, attrs){
 
+		}
   }
 
 })();
