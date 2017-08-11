@@ -1,11 +1,9 @@
 {
-  "name": "Base",
+  "name": "",
   "version": "1.0.0",
-  "authors": [
-    "Mateus Koppe <mateus.koppe@gmail.com>"
-  ],
-  "description": "Base angularjs e infra",
-  "main": "index.html",
+  "authors": [],
+  "description": "",
+  "main": "",
   "license": "MIT",
   "ignore": [
     "node_modules",

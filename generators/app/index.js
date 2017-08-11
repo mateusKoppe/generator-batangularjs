@@ -17,25 +17,6 @@ module.exports = class extends Generator {
         message: 'What is your project folder?',
         default: '.'
       }, {
-        type: 'checkbox',
-        name: 'gulpOptions',
-        message: 'Which gulp options you like to include?',
-        choices: [
-          {
-            value: 'server',
-            name: 'Server',
-            checked: true
-          }, {
-            value: 'dev',
-            name: 'Dev',
-            checked: true
-          }, {
-            value: 'build',
-            name: 'Build',
-            checked: true
-          }
-        ]
-      }, {
         type: 'confirm',
         name: 'autoInstall',
         message: 'Can i install the dependencies?'
