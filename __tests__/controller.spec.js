@@ -2,6 +2,7 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
+var TestHelper = require('./test-helper');
 
 describe('generator-batangularjs:controller app name', () => {
   beforeAll(() => {
@@ -14,6 +15,18 @@ describe('generator-batangularjs:controller app name', () => {
       'app/name.controller.js'
     ]);
   });
+
+	it('define module name', () =>
+		TestHelper.checkModuleName('app/name.controller.js', 'app')
+	)
+
+	it('define type', () =>
+		TestHelper.checkType('app/name.controller.js', 'controller')
+	)
+
+	it('define name', () =>
+		TestHelper.checkName('app/name.controller.js', 'NameController')
+	)
 });
 
 describe('generator-batangularjs:controller module name', () => {
@@ -27,4 +40,8 @@ describe('generator-batangularjs:controller module name', () => {
       'app/module/name.controller.js'
     ]);
   });
+
+	it('define module name', () =>
+		TestHelper.checkModuleName('app/module/name.controller.js', 'app.module')
+	)
 });

@@ -2,6 +2,7 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
+var TestHelper = require('./test-helper');
 
 describe('generator-batangularjs:directive app name', () => {
   beforeAll(() => {
@@ -14,6 +15,18 @@ describe('generator-batangularjs:directive app name', () => {
       'app/name.directive.js'
     ]);
   });
+
+	it('define module name', () =>
+		TestHelper.checkModuleName('app/name.directive.js', 'app')
+	)
+
+	it('define type', () =>
+		TestHelper.checkType('app/name.directive.js', 'directive')
+	)
+
+	it('define name', () =>
+		TestHelper.checkName('app/name.directive.js', 'name')
+	)
 });
 
 describe('generator-batangularjs:directive module name', () => {
@@ -27,6 +40,10 @@ describe('generator-batangularjs:directive module name', () => {
       'app/module/name.directive.js'
     ]);
   });
+
+	it('define module name', () =>
+		TestHelper.checkModuleName('app/module/name.directive.js', 'app.module')
+	)
 });
 
 describe('generator-batangularjs:directive module name -t', () => {
@@ -82,66 +99,6 @@ describe('generator-batangularjs:directive app name -i', () => {
     assert.file([
       'app/name.directive.js',
       'app/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module name -i', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/name.directive.js',
-      'app/module/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module name -it', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({t: true, i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/directives/name.directive.js',
-      'app/module/directives/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module name -ic', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/name.directive.js',
-      'app/module/core/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module name -itc', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, t: true, i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/directives/name.directive.js',
-      'app/module/core/directives/name.template.html',
     ]);
   });
 });

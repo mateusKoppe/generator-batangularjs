@@ -2,6 +2,7 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
+var TestHelper = require('./test-helper');
 
 describe('generator-batangularjs:component app name', () => {
   beforeAll(() => {
@@ -14,6 +15,18 @@ describe('generator-batangularjs:component app name', () => {
       'app/name.component.js'
     ]);
   });
+
+	it('define module name', () =>
+		TestHelper.checkModuleName('app/name.component.js', 'app')
+	)
+
+	it('define type', () =>
+		TestHelper.checkType('app/name.component.js', 'component')
+	)
+
+	it('define name', () =>
+		TestHelper.checkName('app/name.component.js', 'name')
+	)
 });
 
 describe('generator-batangularjs:component module name', () => {
@@ -27,6 +40,10 @@ describe('generator-batangularjs:component module name', () => {
       'app/module/name.component.js'
     ]);
   });
+
+	it('define module name', () =>
+		TestHelper.checkModuleName('app/module/name.component.js', 'app.module')
+	)
 });
 
 describe('generator-batangularjs:component module name -t', () => {
@@ -82,66 +99,6 @@ describe('generator-batangularjs:component app name -i', () => {
     assert.file([
       'app/name.component.js',
       'app/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:component module name -i', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/component'))
-      .withArguments(['module', 'name'])
-      .withOptions({i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/name.component.js',
-      'app/module/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:component module name -it', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/component'))
-      .withArguments(['module', 'name'])
-      .withOptions({t: true, i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/components/name.component.js',
-      'app/module/components/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:component module name -ic', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/component'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/name.component.js',
-      'app/module/core/name.template.html',
-    ]);
-  });
-});
-
-describe('generator-batangularjs:component module name -itc', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/component'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, t: true, i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/components/name.component.js',
-      'app/module/core/components/name.template.html',
     ]);
   });
 });

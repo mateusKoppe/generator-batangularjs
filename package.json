@@ -40,7 +40,8 @@
     "yosay": "^2.0.0"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+		"testMatch": [ "**/__tests__/**/*.spec.js" ]
   },
   "scripts": {
     "prepublish": "nsp check",
