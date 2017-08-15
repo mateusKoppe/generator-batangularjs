@@ -16,17 +16,17 @@ describe('generator-batangularjs:filter app name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/name.filter.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/name.filter.js', 'app')
+  );
 
-	it('define type', () =>
-		TestHelper.checkType('app/name.filter.js', 'filter')
-	)
+  it('define type', () =>
+    TestHelper.checkType('app/name.filter.js', 'filter')
+  );
 
-	it('define name', () =>
-		TestHelper.checkName('app/name.filter.js', 'name')
-	)
+  it('define name', () =>
+    TestHelper.checkName('app/name.filter.js', 'name')
+  );
 });
 
 describe('generator-batangularjs:filter module name', () => {
@@ -41,9 +41,9 @@ describe('generator-batangularjs:filter module name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/module/name.filter.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module/name.filter.js', 'app.module')
+  );
 });
 
 describe('generator-batangularjs:filter module name -t', () => {

@@ -16,17 +16,17 @@ describe('generator-batangularjs:controller app name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/name.controller.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/name.controller.js', 'app')
+  );
 
-	it('define type', () =>
-		TestHelper.checkType('app/name.controller.js', 'controller')
-	)
+  it('define type', () =>
+    TestHelper.checkType('app/name.controller.js', 'controller')
+  );
 
-	it('define name', () =>
-		TestHelper.checkName('app/name.controller.js', 'NameController')
-	)
+  it('define name', () =>
+    TestHelper.checkName('app/name.controller.js', 'NameController')
+  );
 });
 
 describe('generator-batangularjs:controller module name', () => {
@@ -41,7 +41,7 @@ describe('generator-batangularjs:controller module name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/module/name.controller.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module/name.controller.js', 'app.module')
+  );
 });

@@ -20,7 +20,7 @@ describe('generator-batangularjs:value app name -t', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/value'))
       .withArguments(['app', 'name'])
-			.withOptions({t: true});
+      .withOptions({t: true});
   });
 
   it('creates files', () => {
@@ -34,7 +34,7 @@ describe('generator-batangularjs:value app name -c', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/value'))
       .withArguments(['app', 'name'])
-			.withOptions({c: true});
+      .withOptions({c: true});
   });
 
   it('creates files', () => {
@@ -48,7 +48,7 @@ describe('generator-batangularjs:value app name -tc', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/value'))
       .withArguments(['app', 'name'])
-			.withOptions({c: true, t: true});
+      .withOptions({c: true, t: true});
   });
 
   it('creates files', () => {

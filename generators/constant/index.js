@@ -1,8 +1,6 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -12,7 +10,7 @@ module.exports = class extends Generator {
     this.opts = opts;
   }
 
-  validateArgs(args) {
+  validateArgs() {
     if (this.args.length < 2) {
       this.env.error('Sintax error, you must use the sintax: batangularjs:constant <module> <constant> [<[value]>] [-t][-c]');
     }

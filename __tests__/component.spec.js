@@ -16,17 +16,17 @@ describe('generator-batangularjs:component app name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/name.component.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/name.component.js', 'app')
+  );
 
-	it('define type', () =>
-		TestHelper.checkType('app/name.component.js', 'component')
-	)
+  it('define type', () =>
+    TestHelper.checkType('app/name.component.js', 'component')
+  );
 
-	it('define name', () =>
-		TestHelper.checkName('app/name.component.js', 'name')
-	)
+  it('define name', () =>
+    TestHelper.checkName('app/name.component.js', 'name')
+  );
 });
 
 describe('generator-batangularjs:component module name', () => {
@@ -41,9 +41,9 @@ describe('generator-batangularjs:component module name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/module/name.component.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module/name.component.js', 'app.module')
+  );
 });
 
 describe('generator-batangularjs:component module name -t', () => {
@@ -92,13 +92,13 @@ describe('generator-batangularjs:component app name -i', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/component'))
       .withArguments(['app', 'name'])
-			.withOptions({i: true});
+      .withOptions({i: true});
   });
 
   it('creates files', () => {
     assert.file([
       'app/name.component.js',
-      'app/name.template.html',
+      'app/name.template.html'
     ]);
   });
 });

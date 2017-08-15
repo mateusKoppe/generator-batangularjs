@@ -16,9 +16,9 @@ describe('generator-batangularjs:module app', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkNewModuleName('app/app.module.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkNewModuleName('app/app.module.js', 'app')
+  );
 });
 
 describe('generator-batangularjs:module module', () => {
@@ -33,7 +33,7 @@ describe('generator-batangularjs:module module', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkNewModuleName('app/module/module.module.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkNewModuleName('app/module/module.module.js', 'app.module')
+  );
 });

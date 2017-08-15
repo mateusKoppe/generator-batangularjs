@@ -35,9 +35,9 @@ module.exports = class extends Generator {
   }
 
   install() {
-		if(this.props.autoInstall){
-			this.installDependencies();
-		}
+    if (this.props.autoInstall) {
+      this.installDependencies();
+    }
   }
 
   _installHideFiles(files) {

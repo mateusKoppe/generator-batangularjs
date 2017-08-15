@@ -12,22 +12,22 @@ describe('generator-batangularjs:layout app name', () => {
 
   it('creates files', () => {
     assert.file([
-			'app/name.controller.js',
-      'app/name.template.html',
+      'app/name.controller.js',
+      'app/name.template.html'
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/name.controller.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/name.controller.js', 'app')
+  );
 
-	it('define type', () =>
-		TestHelper.checkType('app/name.controller.js', 'controller')
-	)
+  it('define type', () =>
+    TestHelper.checkType('app/name.controller.js', 'controller')
+  );
 
-	it('define name', () =>
-		TestHelper.checkName('app/name.controller.js', 'NameController')
-	)
+  it('define name', () =>
+    TestHelper.checkName('app/name.controller.js', 'NameController')
+  );
 });
 
 describe('generator-batangularjs:layout module name', () => {
@@ -38,14 +38,14 @@ describe('generator-batangularjs:layout module name', () => {
 
   it('creates files', () => {
     assert.file([
-			'app/module/name.controller.js',
-      'app/module/name.template.html',
+      'app/module/name.controller.js',
+      'app/module/name.template.html'
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/module/name.controller.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module/name.controller.js', 'app.module')
+  );
 });
 
 describe('generator-batangularjs:layout module name -t', () => {
@@ -57,8 +57,8 @@ describe('generator-batangularjs:layout module name -t', () => {
 
   it('creates files', () => {
     assert.file([
-			'app/module/layouts/name.controller.js',
-      'app/module/layouts/name.template.html',
+      'app/module/layouts/name.controller.js',
+      'app/module/layouts/name.template.html'
     ]);
   });
 });

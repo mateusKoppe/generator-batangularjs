@@ -16,17 +16,17 @@ describe('generator-batangularjs:factory app name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/name.factory.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/name.factory.js', 'app')
+  );
 
-	it('define type', () =>
-		TestHelper.checkType('app/name.factory.js', 'factory')
-	)
+  it('define type', () =>
+    TestHelper.checkType('app/name.factory.js', 'factory')
+  );
 
-	it('define name', () =>
-		TestHelper.checkName('app/name.factory.js', 'name')
-	)
+  it('define name', () =>
+    TestHelper.checkName('app/name.factory.js', 'name')
+  );
 });
 
 describe('generator-batangularjs:factory module name', () => {
@@ -41,9 +41,9 @@ describe('generator-batangularjs:factory module name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/module/name.factory.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module/name.factory.js', 'app.module')
+  );
 });
 
 describe('generator-batangularjs:factory module name -t', () => {

@@ -16,17 +16,17 @@ describe('generator-batangularjs:constant app name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/name.constant.js', 'app')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/name.constant.js', 'app')
+  );
 
-	it('define type', () =>
-		TestHelper.checkType('app/name.constant.js', 'constant')
-	)
+  it('define type', () =>
+    TestHelper.checkType('app/name.constant.js', 'constant')
+  );
 
-	it('define name', () =>
-		TestHelper.checkName('app/name.constant.js', 'name')
-	)
+  it('define name', () =>
+    TestHelper.checkName('app/name.constant.js', 'name')
+  );
 });
 
 describe('generator-batangularjs:constant module name', () => {
@@ -41,9 +41,9 @@ describe('generator-batangularjs:constant module name', () => {
     ]);
   });
 
-	it('define module name', () =>
-		TestHelper.checkModuleName('app/module/name.constant.js', 'app.module')
-	)
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module/name.constant.js', 'app.module')
+  );
 });
 
 describe('generator-batangularjs:constant module name -t', () => {
