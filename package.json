@@ -1,6 +1,6 @@
 {
   "name": "generator-batangularjs",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "Epic AngularJs seed and code generator, this is batAngularJs",
   "homepage": "",
   "author": {
@@ -32,7 +32,7 @@
     "jest": "^19.0.2",
     "jest-cli": "^20.0.0"
   },
-  "repository": "mateusKoppe/BatAngularJs",
+  "repository": "mateusKoppe/generator-batangularjs",
   "license": "ISC",
   "dependencies": {
     "yeoman-generator": "^1.0.0",
