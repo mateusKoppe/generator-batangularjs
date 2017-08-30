@@ -67,13 +67,9 @@ module.exports = class extends Generator {
       {
         moduleName: this.moduleName,
         directiveName: this.directiveName,
-        capitalizeDirectiveName: Batangularjs.capitalize(this.directiveName),
+        capitalizeDirectiveName: Batangularjs.upperCaseFirst(this.directiveName),
         folder: folderInApp
       }
     );
-  }
-
-  _capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 };

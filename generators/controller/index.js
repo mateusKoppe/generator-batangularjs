@@ -45,7 +45,7 @@ module.exports = class extends Generator {
       this.destinationPath(`${this.dest}${this.file}`),
       {
         moduleName: this.moduleName,
-        controllerName: Batangularjs.capitalize(this.controllerName)
+        controllerName: Batangularjs.upperCaseFirst(this.controllerName)
       }
     );
   }
