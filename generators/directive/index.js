@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const Batangularjs = require('../core');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -66,7 +67,7 @@ module.exports = class extends Generator {
       {
         moduleName: this.moduleName,
         directiveName: this.directiveName,
-        capitalizeDirectiveName: this._capitalize(this.directiveName),
+        capitalizeDirectiveName: Batangularjs.capitalize(this.directiveName),
         folder: folderInApp
       }
     );
