@@ -24,5 +24,5 @@ function kebabCase(string) {
   string = lowerCaseFirst(string);
   return string
     .replace(/[A-Z]/g, match => '-' + match.toLowerCase())
-    .replace('_', '-');
+    .replace(/_/g, '-');
 }
