@@ -62,3 +62,29 @@ describe('generator-batangularjs:layout module name -t', () => {
     ]);
   });
 });
+
+describe('generator-batangularjs:layout module-name name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/layout'))
+      .withArguments(['module-name', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/module-name/nameMultiple.controller.js',
+      'app/module-name/nameMultiple.template.html'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/module-name/nameMultiple.controller.js', 'app.moduleName')
+  );
+
+  it('define type', () =>
+    TestHelper.checkType('app/module-name/nameMultiple.controller.js', 'controller')
+  );
+
+  it('define name', () =>
+    TestHelper.checkName('app/module-name/nameMultiple.controller.js', 'NameMultipleController')
+  );
+});

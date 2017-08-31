@@ -102,3 +102,45 @@ describe('generator-batangularjs:component app name -i', () => {
     ]);
   });
 });
+
+describe('generator-batangularjs:component module-multiple name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/component'))
+      .withArguments(['module-multiple', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.component.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.component.js', 'app.moduleMultiple')
+  );
+
+  it('define component name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.component.js', 'nameMultiple')
+  );
+});
+
+describe('generator-batangularjs:component moduleMultiple nameMultiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/component'))
+      .withArguments(['moduleMultiple', 'nameMultiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.component.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.component.js', 'app.moduleMultiple')
+  );
+
+  it('define component name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.component.js', 'nameMultiple')
+  );
+});

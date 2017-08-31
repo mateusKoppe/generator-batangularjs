@@ -37,3 +37,37 @@ describe('generator-batangularjs:module module', () => {
     TestHelper.checkNewModuleName('app/module/module.module.js', 'app.module')
   );
 });
+
+describe('generator-batangularjs:module module-name', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['module-name']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/module-name/moduleName.module.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkNewModuleName('app/module-name/moduleName.module.js', 'app.moduleName')
+  );
+});
+
+describe('generator-batangularjs:module moduleName', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['moduleName']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/module-name/moduleName.module.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkNewModuleName('app/module-name/moduleName.module.js', 'app.moduleName')
+  );
+});

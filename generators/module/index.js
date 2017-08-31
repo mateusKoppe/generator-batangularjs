@@ -1,4 +1,5 @@
-let Generator = require('yeoman-generator');
+const Generator = require('yeoman-generator');
+const Batangularjs = require('../core');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -15,7 +16,7 @@ module.exports = class extends Generator {
   }
 
   args() {
-    this.module = this.args[0];
+    this.module = Batangularjs.camelCase(this.args[0]);
 
     this.moduleName = 'app';
     if (this.module !== 'app') {
@@ -24,7 +25,7 @@ module.exports = class extends Generator {
   }
 
   folder() {
-    let moduleFolder = this.module.replace('.', '/');
+    let moduleFolder = Batangularjs.kebabCase(this.module.replace('.', '/'));
     this.dest = 'app/';
     if (this.module !== 'app') {
       this.dest += `${moduleFolder}/`;
@@ -33,7 +34,8 @@ module.exports = class extends Generator {
 
   file() {
     let actualModule = this.module.split('.').reverse()[0];
-    this.file = `${actualModule}.module.js`;
+    let fileName = Batangularjs.camelCase(actualModule);
+    this.file = `${fileName}.module.js`;
   }
 
   writing() {

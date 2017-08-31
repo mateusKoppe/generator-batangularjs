@@ -45,3 +45,45 @@ describe('generator-batangularjs:controller module name', () => {
     TestHelper.checkModuleName('app/module/name.controller.js', 'app.module')
   );
 });
+
+describe('generator-batangularjs:controller module-multiple name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/controller'))
+      .withArguments(['module-multiple', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.controller.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.controller.js', 'app.moduleMultiple')
+  );
+
+  it('define controller name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.controller.js', 'NameMultipleController')
+  );
+});
+
+describe('generator-batangularjs:controller moduleMultiple nameMultiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/controller'))
+      .withArguments(['moduleMultiple', 'nameMultiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.controller.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.controller.js', 'app.moduleMultiple')
+  );
+
+  it('define controller name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.controller.js', 'NameMultipleController')
+  );
+});

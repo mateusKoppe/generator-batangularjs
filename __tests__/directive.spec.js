@@ -102,3 +102,45 @@ describe('generator-batangularjs:directive app name -i', () => {
     ]);
   });
 });
+
+describe('generator-batangularjs:directive module-multiple name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/directive'))
+      .withArguments(['module-multiple', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.directive.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.directive.js', 'app.moduleMultiple')
+  );
+
+  it('define directive name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
+  );
+});
+
+describe('generator-batangularjs:directive moduleMultiple nameMultiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/directive'))
+      .withArguments(['moduleMultiple', 'nameMultiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.directive.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.directive.js', 'app.moduleMultiple')
+  );
+
+  it('define directive name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
+  );
+});

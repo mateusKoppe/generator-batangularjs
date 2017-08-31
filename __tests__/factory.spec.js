@@ -87,3 +87,45 @@ describe('generator-batangularjs:factory module name -tc', () => {
     ]);
   });
 });
+
+describe('generator-batangularjs:factory module-multiple name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/factory'))
+      .withArguments(['module-multiple', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.factory.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.factory.js', 'app.moduleMultiple')
+  );
+
+  it('define factory name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.factory.js', 'nameMultiple')
+  );
+});
+
+describe('generator-batangularjs:factory moduleMultiple nameMultiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/factory'))
+      .withArguments(['moduleMultiple', 'nameMultiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.factory.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.factory.js', 'app.moduleMultiple')
+  );
+
+  it('define factory name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.factory.js', 'nameMultiple')
+  );
+});

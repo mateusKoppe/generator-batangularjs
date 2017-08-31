@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const Batangularjs = require('../core');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -17,8 +18,8 @@ module.exports = class extends Generator {
   }
 
   args() {
-    this.module = this.args[0];
-    this.filterName = this.args[1];
+    this.module = Batangularjs.camelCase(this.args[0]);
+    this.filterName = Batangularjs.camelCase(this.args[1]);
 
     this.moduleName = 'app';
     if (this.module !== 'app') {
@@ -41,7 +42,8 @@ module.exports = class extends Generator {
   }
 
   file() {
-    this.file = `${this.filterName}.filter.js`;
+    let fileName = Batangularjs.kebabCase(this.filterName);
+    this.file = `${fileName}.filter.js`;
   }
 
   writing() {

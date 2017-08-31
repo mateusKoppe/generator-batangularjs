@@ -87,3 +87,45 @@ describe('generator-batangularjs:filter module name -tc', () => {
     ]);
   });
 });
+
+describe('generator-batangularjs:filter module-multiple name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/filter'))
+      .withArguments(['module-multiple', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.filter.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.filter.js', 'app.moduleMultiple')
+  );
+
+  it('define filter name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.filter.js', 'nameMultiple')
+  );
+});
+
+describe('generator-batangularjs:filter moduleMultiple nameMultiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/filter'))
+      .withArguments(['moduleMultiple', 'nameMultiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.filter.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.filter.js', 'app.moduleMultiple')
+  );
+
+  it('define filter name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.filter.js', 'nameMultiple')
+  );
+});

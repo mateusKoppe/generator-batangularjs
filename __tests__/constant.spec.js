@@ -87,3 +87,45 @@ describe('generator-batangularjs:constant module name -tc', () => {
     ]);
   });
 });
+
+describe('generator-batangularjs:constant module-multiple name-multiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/constant'))
+      .withArguments(['module-multiple', 'name-multiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.constant.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.constant.js', 'app.moduleMultiple')
+  );
+
+  it('define constant name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.constant.js', 'nameMultiple')
+  );
+});
+
+describe('generator-batangularjs:constant moduleMultiple nameMultiple', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/constant'))
+      .withArguments(['moduleMultiple', 'nameMultiple']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleMultiple/name-multiple.constant.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.constant.js', 'app.moduleMultiple')
+  );
+
+  it('define constant name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.constant.js', 'nameMultiple')
+  );
+});

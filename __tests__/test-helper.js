@@ -18,14 +18,14 @@ module.exports = {
   checkType(file, type) {
     assert.fileContent(
       file,
-      new RegExp('\\.module\\(\'\\w*\'\\)\\n*.*\\.' + type + '\\(')
+      new RegExp('\\.module\\(\'[\\w\\.]*\'\\)\\n*.*\\.' + type + '\\(')
     );
   },
 
   checkName(file, name) {
     assert.fileContent(
       file,
-      new RegExp('\\.module\\(\'\\w*\'\\)\\n*.*\\.\\w*\\(\'' + name + '\'\\,')
+      new RegExp('\\.module\\(\'[\\w\\.]*\'\\)\\n*.*\\.\\w*\\(\'' + name + '\'\\,')
     );
   }
 };

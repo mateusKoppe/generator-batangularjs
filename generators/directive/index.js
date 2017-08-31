@@ -18,8 +18,8 @@ module.exports = class extends Generator {
   }
 
   args() {
-    this.module = this.args[0];
-    this.directiveName = this.args[1];
+    this.module = Batangularjs.camelCase(this.args[0]);
+    this.directiveName = Batangularjs.camelCase(this.args[1]);
 
     this.moduleName = 'app';
     if (this.module !== 'app') {
@@ -60,10 +60,10 @@ module.exports = class extends Generator {
     let folderInApp = this.dest.split('/');
     folderInApp.shift();
     folderInApp = folderInApp.join('/');
-
+    let fileName = Batangularjs.kebabCase(this.directiveName);
     this.fs.copyTpl(
       this.templatePath(templateName),
-      this.destinationPath(`${this.dest}${this.directiveName}.${type}.${extension}`),
+      this.destinationPath(`${this.dest}${fileName}.${type}.${extension}`),
       {
         moduleName: this.moduleName,
         directiveName: this.directiveName,

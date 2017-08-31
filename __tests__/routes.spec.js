@@ -21,7 +21,7 @@ describe('generator-batangularjs:routes app', () => {
   );
 });
 
-describe('generator-batangularjs:routes module name', () => {
+describe('generator-batangularjs:routes module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/routes'))
       .withArguments(['module']);
@@ -35,5 +35,22 @@ describe('generator-batangularjs:routes module name', () => {
 
   it('define module name', () =>
     TestHelper.checkModuleName('app/module/module.routes.js', 'app.module')
+  );
+});
+
+describe('generator-batangularjs:routes module-name', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/routes'))
+      .withArguments(['module-name']);
+  });
+
+  it('creates files', () => {
+    assert.file([
+      'app/moduleName/module-name.routes.js'
+    ]);
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleName/module-name.routes.js', 'app.moduleName')
   );
 });

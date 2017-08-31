@@ -18,8 +18,8 @@ module.exports = class extends Generator {
   }
 
   args() {
-    this.module = this.args[0];
-    this.layoutName = this.args[1];
+    this.module = Batangularjs.camelCase(this.args[0]);
+    this.layoutName = Batangularjs.camelCase(this.args[1]);
 
     this.moduleName = 'app';
     if (this.module !== 'app') {
@@ -28,7 +28,7 @@ module.exports = class extends Generator {
   }
 
   folder() {
-    let moduleFolder = this.module.replace('.', '/');
+    let moduleFolder = Batangularjs.kebabCase(this.module.replace('.', '/'));
     this.dest = 'app/';
     if (this.module !== 'app') {
       this.dest += `${moduleFolder}/`;
@@ -39,13 +39,14 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    let fileName = Batangularjs.camelCase(this.layoutName);
     this.fs.copyTpl(
       this.templatePath('layout.html'),
-      this.destinationPath(`${this.dest}${this.layoutName}.template.html`)
+      this.destinationPath(`${this.dest}${fileName}.template.html`)
     );
     this.fs.copyTpl(
       this.templatePath('../../controller/templates/controller.js'),
-      this.destinationPath(`${this.dest}${this.layoutName}.controller.js`),
+      this.destinationPath(`${this.dest}${fileName}.controller.js`),
       {
         moduleName: this.moduleName,
         controllerName: Batangularjs.upperCaseFirst(this.layoutName)

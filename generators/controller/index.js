@@ -18,8 +18,8 @@ module.exports = class extends Generator {
   }
 
   args() {
-    this.module = this.args[0];
-    this.controllerName = this.args[1];
+    this.module = Batangularjs.camelCase(this.args[0]);
+    this.controllerName = Batangularjs.upperCaseFirst(Batangularjs.camelCase(this.args[1]));
 
     this.moduleName = 'app';
     if (this.module !== 'app') {
@@ -36,7 +36,8 @@ module.exports = class extends Generator {
   }
 
   file() {
-    this.file = `${this.controllerName}.controller.js`;
+    let fileName = Batangularjs.kebabCase(this.controllerName);
+    this.file = `${fileName}.controller.js`;
   }
 
   writing() {
