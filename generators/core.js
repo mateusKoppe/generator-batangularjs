@@ -1,5 +1,3 @@
-// TODO: Unit test for this
-
 module.exports = {
   upperCaseFirst,
   lowerCaseFirst,

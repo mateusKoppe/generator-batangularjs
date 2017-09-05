@@ -12,11 +12,6 @@ module.exports = class extends Generator {
 
     const prompts = [
       {
-        type: 'input',
-        name: 'dir',
-        message: 'What is your project folder?',
-        default: '.'
-      }, {
         type: 'confirm',
         name: 'autoInstall',
         message: 'Can i install the dependencies?'
@@ -29,8 +24,8 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath(`${this.props.dir}/.`));
-    this.fs.copy(this.templatePath('app/'), this.destinationPath(`${this.props.dir}/app/`));
+    this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath(`.`));
+    this.fs.copy(this.templatePath('app/'), this.destinationPath(`./app/`));
     this._installHideFiles(['bowerrc', 'editorconfig', 'gitignore', 'jscsrc', 'yo-rc.json']);
   }
 
@@ -41,6 +36,6 @@ module.exports = class extends Generator {
   }
 
   _installHideFiles(files) {
-    files.forEach(file => this.fs.copy(this.templatePath(`_.${file}`), this.destinationPath(`${this.props.dir}/.${file}`)));
+    files.forEach(file => this.fs.copy(this.templatePath(`_.${file}`), this.destinationPath(`./.${file}`)));
   }
 };
