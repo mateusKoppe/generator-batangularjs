@@ -7,6 +7,10 @@
     "angularjs"
   ],
   "license": "ISC",
+	"scripts": {
+    "start": "gulp",
+    "build": "gulp build"
+  },
   "devDependencies": {
 		"async": "2.5.0",
 		"babel-preset-es2015": "6.24.1",
