@@ -29,11 +29,11 @@ $ npm install -g generator-batangularjs
   $ npm start
   ```
 
- * To build the app run:
+* To build the app run:
 
- ```
-$ npm build
-```
+ 	```
+	$ npm run build
+	```
 
 ## Subgenerators
 * `$ yo batangularjs:module <module>`
