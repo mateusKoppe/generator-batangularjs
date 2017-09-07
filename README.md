@@ -1,8 +1,7 @@
 # BatAngularJs | Yeoman Generator
 
-> Yeoman generator for AngularJS - lets you create a angularJs app, quickly, easy and with good practives.
+> generator-batangularjs creates a base to start a new angular.js application.
 
-This generator is all that you need for set up your angularJs application.
 
 ## Install
 
@@ -24,20 +23,19 @@ $ npm install -g generator-batangularjs
   $ yo batangularjs
   ```
 
-* If you created your project out of the `.` folder, use `cd` and run:
-
-  ```
-  $ npm i && bower i
-  ```
-
 * Then start the application:
 
   ```
-  $ gulp server-dev
+  $ npm start
   ```
 
-## Subgenerators
+ * To build the app run:
 
+ ```
+$ npm build
+```
+
+## Subgenerators
 * `$ yo batangularjs:module <module>`
 * `$ yo batangularjs:controller <module> <controller>`
 * `$ yo batangularjs:routes <module>`
@@ -49,13 +47,13 @@ $ npm install -g generator-batangularjs
 * `$ yo batangularjs:value <module> <value> [<value's value>] [-t][-c]`
 
 ## Gulp Tasks
+* `$ gulp default` run `gulp dev`;
+* `$ gulp dev` Start server and watch files;
+* `$ gulp server` start your app;
 * `$ gulp js` concat all your app scripts in `app/dist/app.js` (this task generate sourcemaps);
 * `$ gulp css` execute your sass file and put the result in `app/dist/css.js` (this task use sourcemaps);
 * `$ gulp js:watch` observe your `.js` files and run `gulp js`;
 * `$ gulp css:watch` observe your `.scss` files and run `gulp css`;
 * `$ gulp watch` run `js:watch` and `css:watch`;
-* `$ gulp js:oldbrowser` do the same that `gulp js`, add inject in your angularJs functions and convert your ES6 functions in to ES5 functions;
-* `$ gulp css:oldbrowser` do the same that `gulp css` and add prefix for old browsers;
-* `$ gulp server` start your app;
-* `$ gulp server-dev` run `gulp server` and `gulp watch`;
-* `$ gulp prod` generate a minified verson of your website, do the same that `gulp old` and minify your files, concat your images, put your included libraries into a unique file name.
+* `$ gulp build` generate a minified verson of your website, do the same that `gulp old` and minify your files, concat your images, put your included libraries into a unique file name.
+* `$ gulp server-build` start your builded application;
