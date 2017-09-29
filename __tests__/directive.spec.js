@@ -144,3 +144,23 @@ describe('generator-batangularjs:directive moduleMultiple nameMultiple', () => {
     TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
   );
 });
+
+describe('generator-batangularjs:directive moduleMultiple nameMultiple -i', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/directive'))
+      .withArguments(['moduleMultiple', 'nameMultiple'])
+      .withOptions({i: true});
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.directive.js', 'app.moduleMultiple')
+  );
+
+  it('define directive name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
+  );
+
+  it('define directive name', () =>
+    TestHelper.checkTemplateUrl('app/moduleMultiple/name-multiple.directive.js', 'moduleMultiple/name-multiple.template.html')
+  );
+});

@@ -144,3 +144,23 @@ describe('generator-batangularjs:component moduleMultiple nameMultiple', () => {
     TestHelper.checkName('app/moduleMultiple/name-multiple.component.js', 'nameMultiple')
   );
 });
+
+describe('generator-batangularjs:component moduleMultiple nameMultiple -i', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/component'))
+      .withArguments(['moduleMultiple', 'nameMultiple'])
+      .withOptions({i: true});
+  });
+
+  it('define module name', () =>
+    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.component.js', 'app.moduleMultiple')
+  );
+
+  it('define component name', () =>
+    TestHelper.checkName('app/moduleMultiple/name-multiple.component.js', 'nameMultiple')
+  );
+
+  it('define component name', () =>
+    TestHelper.checkTemplateUrl('app/moduleMultiple/name-multiple.component.js', 'moduleMultiple/name-multiple.template.html')
+  );
+});

@@ -27,5 +27,12 @@ module.exports = {
       file,
       new RegExp('\\.module\\(\'[\\w\\.]*\'\\)\\n*.*\\.\\w*\\(\'' + name + '\'\\,')
     );
+  },
+
+  checkTemplateUrl(file, filename) {
+    assert.fileContent(
+      file,
+      new RegExp(`templateUrl: '${filename}'`)
+    );
   }
 };

@@ -67,6 +67,7 @@ module.exports = class extends Generator {
       {
         moduleName: this.moduleName,
         directiveName: this.directiveName,
+        fileName,
         capitalizeDirectiveName: Batangularjs.upperCaseFirst(this.directiveName),
         folder: folderInApp
       }

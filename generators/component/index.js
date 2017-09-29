@@ -67,6 +67,7 @@ module.exports = class extends Generator {
       {
         moduleName: this.moduleName,
         componentName: this.componentName,
+        fileName,
         capitalizeComponentName: Batangularjs.upperCaseFirst(this.componentName),
         folder: folderInApp
       }

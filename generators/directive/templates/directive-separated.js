@@ -8,7 +8,7 @@
   function <%= directiveName %>Directive() {
     return {
       restrict: 'AE',
-      templateUrl: '<%= folder %><%= directiveName %>.template.html',
+      templateUrl: '<%= folder %><%= fileName %>.template.html',
       scope: {},
       transclude: false,
       link: <%= directiveName %>Link
