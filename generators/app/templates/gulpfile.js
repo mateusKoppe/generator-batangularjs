@@ -37,8 +37,8 @@ const inFolder = (folder, selection) => {
 
   function _getFormatedFileDir(file){
     let prefix = '';
-  	if(file.charAt(0) === '!') {
-    	prefix = '!';
+    if(file.charAt(0) === '!') {
+      prefix = '!';
       file = file.slice(1);
     }
     return `${prefix}${folder}/${file}`;
@@ -49,42 +49,45 @@ const inFolder = (folder, selection) => {
 gulp.task('dev', ['server', 'watch'])
 
 gulp.task('server', () =>
-	$.connect.server({
-		root: appDir,
-		livereload: false
-	})
+  $.connect.server({
+    root: appDir,
+    livereload: true
+  })
 )
 
 gulp.task('server-build', () =>
-	$.connect.server({
-		root: buildDir,
-		livereload: false
-	})
+  $.connect.server({
+    root: buildDir,
+    livereload: false
+  })
 )
 
 /* Watchs */
 gulp.task('watch', ['js', 'css'], () => {
   $.watch(inFolder(appDir, jsFiles), () => gulp.start('js'))
   $.watch(inFolder(appDir, cssWatch), () => gulp.start('css'))
+  $.watch(inFolder(appDir, htmlFiles), () => gulp.src('').pipe(connect.reload()))
 });
 
 /* Basic functions */
 gulp.task('js', () =>
-	gulp.src(inFolder(appDir, jsFiles))
-		.pipe($.sourcemaps.init())
-		.pipe($.order(jsOrder))
-		.pipe($.concat(jsName))
-		.pipe($.sourcemaps.write('./'))
-		.pipe(gulp.dest(inFolder(appDir, dist)))
+  gulp.src(inFolder(appDir, jsFiles))
+    .pipe($.sourcemaps.init())
+    .pipe($.order(jsOrder))
+    .pipe($.concat(jsName))
+    .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest(inFolder(appDir, dist)))
+    .pipe($.connect.reload())
 )
 
 gulp.task('css', () =>
-	gulp.src(inFolder(appDir, cssStart))
-		.pipe($.sourcemaps.init())
-		.pipe($.sass().on('error', $.sass.logError))
-		.pipe($.rename(cssName))
-		.pipe($.sourcemaps.write('./'))
-		.pipe(gulp.dest(inFolder(appDir, dist)))
+  gulp.src(inFolder(appDir, cssStart))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass().on('error', $.sass.logError))
+    .pipe($.rename(cssName))
+    .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest(inFolder(appDir, dist)))
+    .pipe($.connect.reload())
 )
 
 /* Production */
@@ -99,27 +102,27 @@ gulp.task('build', (cb) => {
 })
 
 function _buildJs() {
-	return gulp.src(inFolder(appDir, jsFiles))
-		.pipe($.order(jsOrder))
-		.pipe($.ngAnnotate())
-		.pipe($.babel({presets: ['es2015']}))
-		.pipe($.concat(jsName))
-		.pipe($.uglify())
-		.pipe(gulp.dest(inFolder(buildDir, dist)));
+  return gulp.src(inFolder(appDir, jsFiles))
+    .pipe($.order(jsOrder))
+    .pipe($.ngAnnotate())
+    .pipe($.babel({presets: ['es2015']}))
+    .pipe($.concat(jsName))
+    .pipe($.uglify())
+    .pipe(gulp.dest(inFolder(buildDir, dist)));
 }
 
 function _buildCss(){
   return gulp.src(inFolder(appDir, cssStart))
-		.pipe($.sass({outputStyle: 'compressed'}).on('error', $.sass.logError))
-		.pipe($.autoprefixer())
-		.pipe($.rename(cssName))
-		.pipe(gulp.dest(inFolder(buildDir, dist)));
+    .pipe($.sass({outputStyle: 'compressed'}).on('error', $.sass.logError))
+    .pipe($.autoprefixer())
+    .pipe($.rename(cssName))
+    .pipe(gulp.dest(inFolder(buildDir, dist)));
 }
 
 function _buildHtml(){
   return gulp.src(inFolder(appDir, htmlFiles))
-		.pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
-		.pipe(gulp.dest(buildDir));
+    .pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
+    .pipe(gulp.dest(buildDir));
 }
 
 function _buildVendors(cb) {
@@ -131,10 +134,10 @@ function _buildVendors(cb) {
       .pipe(gulp.dest(inFolder(buildDir, 'bower_components')))
       .on('end', next),
     next => gulp.src(inFolder(buildDir, 'bower_components/**/*.css'), {base: buildDir + 'app/bower_components'})
-  		.pipe($.cssUrlFix())
+      .pipe($.cssUrlFix())
       .pipe($.replace(new RegExp(`${buildDir}\/bower_components\/`, 'g'), './'))
       .pipe($.sass({outputStyle: 'compressed'}))
-  		.pipe(gulp.dest(inFolder(buildDir, 'bower_components')))
+      .pipe(gulp.dest(inFolder(buildDir, 'bower_components')))
       .on('end', next),
     next => gulp.src(inFolder(buildDir, 'bower_components/**/*.{eot,ttf,svg,woff,woff2}'), {base: inFolder(buildDir, 'bower_components')})
       .pipe(gulp.dest(inFolder(buildDir, dist)))
@@ -153,9 +156,8 @@ function _buildVendors(cb) {
 
 function _buildImages(){
   return gulp.src(inFolder(appDir, imagesDir))
-		.pipe($.smushit({verbose: true}))
-		.pipe(gulp.dest(buildDir))
+    .pipe($.smushit({verbose: true}))
+    .pipe(gulp.dest(buildDir))
 }
-
 
 gulp.task('default', ['dev']);
