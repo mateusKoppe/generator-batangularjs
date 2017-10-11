@@ -1,6 +1,6 @@
-# BatAngularJs | Yeoman Generator
+# BatAngularJs | Yeoman Generator ![GitHub](https://img.shields.io/github/stars/mateusKoppe/generator-batangularjs.svg?style=social&label=Star&maxAge=3600)
 
-generator-batangularjs is a AngularJs boilerplate, this can Scaffold out your AngularJs application and give to you a development kit.
+Generator-batangularjs is a AngularJs boilerplate, this scaffold out your AngularJs application and give you a development kit.
 
 ## Install
 
@@ -8,7 +8,7 @@ To use BatAngularJs you will need to:
 
 Install [`yo`](http://yeoman.io/), [`bower`](https://bower.io/):
 
-and then install the generator
+and then install the generator:
 
 ```
 $ npm install -g generator-batangularjs
@@ -22,38 +22,34 @@ $ npm install -g generator-batangularjs
 $ yo batangularjs
 ```
 
-This will create the follow a architecture:
+This will create the following architecture:
 
 ```
-├── app
-│   ├── app.module.js
-│   ├── app.routes.js
-│   ├── app.style.scss
-│   ├── core
-│   │   └── styles
-│   │       ├── default.style.scss
-│   │       └── variables.style.scss
-│   ├── dist
-│   │   ├── app.css
-│   │   ├── app.css.map
-│   │   ├── app.js
-│   │   └── app.js.map
-│   ├── index.html
-│   ├── layouts
-│   │   ├── home.controller.js
-│   │   └── home.templatehtml
-│   └── structure
-│       ├── main.controller.js
-│       └── main.template.html
-├── bower.json
-├── .bowerrc
-├── .editorconfig
-├── .gitignore
-├── gulpfile.js
-├── .jscsrc
-├── package.json
+├── app                                   # The primary folder
+│   ├── app.module.js                     # The primary module
+│   ├── app.routes.js                     # The routes of the app module
+│   ├── app.style.scss                    # The main style file
+│   ├── core                              # The shared folder
+│   │   └── styles                        # The shared style of your application
+│   │       ├── default.style.scss        # The style of some tags and classes
+│   │       └── variables.style.scss      # Your sass variables
+│   ├── dist                              # Here will be the processed files
+│   ├── index.html                        # The index of your project
+│   ├── layouts                           # The Templates and controllers
+│   │   ├── home.controller.js            # The home controller
+│   │   └── home.template.html            # The home template
+│   └── structure                         # The structures of your app (for routes)
+│       ├── main.controller.js            # The main controller
+│       └── main.template.html            # The main template
+├── bower.json                            # https://bower.io/ for more info
+├── .bowerrc                              # Configure the localization of the bower_components
+├── .editorconfig                         # http://editorconfig.org/ for more info
+├── .gitignore                            # The ignorated files and folders
+├── gulpfile.js                           # https://gulpjs.com/ for more info
+├── .jscsrc                               # http://jscs.info/ for more info
+├── package.json                          # https://www.npmjs.com/ for more info
 ├── package-lock.json
-└── .yo-rc.json
+└── .yo-rc.json                           # Define root of the project
 ```
 
 * To start the application just hit:
@@ -69,7 +65,7 @@ $ npm run build
 ```
 
 ## Subgenerators
-You can use the subgenerators above;
+You can use all the subgenerators above;
 * `$ yo batangularjs:module <module>`
 * `$ yo batangularjs:controller <module> <controller>`
 * `$ yo batangularjs:routes <module>`
@@ -82,11 +78,11 @@ You can use the subgenerators above;
 
 ### Params
 * `-t` will insert the file into a specific folder according to the type;
-* `-c` will insert the file into `core` folder, this folder is shared with every module;
+* `-c` will insert the file into `core` folder, this folder is shared for each module;
 * `-i` will create two files, one javascript and one template (html);
 
 #### Examples
-Using `-t`:
+* Using `-t` param:
 ```
 $ yo batangularjs:factory user logout -t
 ```
@@ -99,7 +95,7 @@ Will result in:
 ...
 ```
 
-Using `-c`:
+* Using `-c` param:
 ```
 $ yo batangularjs:filter app phone -c
 ```
@@ -111,7 +107,7 @@ Will result in:
 ...
 ```
 
-Using `-i`:
+* Using `-i` param:
 ```
 $ yo batangularjs:component user dash -i
 ```
@@ -124,7 +120,7 @@ Will result in:
 ...  
 ```
 
-And using many
+* And using many parameters:
 ```
 $ yo batangularjs:component user toolbar -tci
 ```
@@ -140,7 +136,7 @@ Will result in:
 
 ## Gulp Tasks
 * `$ gulp default` run `gulp dev`;
-* `$ gulp dev` Start server and watch files;
+* `$ gulp dev` start server and watch files;
 * `$ gulp server` start your app;
 * `$ gulp js` concat all your app scripts in `app/dist/app.js` (this task generate sourcemaps);
 * `$ gulp css` execute your sass file and put the result in `app/dist/css.js` (this task use sourcemaps);
