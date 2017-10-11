@@ -154,7 +154,7 @@ function _buildVendors(cb) {
     next => gulp.src(inFolder(appDir, `${libraryDir}/**`))
       .pipe(gulp.dest(inFolder(buildDir, libraryDir)))
       .on('end', next),
-    next => gulp.src(inFolder(buildDir, `${libraryDir}/**/*.css`), {base: buildDir + `app/${libraryDir}`})
+    next => gulp.src(inFolder(buildDir, `${libraryDir}/**/*.css`), {base: buildDir + `${appDir}/${libraryDir}`})
       .pipe($.cssUrlFix())
       .pipe($.replace(new RegExp(`${buildDir}\/${libraryDir}\/`, 'g'), './'))
       .pipe($.sass({outputStyle: 'compressed'}))
