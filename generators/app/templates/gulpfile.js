@@ -18,9 +18,14 @@ const jsName = 'app.js';
 const htmlFiles = '**/*.html';
 
 /* Images */
-const imagesDir = '/**/*.{png,jpg,jpeg}';
+const imagesDir = '**/*.{png,jpg,jpeg}';
 
-const fontsExtensions = ['eot', 'ttf', 'svg', 'woff', 'woff2'];
+/* Library */
+const libraryDir = 'bower_components';
+const libraryFontsExtensions = ['eot', 'ttf', 'svg', 'woff', 'woff2'];
+
+/* Files */
+const persistentFiles = ['**/*.{svg,gif}'];
 
 const gulp = require('gulp');
 const async = require('async');
@@ -99,6 +104,7 @@ gulp.task('build', (cb) => {
     next => _buildCss().on('end', next),
     next => _buildHtml().on('end', next),
     next => _buildImages().on('end', next),
+		next => _buildSavePersistentFiles().on('end', next),
     next => _buildVendors()
   ], cb)
 })
@@ -127,21 +133,32 @@ function _buildHtml(){
     .pipe(gulp.dest(buildDir));
 }
 
+function _buildImages(){
+  return gulp.src(inFolder(appDir, imagesDir))
+    .pipe($.smushit({verbose: true}))
+    .pipe(gulp.dest(buildDir))
+}
+
+function _buildSavePersistentFiles() {
+  return gulp.src(inFolder(appDir, persistentFiles))
+    .pipe(gulp.dest(buildDir));
+}
+
 function _buildVendors(cb) {
   return async.series([
     next => gulp.src(inFolder(appDir, indexFile))
       .pipe(gulp.dest(buildDir))
       .on('end', next),
-    next => gulp.src(inFolder(appDir, 'bower_components/**'))
-      .pipe(gulp.dest(inFolder(buildDir, 'bower_components')))
+    next => gulp.src(inFolder(appDir, `${libraryDir}/**`))
+      .pipe(gulp.dest(inFolder(buildDir, libraryDir)))
       .on('end', next),
-    next => gulp.src(inFolder(buildDir, 'bower_components/**/*.css'), {base: buildDir + 'app/bower_components'})
+    next => gulp.src(inFolder(buildDir, `${libraryDir}/**/*.css`), {base: buildDir + `app/${libraryDir}`})
       .pipe($.cssUrlFix())
-      .pipe($.replace(new RegExp(`${buildDir}\/bower_components\/`, 'g'), './'))
+      .pipe($.replace(new RegExp(`${buildDir}\/${libraryDir}\/`, 'g'), './'))
       .pipe($.sass({outputStyle: 'compressed'}))
-      .pipe(gulp.dest(inFolder(buildDir, 'bower_components')))
+      .pipe(gulp.dest(inFolder(buildDir, libraryDir)))
       .on('end', next),
-    next => gulp.src(inFolder(buildDir, `bower_components/**/*.{${fontsExtensions.join(',')}}`), {base: inFolder(buildDir, 'bower_components')})
+    next => gulp.src(inFolder(buildDir, `${libraryDir}/**/*.{${libraryFontsExtensions.join(',')}}`), {base: inFolder(buildDir, libraryDir)})
       .pipe(gulp.dest(inFolder(buildDir, dist)))
       .on('end', next),
     next => gulp.src(inFolder(buildDir, indexFile))
@@ -152,14 +169,8 @@ function _buildVendors(cb) {
       .pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
       .pipe(gulp.dest(buildDir))
       .on('end', next),
-    next => del(inFolder(buildDir, 'bower_components'), next)
+    next => del(inFolder(buildDir, libraryDir), next)
   ], cb);
-}
-
-function _buildImages(){
-  return gulp.src(inFolder(appDir, imagesDir))
-    .pipe($.smushit({verbose: true}))
-    .pipe(gulp.dest(buildDir))
 }
 
 gulp.task('default', ['dev']);
