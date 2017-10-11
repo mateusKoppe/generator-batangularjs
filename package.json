@@ -1,7 +1,7 @@
 {
   "name": "generator-batangularjs",
   "version": "0.2.4",
-  "description": "Epic AngularJs seed and code generator, this is batAngularJs",
+  "description": "Scaffold out a AngularJs Application and give to you a development kit",
   "homepage": "",
   "author": {
     "name": "Mateus Koppe",
@@ -15,6 +15,7 @@
   "keywords": [
     "yeoman-generator",
     "angularjs",
+    "development"
     "scaffold",
     "yeoman",
     "framework",

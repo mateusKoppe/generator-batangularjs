@@ -1,13 +1,12 @@
 # BatAngularJs | Yeoman Generator
 
-> generator-batangularjs creates a base to start a new angular.js application.
-
+generator-batangularjs is a AngularJs boilerplate, this can Scaffold out your AngularJs application and give to you a development kit.
 
 ## Install
 
 To use BatAngularJs you will need to:
 
-Install [`yo`](http://yeoman.io/), [`gulp`](http://gulpjs.com/), [`bower`](https://bower.io/):
+Install [`yo`](http://yeoman.io/), [`bower`](https://bower.io/):
 
 and then install the generator
 
@@ -19,23 +18,58 @@ $ npm install -g generator-batangularjs
 
 * Scaffold the project:
 
-  ```
-  $ yo batangularjs
-  ```
+```
+$ yo batangularjs
+```
 
-* Then start the application:
+This will create the follow a architecture:
 
-  ```
-  $ npm start
-  ```
+```
+├── app
+│   ├── app.module.js
+│   ├── app.routes.js
+│   ├── app.style.scss
+│   ├── core
+│   │   └── styles
+│   │       ├── default.style.scss
+│   │       └── variables.style.scss
+│   ├── dist
+│   │   ├── app.css
+│   │   ├── app.css.map
+│   │   ├── app.js
+│   │   └── app.js.map
+│   ├── index.html
+│   ├── layouts
+│   │   ├── home.controller.js
+│   │   └── home.templatehtml
+│   └── structure
+│       ├── main.controller.js
+│       └── main.template.html
+├── bower.json
+├── .bowerrc
+├── .editorconfig
+├── .gitignore
+├── gulpfile.js
+├── .jscsrc
+├── package.json
+├── package-lock.json
+└── .yo-rc.json
+```
+
+* To start the application just hit:
+
+```
+$ npm start
+```
 
 * To build the app run:
 
- 	```
-	$ npm run build
-	```
+```
+$ npm run build
+```
 
 ## Subgenerators
+You can use the subgenerators above;
 * `$ yo batangularjs:module <module>`
 * `$ yo batangularjs:controller <module> <controller>`
 * `$ yo batangularjs:routes <module>`
@@ -45,6 +79,64 @@ $ npm install -g generator-batangularjs
 * `$ yo batangularjs:factory <module> <factory> [-t][-c]`
 * `$ yo batangularjs:filter <module> <filter> [-t][-c]`
 * `$ yo batangularjs:value <module> <value> [<value's value>] [-t][-c]`
+
+### Params
+* `-t` will insert the file into a specific folder according to the type;
+* `-c` will insert the file into `core` folder, this folder is shared with every module;
+* `-i` will create two files, one javascript and one template (html);
+
+#### Examples
+Using `-t`:
+```
+$ yo batangularjs:factory user logout -t
+```
+Will result in:
+```
+├── app
+│   ...
+│   ├── user
+│   |   └── logout.factory.js
+...
+```
+
+Using `-c`:
+```
+$ yo batangularjs:filter app phone -c
+```
+Will result in:
+```
+├── app
+│   ├── core
+│   |   └── phone.filter.js
+...
+```
+
+Using `-i`:
+```
+$ yo batangularjs:component user dash -i
+```
+Will result in:
+```
+├── app
+│   ├── user
+│   |   └── dash.component.js
+│   |   └── dash.template.html
+...  
+```
+
+And using many
+```
+$ yo batangularjs:component user toolbar -tci
+```
+Will result in:
+```
+├── app
+│   ├── user
+|   |   ├── core
+|   |   |   ├── components
+│   |   |   |   └── toolbar.component.js
+│   |   |   |   └── toolbar.template.html
+```
 
 ## Gulp Tasks
 * `$ gulp default` run `gulp dev`;
