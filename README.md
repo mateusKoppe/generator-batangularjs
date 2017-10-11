@@ -25,20 +25,20 @@ $ yo batangularjs
 This will create the following architecture:
 
 ```
-├── app                                   # The primary folder
+├── app/                                  # The primary folder
 │   ├── app.module.js                     # The primary module
 │   ├── app.routes.js                     # The routes of the app module
 │   ├── app.style.scss                    # The main style file
-│   ├── core                              # The shared folder
-│   │   └── styles                        # The shared style of your application
+│   ├── core/                             # The shared folder
+│   │   └── styles/                       # The shared style of your application
 │   │       ├── default.style.scss        # The style of some tags and classes
 │   │       └── variables.style.scss      # Your sass variables
-│   ├── dist                              # Here will be the processed files
+│   ├── dist/                             # Here will be the processed files
 │   ├── index.html                        # The index of your project
-│   ├── layouts                           # The Templates and controllers
+│   ├── layouts/                          # The Templates and controllers
 │   │   ├── home.controller.js            # The home controller
 │   │   └── home.template.html            # The home template
-│   └── structure                         # The structures of your app (for routes)
+│   └── structure/                        # The structures of your app (for routes)
 │       ├── main.controller.js            # The main controller
 │       └── main.template.html            # The main template
 ├── bower.json                            # https://bower.io/ for more info
@@ -88,9 +88,9 @@ $ yo batangularjs:factory user logout -t
 ```
 Will result in:
 ```
-├── app
+├── app/
 │   ...
-│   ├── user
+│   ├── user/
 │   |   └── logout.factory.js
 ...
 ```
@@ -101,8 +101,8 @@ $ yo batangularjs:filter app phone -c
 ```
 Will result in:
 ```
-├── app
-│   ├── core
+├── app/
+│   ├── core/
 │   |   └── phone.filter.js
 ...
 ```
@@ -113,8 +113,8 @@ $ yo batangularjs:component user dash -i
 ```
 Will result in:
 ```
-├── app
-│   ├── user
+├── app/
+│   ├── user/
 │   |   └── dash.component.js
 │   |   └── dash.template.html
 ...  
@@ -126,10 +126,10 @@ $ yo batangularjs:component user toolbar -tci
 ```
 Will result in:
 ```
-├── app
-│   ├── user
-|   |   ├── core
-|   |   |   ├── components
+├── app/
+│   ├── user/
+|   |   ├── core/
+|   |   |   ├── components/
 │   |   |   |   └── toolbar.component.js
 │   |   |   |   └── toolbar.template.html
 ```
@@ -145,3 +145,13 @@ Will result in:
 * `$ gulp watch` run `js:watch` and `css:watch`;
 * `$ gulp build` generate a minified verson of your website, do the same that `gulp old` and minify your files, concat your images, put your included libraries into a unique file name.
 * `$ gulp server-build` start your builded application;
+
+## Contributing
+
+Help me to improve this documentation.
+
+Pull requests, helping others solving issues, among other tasks, are all valid, and more than welcome, contributions - don't hesitate.
+
+When doing a Pull Request, make sure you target the `development` branch, `master` is supposed to be an *stable* branch - the changes are merged only at the end of a version.  
+
+As for tests, run simply run `npm test` - it'll run both unit and acceptance tests.
