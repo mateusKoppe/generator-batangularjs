@@ -33,7 +33,7 @@
     "jest-cli": "^20.0.0"
   },
   "repository": "mateusKoppe/generator-batangularjs",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.3",
     "yeoman-generator": "^1.0.0",
