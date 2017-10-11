@@ -18,14 +18,16 @@ const jsName = 'app.js';
 const htmlFiles = '**/*.html';
 
 /* Images */
-const imagesDir = '/**/*.{png,jpg,jpeg,gif}';
+const imagesDir = '/**/*.{png,jpg,jpeg}';
+
+const fontsExtensions = ['eot', 'ttf', 'svg', 'woff', 'woff2'];
 
 const gulp = require('gulp');
 const async = require('async');
 const del = require('del');
 const $ = require('gulp-load-plugins')({
-	camelize: true,
-	lazy: true
+  camelize: true,
+  lazy: true
 });
 
 const inFolder = (folder, selection) => {
@@ -139,7 +141,7 @@ function _buildVendors(cb) {
       .pipe($.sass({outputStyle: 'compressed'}))
       .pipe(gulp.dest(inFolder(buildDir, 'bower_components')))
       .on('end', next),
-    next => gulp.src(inFolder(buildDir, 'bower_components/**/*.{eot,ttf,svg,woff,woff2}'), {base: inFolder(buildDir, 'bower_components')})
+    next => gulp.src(inFolder(buildDir, `bower_components/**/*.{${fontsExtensions.join(',')}}`), {base: inFolder(buildDir, 'bower_components')})
       .pipe(gulp.dest(inFolder(buildDir, dist)))
       .on('end', next),
     next => gulp.src(inFolder(buildDir, indexFile))
