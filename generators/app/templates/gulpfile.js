@@ -1,3 +1,5 @@
+'use strict';
+
 const appDir = 'app';
 const buildDir = 'build';
 const dist = 'dist';
