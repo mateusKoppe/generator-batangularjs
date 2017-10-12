@@ -1,4 +1,4 @@
-# BatAngularJs | Yeoman Generator ![GitHub](https://img.shields.io/github/stars/mateusKoppe/generator-batangularjs.svg?style=social&label=Star&maxAge=3600)
+# BatAngularJs | Yeoman Generator [![GitHub](https://img.shields.io/github/stars/mateusKoppe/generator-batangularjs.svg?style=social&label=Star&maxAge=3600)](https://github.com/mateusKoppe/generator-batangularjs/stargazers)
 
 Generator-batangularjs is a AngularJs boilerplate, this scaffold out your AngularJs application and give you a development kit.
 

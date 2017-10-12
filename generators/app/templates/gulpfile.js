@@ -32,6 +32,7 @@ const persistentFiles = ['**/*.{svg,gif}'];
 const gulp = require('gulp');
 const async = require('async');
 const del = require('del');
+const connect = require('gulp-connect');
 const $ = require('gulp-load-plugins')({
   camelize: true,
   lazy: true
@@ -58,16 +59,16 @@ const inFolder = (folder, selection) => {
 gulp.task('dev', ['server', 'watch'])
 
 gulp.task('server', () =>
-  $.connect.server({
+  connect.server({
     root: appDir,
     livereload: true
   })
 )
 
 gulp.task('server-build', () =>
-  $.connect.server({
+  connect.server({
     root: buildDir,
-    livereload: false
+    livereload: true
   })
 )
 
@@ -86,7 +87,7 @@ gulp.task('js', () =>
     .pipe($.concat(jsName))
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(inFolder(appDir, dist)))
-    .pipe($.connect.reload())
+    .pipe(connect.reload())
 )
 
 gulp.task('css', () =>
@@ -96,7 +97,7 @@ gulp.task('css', () =>
     .pipe($.rename(cssName))
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(inFolder(appDir, dist)))
-    .pipe($.connect.reload())
+    .pipe(connect.reload())
 )
 
 /* Production */
