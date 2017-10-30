@@ -10,5 +10,9 @@
   "scripts": {
     "start": "",
     "build": ""
+  },
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-ui-router": "^0.4.3"
   }
 }

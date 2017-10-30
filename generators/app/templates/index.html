@@ -5,23 +5,9 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1">
-    <base href="/">
-
-		<!-- build:css dist/vendors.css -->
-    <!-- endbuild -->
-		<link rel="stylesheet" type="text/css" href="dist/app.css">
 	</head>
-
 	<body ng-cloak>
-
-		<div ui-view></div>
-
-    <!-- build:js dist/vendors.js -->
-		<script src="bower_components/angular/angular.min.js"></script>
-		<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-		<script src="bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
-    <!-- endbuild -->
-		<script src="dist/app.js"></script>
+		<app></app>
+		<script src="dist/bundle.js"></script>
 	</body>
-
 </html>

@@ -1,9 +1,12 @@
-(function(){
-	'use strict';
+import angular from 'angular';
+import uiRouter from 'angular-ui-router';
+import { AppComponent } from './app.component';
 
-	angular
-	.module('app', [
-		'ui.router',
-	])
+import './app.style.scss';
 
-})();
+export const AppModule = angular
+  .module('app', [
+    uiRouter
+  ])
+  .component('app', AppComponent)
+  .name;
