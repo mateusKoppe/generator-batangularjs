@@ -30,10 +30,17 @@ module.exports = {
                 use: extractPlugin.extract({
                     use: ['css-loader', 'sass-loader']
                 })
-            }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    { loader: 'ngtemplate-loader?relativeTo=' + __dirname + '/' },
+                    { loader: 'html-loader' }
+                ]
+            },
         ]
     },
     plugins: [
-        extractPlugin
+        extractPlugin,
     ]
 };

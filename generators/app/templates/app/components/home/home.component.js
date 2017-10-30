@@ -1,7 +1,5 @@
-const templateUrl = './home.html';
+import templateUrl from './home.html';
 
 export const HomeComponent = {
-  template: `
-    <h1>Congratulations</h1>
-  `
+  templateUrl
 };
