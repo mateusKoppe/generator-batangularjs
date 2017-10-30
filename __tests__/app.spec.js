@@ -9,16 +9,10 @@ describe('generator-batangularjs:app', () => {
   );
 
   let files = [
+    'index.html',
     'package.json',
     'app/app.module.js',
-    'app/app.routes.js',
-    'app/app.style.scss',
-    'app/core/styles/default.style.scss',
-    'app/core/styles/variables.style.scss',
-    'app/layouts/home.controller.js',
-    'app/layouts/home.template.html',
-    'app/structure/main.controller.js',
-    'app/structure/main.template.html'
+    'app/app.style.scss'
   ];
 
   files.forEach(file => it(`create ${file}`, () => assert.file([file])));
