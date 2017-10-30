@@ -9,8 +9,6 @@ describe('generator-batangularjs:app', () => {
   );
 
   let files = [
-    'bower.json',
-    'gulpfile.js',
     'package.json',
     'app/app.module.js',
     'app/app.routes.js',
