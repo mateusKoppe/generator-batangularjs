@@ -23,7 +23,8 @@
     "babel-preset-es2015": "^6.24.1"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.10",
     "angular": "^1.6.6",
-    "angular-ui-router": "^0.4.3"
+    "angular-ui-router": "^1.0.0-beta.1"
   }
 }

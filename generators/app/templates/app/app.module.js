@@ -1,12 +1,17 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import { AppComponent } from './app.component';
-
-import './app.style.scss';
+import { HomeModule } from './components/home/home.module';
 
 export const AppModule = angular
   .module('app', [
-    uiRouter
+    uiRouter,
+    HomeModule,
   ])
   .component('app', AppComponent)
+  .config(($locationProvider, $urlRouterProvider) => {
+    'ngInject';
+    $locationProvider.html5Mode(false);
+    $urlRouterProvider.otherwise('/');
+  })
   .name;
