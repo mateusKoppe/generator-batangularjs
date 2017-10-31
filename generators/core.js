@@ -31,6 +31,7 @@ function kebabCase(string) {
 function folderByModule(moduleName) {
   let folder = 'app/components/';
   folder += moduleName.replace(/\./g, '/');
+  folder = kebabCase(folder);
   return folder;
 }
 
