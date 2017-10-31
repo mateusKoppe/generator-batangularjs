@@ -1,7 +1,1 @@
-(function(){
-  'use strict';
-
-  angular
-    .module('<%= moduleName %>')
-		.value('<%= valueName %>', '<%= valueValue %>')
-})();
+export let <%= valueName %>Value = '<%= valueValue %>';

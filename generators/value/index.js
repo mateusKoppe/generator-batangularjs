@@ -12,48 +12,27 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 2) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:value <module> <value> [<[value]>] [-t][-c]');
+    if (!this.args.length) {
+      this.env.error('Sintax error, you must use the sintax: batangularjs:value <module>');
     }
   }
 
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-    this.valueName = Batangularjs.camelCase(this.args[1]);
-    this.valueValue = this.args[2] || '';
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = this.module.replace('.', '/');
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-    if (this.opts.c) {
-      this.dest += `core/`;
-    }
-    if (this.opts.t) {
-      this.dest += `values/`;
-    }
-  }
-
-  file() {
-    this.file = `${Batangularjs.kebabCase(this.valueName)}.value.js`;
+  logic() {
+    const modulePath = this.args[0];
+    this.valueValue = this.args[1];
+    this.valueName = Batangularjs.nameByModule(modulePath);
+    this.folder = Batangularjs.folderByModule(modulePath);
+    this.fileName = `${Batangularjs.kebabCase(this.valueName)}.value.js`;
+    this.fileDir = `${this.folder}/${this.fileName}`;
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('value.js'),
-      this.destinationPath(`${this.dest}${this.file}`),
+      this.destinationPath(`${this.fileDir}`),
       {
-        moduleName: this.moduleName,
-        valueName: this.valueName,
-        valueValue: this.valueValue
+        valueName: Batangularjs.upperCaseFirst(this.valueName),
+        valueValue: this.valueValue,
       }
     );
   }
