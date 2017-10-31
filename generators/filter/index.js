@@ -14,23 +14,20 @@ module.exports = class extends Generator {
   validateArgs() {
     if (!this.args.length) {
       this.env.error('Sintax error, you must use the sintax: batangularjs:filter <module>');
+      return;
     }
-  }
-
-  logic() {
-    const modulePath = this.args[0];
-    this.filterName = Batangularjs.nameByModule(modulePath);
-    this.folder = Batangularjs.folderByModule(modulePath);
-    this.fileName = `${Batangularjs.kebabCase(this.filterName)}.filter.js`;
-    this.fileDir = `${this.folder}/${this.fileName}`;
+    this.modulePath = this.args[0];
+    this.filterName = Batangularjs.upperCaseFirst(
+      Batangularjs.nameByModule(this.modulePath)
+    );
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('filter.js'),
-      this.destinationPath(`${this.fileDir}`),
+      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'filter')}`),
       {
-        filterName: Batangularjs.upperCaseFirst(this.filterName),
+        filterName: this.filterName,
       }
     );
   }

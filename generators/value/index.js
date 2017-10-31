@@ -13,25 +13,22 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (!this.args.length) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:value <module>');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:value <module> [<value>]');
+      return;
     }
-  }
-
-  logic() {
-    const modulePath = this.args[0];
+    this.modulePath = this.args[0];
     this.valueValue = this.args[1];
-    this.valueName = Batangularjs.nameByModule(modulePath);
-    this.folder = Batangularjs.folderByModule(modulePath);
-    this.fileName = `${Batangularjs.kebabCase(this.valueName)}.value.js`;
-    this.fileDir = `${this.folder}/${this.fileName}`;
+    this.valueName = Batangularjs.upperCaseFirst(
+      Batangularjs.nameByModule(this.modulePath)
+    );
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('value.js'),
-      this.destinationPath(`${this.fileDir}`),
+      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'value')}`),
       {
-        valueName: Batangularjs.upperCaseFirst(this.valueName),
+        valueName: this.valueName,
         valueValue: this.valueValue,
       }
     );

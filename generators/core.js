@@ -5,6 +5,7 @@ module.exports = {
   kebabCase,
   folderByModule,
   nameByModule,
+  fileDirByModule,
 };
 
 function upperCaseFirst(string) {
@@ -27,12 +28,19 @@ function kebabCase(string) {
     .replace(/_/g, '-');
 }
 
-function folderByModule(module) {
+function folderByModule(moduleName) {
   let folder = 'app/components/';
-  folder += module.replace(/\./g, '/');
+  folder += moduleName.replace(/\./g, '/');
   return folder;
 }
 
-function nameByModule(module) {
-  return camelCase(module.split('.').pop());
+function nameByModule(moduleName) {
+  return camelCase(moduleName.split('.').pop());
+}
+
+function fileDirByModule(moduleName, type) {
+  let name = nameByModule(moduleName);
+  this.folder = folderByModule(moduleName);
+  this.fileName = `${kebabCase(name)}.${type}.js`;
+  return `${this.folder}/${this.fileName}`;
 }

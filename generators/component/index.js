@@ -15,14 +15,10 @@ module.exports = class extends Generator {
     if (this.args.length != 1) {
       this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [-i]');
     }
-  }
-
-  logic() {
-    const modulePath = this.args[0];
-    this.componentName = Batangularjs.nameByModule(modulePath);
-    this.folder = Batangularjs.folderByModule(modulePath);
-    this.fileName = `${Batangularjs.kebabCase(this.componentName)}.component.js`;
-    this.fileDir = `${this.folder}/${this.fileName}`;
+    this.modulePath = this.args[0];
+    this.componentName = Batangularjs.upperCaseFirst(
+      Batangularjs.nameByModule(this.modulePath)
+    );
   }
 
   writing() {
@@ -36,7 +32,7 @@ module.exports = class extends Generator {
 
   _copyFileByTemplate(templateName) {
     let extension = templateName.split('.').reverse()[0];
-    let destiny = this.fileDir;
+    let destiny = Batangularjs.fileDirByModule(this.modulePath, 'component');
     if (extension === 'html') {
       templateName = templateName.replace('.component.js', '.html');
       destiny = destiny.replace('.component.js', '.html');
