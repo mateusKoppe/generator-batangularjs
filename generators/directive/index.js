@@ -12,42 +12,22 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 1) {
-      this.env.error('Sintax error, you must use the sintax: Batangularjs:directive <module> [-i]');
+    if (!this.args.length) {
+      this.env.error('Sintax error, you must use the sintax: batangularjs:directive <module>');
+      return;
     }
-  }
-
-  logic() {
-    const modulePath = this.args[0];
-    this.directiveName = Batangularjs.nameByModule(modulePath);
-    this.folder = Batangularjs.folderByModule(modulePath);
-    this.fileName = `${Batangularjs.kebabCase(this.directiveName)}.directive.js`;
-    this.fileDir = `${this.folder}/${this.fileName}`;
+    this.modulePath = this.args[0];
+    this.directiveName = Batangularjs.upperCaseFirst(
+      Batangularjs.nameByModule(this.modulePath)
+    );
   }
 
   writing() {
-    if (this.opts.i) {
-      this._copyFileByTemplate('directive-separated.js');
-      this._copyFileByTemplate('directive-separated.html');
-    } else {
-      this._copyFileByTemplate('directive.js');
-    }
-  }
-
-  _copyFileByTemplate(templateName) {
-    let extension = templateName.split('.').reverse()[0];
-    let destiny = this.fileDir;
-    if (extension === 'html') {
-      templateName = templateName.replace('.directive.js', '.html');
-      destiny = destiny.replace('.directive.js', '.html');
-    }
-
     this.fs.copyTpl(
-      this.templatePath(templateName),
-      this.destinationPath(destiny),
+      this.templatePath('directive.js'),
+      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'directive')}`),
       {
-        directiveName: Batangularjs.upperCaseFirst(this.directiveName),
-        templateUrl: `./${Batangularjs.kebabCase(this.directiveName)}.html`
+        directiveName: this.directiveName
       }
     );
   }

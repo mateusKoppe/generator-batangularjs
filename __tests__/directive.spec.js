@@ -4,7 +4,7 @@ var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 // Var TestHelper = require('./test-helper');
 
-describe('Testing constant with camelCase module', () => {
+describe('Testing directive with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/directive'))
       .withArguments(['userAuth']);
@@ -24,7 +24,7 @@ describe('Testing constant with camelCase module', () => {
   );
 });
 
-describe('Testing constant with succession modules', () => {
+describe('Testing directive with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/directive'))
       .withArguments(['userAuth.foo.bar.fooBar']);
