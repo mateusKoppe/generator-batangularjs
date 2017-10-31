@@ -1,3 +1,5 @@
+'use strict';
+
 const Generator = require('yeoman-generator');
 const Batangularjs = require('../core');
 
@@ -11,38 +13,27 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (!this.args.length) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module>');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [-r]');
     }
   }
 
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = Batangularjs.kebabCase(this.module.replace('.', '/'));
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-  }
-
-  file() {
-    let actualModule = this.module.split('.').reverse()[0];
-    let fileName = Batangularjs.camelCase(actualModule);
-    this.file = `${fileName}.module.js`;
+  logic() {
+    const module = this.args[0];
+    this.moduleName = Batangularjs.nameByModule(module);
+    this.folder = Batangularjs.folderByModule(module);
+    this.fileName = `${Batangularjs.kebabCase(this.moduleName)}.module.js`;
+    this.fileDir = `${this.folder}/${this.fileName}`;
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('module.js'),
-      this.destinationPath(`${this.dest}${this.file}`),
-      {moduleName: this.moduleName}
+      this.destinationPath(`${this.fileDir}`),
+      {
+        moduleName: this.moduleName,
+        capitalizeModuleName: Batangularjs.upperCaseFirst(this.moduleName),
+        route: this.opts.r
+      }
     );
   }
 };

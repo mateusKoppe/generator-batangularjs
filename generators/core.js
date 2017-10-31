@@ -3,7 +3,8 @@ module.exports = {
   lowerCaseFirst,
   camelCase,
   kebabCase,
-  folderByName,
+  folderByModule,
+  nameByModule,
 };
 
 function upperCaseFirst(string) {
@@ -26,8 +27,12 @@ function kebabCase(string) {
     .replace(/_/g, '-');
 }
 
-function folderByName(name) {
+function folderByModule(module) {
   let folder = 'app/components/';
-  folder += name.replace(/\./g, '/');
+  folder += module.replace(/\./g, '/');
   return folder;
+}
+
+function nameByModule(module) {
+  return camelCase(module.split('.').pop());
 }
