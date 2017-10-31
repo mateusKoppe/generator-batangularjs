@@ -12,47 +12,25 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 2) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:filter <module> <filter> [-t][-c]');
+    if (!this.args.length) {
+      this.env.error('Sintax error, you must use the sintax: batangularjs:filter <module>');
     }
   }
 
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-    this.filterName = Batangularjs.camelCase(this.args[1]);
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = this.module.replace('.', '/');
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-    if (this.opts.c) {
-      this.dest += `core/`;
-    }
-    if (this.opts.t) {
-      this.dest += `filters/`;
-    }
-  }
-
-  file() {
-    let fileName = Batangularjs.kebabCase(this.filterName);
-    this.file = `${fileName}.filter.js`;
+  logic() {
+    const modulePath = this.args[0];
+    this.filterName = Batangularjs.nameByModule(modulePath);
+    this.folder = Batangularjs.folderByModule(modulePath);
+    this.fileName = `${Batangularjs.kebabCase(this.filterName)}.filter.js`;
+    this.fileDir = `${this.folder}/${this.fileName}`;
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('filter.js'),
-      this.destinationPath(`${this.dest}${this.file}`),
+      this.destinationPath(`${this.fileDir}`),
       {
-        moduleName: this.moduleName,
-        filterName: this.filterName
+        filterName: Batangularjs.upperCaseFirst(this.filterName),
       }
     );
   }
