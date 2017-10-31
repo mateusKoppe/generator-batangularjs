@@ -18,9 +18,9 @@ module.exports = class extends Generator {
   }
 
   logic() {
-    const module = this.args[0];
-    this.componentName = Batangularjs.nameByModule(module);
-    this.folder = Batangularjs.folderByModule(component);
+    const modulePath = this.args[0];
+    this.componentName = Batangularjs.nameByModule(modulePath);
+    this.folder = Batangularjs.folderByModule(modulePath);
     this.fileName = `${Batangularjs.kebabCase(this.componentName)}.component.js`;
     this.fileDir = `${this.folder}/${this.fileName}`;
   }
