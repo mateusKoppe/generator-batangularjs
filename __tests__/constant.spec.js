@@ -38,3 +38,19 @@ describe('Testing constant with succession modules', () => {
     ]);
   });
 });
+
+describe('Testing constant with two arguments', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/constant'))
+      .withArguments(['userAuth', 'foobar']);
+  });
+
+  const fileDir = 'app/components/user-auth/user-auth.constant.js';
+
+  it('define value', () =>
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthConstant = \'foobar\''
+    )
+  );
+});
