@@ -10,7 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p",
-    "lint": "eslint app --fix"
+    "lint": "eslint app --fix || true"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
