@@ -1,23 +1,10 @@
-(function(){
-  'use strict';
-
-  angular
-    .module('<%= moduleName %>')
-    .component('<%= componentName %>', <%= componentName %>Component());
-
-  function <%= componentName %>Component() {
-    return {
-      template: '',
-      bindings: {},
-      controller: <%= capitalizeComponentName %>Controller,
-      controllerAs: '$ctrl',
-      transclude: false
-    }
+export const <%= componentName %>Component = {
+  bindings: {},
+  transclude: false,
+  template: `
+    <div></div>
+  `,
+  controller: class <%= componentName %>Controller {
+    constructor(){}
   }
-
-  function <%= capitalizeComponentName %>Controller() {
-    let vm = this;
-
-  }
-
-})();
+};

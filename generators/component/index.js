@@ -12,33 +12,17 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 2) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:component <module> <component> [-t][-c][-i]');
+    if (this.args.length != 1) {
+      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [-i]');
     }
   }
 
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-    this.componentName = Batangularjs.camelCase(this.args[1]);
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = this.module.replace('.', '/');
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-    if (this.opts.c) {
-      this.dest += `core/`;
-    }
-    if (this.opts.t) {
-      this.dest += `components/`;
-    }
+  logic() {
+    const component = this.args[0];
+    this.componentName = Batangularjs.camelCase(component.split('.').pop());
+    this.folder = Batangularjs.folderByName(component);
+    this.fileName = `${Batangularjs.kebabCase(this.componentName)}.component.js`;
+    this.fileDir = `${this.folder}/${this.fileName}`;
   }
 
   writing() {
@@ -52,24 +36,19 @@ module.exports = class extends Generator {
 
   _copyFileByTemplate(templateName) {
     let extension = templateName.split('.').reverse()[0];
-    let type = 'component';
+    let destiny = this.fileDir;
     if (extension === 'html') {
-      type = 'template';
+      templateName = templateName.replace('.component.js', '.html');
+      destiny = destiny.replace('.component.js', '.html');
+      console.log(templateName);
     }
 
-    let folderInApp = this.dest.split('/');
-    folderInApp.shift();
-    folderInApp = folderInApp.join('/');
-    let fileName = Batangularjs.kebabCase(this.componentName);
     this.fs.copyTpl(
       this.templatePath(templateName),
-      this.destinationPath(`${this.dest}${fileName}.${type}.${extension}`),
+      this.destinationPath(destiny),
       {
-        moduleName: this.moduleName,
-        componentName: this.componentName,
-        fileName,
-        capitalizeComponentName: Batangularjs.upperCaseFirst(this.componentName),
-        folder: folderInApp
+        componentName: Batangularjs.upperCaseFirst(this.componentName),
+        templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.html`
       }
     );
   }

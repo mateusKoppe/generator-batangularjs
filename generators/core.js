@@ -2,7 +2,8 @@ module.exports = {
   upperCaseFirst,
   lowerCaseFirst,
   camelCase,
-  kebabCase
+  kebabCase,
+  folderByName,
 };
 
 function upperCaseFirst(string) {
@@ -23,4 +24,10 @@ function kebabCase(string) {
   return string
     .replace(/[A-Z]/g, match => '-' + match.toLowerCase())
     .replace(/_/g, '-');
+}
+
+function folderByName(name) {
+  let folder = 'app/components/';
+  folder += name.replace(/\./g, '/');
+  return folder;
 }
