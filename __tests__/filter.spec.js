@@ -2,130 +2,39 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
-var TestHelper = require('./test-helper');
+// Var TestHelper = require('./test-helper');
 
-describe('generator-batangularjs:filter app name', () => {
+describe('Testing filter with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['app', 'name']);
+      .withArguments(['userAuth']);
   });
+
+  const fileDir = 'app/components/user-auth/user-auth.filter.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/name.filter.js'
-    ]);
+    assert.file([fileDir]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/name.filter.js', 'app')
-  );
-
-  it('define type', () =>
-    TestHelper.checkType('app/name.filter.js', 'filter')
-  );
 
   it('define name', () =>
-    TestHelper.checkName('app/name.filter.js', 'name')
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthFilter = () =>'
+    )
   );
 });
 
-describe('generator-batangularjs:filter module name', () => {
+describe('Testing filter with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['module', 'name']);
+      .withArguments(['userAuth.foo.bar.fooBar']);
   });
+
+  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.filter.js';
 
   it('creates files', () => {
     assert.file([
-      'app/module/name.filter.js'
+      fileDir
     ]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/module/name.filter.js', 'app.module')
-  );
-});
-
-describe('generator-batangularjs:filter module name -t', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['module', 'name'])
-      .withOptions({t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/filters/name.filter.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:filter module name -c', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/name.filter.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:filter module name -tc', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/filters/name.filter.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:filter module-multiple name-multiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['module-multiple', 'name-multiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.filter.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.filter.js', 'app.moduleMultiple')
-  );
-
-  it('define filter name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.filter.js', 'nameMultiple')
-  );
-});
-
-describe('generator-batangularjs:filter moduleMultiple nameMultiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['moduleMultiple', 'nameMultiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.filter.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.filter.js', 'app.moduleMultiple')
-  );
-
-  it('define filter name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.filter.js', 'nameMultiple')
-  );
 });
