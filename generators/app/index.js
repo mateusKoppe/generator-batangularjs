@@ -26,7 +26,7 @@ module.exports = class extends Generator {
   writing() {
     this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath(`.`));
     this.fs.copy(this.templatePath('app/'), this.destinationPath(`./app/`));
-    this._installHideFiles(['editorconfig', 'gitignore', 'jscsrc', 'yo-rc.json']);
+    this._installHideFiles(['editorconfig', 'gitignore', 'eslintrc.js', 'yo-rc.json']);
   }
 
   install() {
