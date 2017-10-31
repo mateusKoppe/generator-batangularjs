@@ -29,7 +29,7 @@ module.exports = class extends Generator {
       {
         moduleName: this.moduleName,
         capitalizeModuleName: Batangularjs.upperCaseFirst(this.moduleName),
-        route: this.opts.r,
+        route: this.opts.r
       }
     );
   }

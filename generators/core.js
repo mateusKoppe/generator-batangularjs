@@ -5,7 +5,7 @@ module.exports = {
   kebabCase,
   folderByModule,
   nameByModule,
-  fileDirByModule,
+  fileDirByModule
 };
 
 function upperCaseFirst(string) {

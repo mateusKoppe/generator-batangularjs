@@ -27,7 +27,7 @@ module.exports = class extends Generator {
       this.templatePath('service.js'),
       this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'service')}`),
       {
-        serviceName: this.serviceName,
+        serviceName: this.serviceName
       }
     );
   }

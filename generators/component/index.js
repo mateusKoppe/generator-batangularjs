@@ -12,7 +12,7 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length != 1) {
+    if (this.args.length < 1) {
       this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [-i]');
     }
     this.modulePath = this.args[0];

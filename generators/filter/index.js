@@ -27,7 +27,7 @@ module.exports = class extends Generator {
       this.templatePath('filter.js'),
       this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'filter')}`),
       {
-        filterName: this.filterName,
+        filterName: this.filterName
       }
     );
   }

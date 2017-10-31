@@ -29,7 +29,7 @@ module.exports = class extends Generator {
       this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'constant')}`),
       {
         constantName: this.constanteName,
-        constantValue: this.constantValue,
+        constantValue: this.constantValue
       }
     );
   }
