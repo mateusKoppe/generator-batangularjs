@@ -2,130 +2,39 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
-var TestHelper = require('./test-helper');
+// Var TestHelper = require('./test-helper');
 
-describe('generator-batangularjs:service app name', () => {
+describe('Testing service with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['app', 'name']);
+      .withArguments(['userAuth']);
   });
+
+  const fileDir = 'app/components/user-auth/user-auth.service.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/name.service.js'
-    ]);
+    assert.file([fileDir]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/name.service.js', 'app')
-  );
-
-  it('define type', () =>
-    TestHelper.checkType('app/name.service.js', 'service')
-  );
 
   it('define name', () =>
-    TestHelper.checkName('app/name.service.js', 'name')
+    assert.fileContent(
+      fileDir,
+      'export class UserAuthService {'
+    )
   );
 });
 
-describe('generator-batangularjs:service module name', () => {
+describe('Testing service with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['module', 'name']);
+      .withArguments(['userAuth.foo.bar.fooBar']);
   });
+
+  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.service.js';
 
   it('creates files', () => {
     assert.file([
-      'app/module/name.service.js'
+      fileDir
     ]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/module/name.service.js', 'app.module')
-  );
-});
-
-describe('generator-batangularjs:service module name -t', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['module', 'name'])
-      .withOptions({t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/services/name.service.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:service module name -c', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/name.service.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:service module name -tc', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/services/name.service.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:service module-multiple name-multiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['module-multiple', 'name-multiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.service.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.service.js', 'app.moduleMultiple')
-  );
-
-  it('define service name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.service.js', 'nameMultiple')
-  );
-});
-
-describe('generator-batangularjs:service moduleMultiple nameMultiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['moduleMultiple', 'nameMultiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.service.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.service.js', 'app.moduleMultiple')
-  );
-
-  it('define service name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.service.js', 'nameMultiple')
-  );
 });
