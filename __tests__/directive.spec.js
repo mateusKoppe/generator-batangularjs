@@ -2,165 +2,39 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
-var TestHelper = require('./test-helper');
+// Var TestHelper = require('./test-helper');
 
-describe('generator-batangularjs:directive app name', () => {
+describe('Testing constant with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['app', 'name']);
+      .withArguments(['userAuth']);
   });
+
+  const fileDir = 'app/components/user-auth/user-auth.directive.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/name.directive.js'
-    ]);
+    assert.file([fileDir]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/name.directive.js', 'app')
-  );
-
-  it('define type', () =>
-    TestHelper.checkType('app/name.directive.js', 'directive')
-  );
 
   it('define name', () =>
-    TestHelper.checkName('app/name.directive.js', 'name')
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthDirective = () => {'
+    )
   );
 });
 
-describe('generator-batangularjs:directive module name', () => {
+describe('Testing constant with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name']);
+      .withArguments(['userAuth.foo.bar.fooBar']);
   });
+
+  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.directive.js';
 
   it('creates files', () => {
     assert.file([
-      'app/module/name.directive.js'
+      fileDir
     ]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/module/name.directive.js', 'app.module')
-  );
-});
-
-describe('generator-batangularjs:directive module name -t', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/directives/name.directive.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module name -c', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/name.directive.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module name -tc', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/directives/name.directive.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive app name -i', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['app', 'name'])
-      .withOptions({i: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/name.directive.js',
-      'app/name.template.html'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:directive module-multiple name-multiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['module-multiple', 'name-multiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.directive.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.directive.js', 'app.moduleMultiple')
-  );
-
-  it('define directive name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
-  );
-});
-
-describe('generator-batangularjs:directive moduleMultiple nameMultiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['moduleMultiple', 'nameMultiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.directive.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.directive.js', 'app.moduleMultiple')
-  );
-
-  it('define directive name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
-  );
-});
-
-describe('generator-batangularjs:directive moduleMultiple nameMultiple -i', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['moduleMultiple', 'nameMultiple'])
-      .withOptions({i: true});
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.directive.js', 'app.moduleMultiple')
-  );
-
-  it('define directive name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.directive.js', 'nameMultiple')
-  );
-
-  it('define directive name', () =>
-    TestHelper.checkTemplateUrl('app/moduleMultiple/name-multiple.directive.js', 'moduleMultiple/name-multiple.template.html')
-  );
 });
