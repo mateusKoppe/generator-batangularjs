@@ -40,7 +40,6 @@ module.exports = class extends Generator {
     if (extension === 'html') {
       templateName = templateName.replace('.directive.js', '.html');
       destiny = destiny.replace('.directive.js', '.html');
-      console.log(templateName);
     }
 
     this.fs.copyTpl(
