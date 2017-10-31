@@ -2,72 +2,56 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
-var TestHelper = require('./test-helper');
+// Var TestHelper = require('./test-helper');
 
-describe('generator-batangularjs:module app', () => {
+describe('Testing module with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['app']);
+      .withArguments(['userAuth']);
   });
+
+  const fileDir = 'app/components/user-auth/user-auth.module.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/app.module.js'
-    ]);
+    assert.file([fileDir]);
   });
 
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/app.module.js', 'app')
+  it('define name', () =>
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthModule = angular'
+    )
   );
 });
 
-describe('generator-batangularjs:module module', () => {
+describe('Testing module with route', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['module']);
+      .withArguments(['userAuth'])
+      .withOptions({r: true});
   });
 
-  it('creates files', () => {
-    assert.file([
-      'app/module/module.module.js'
-    ]);
-  });
+  const fileDir = 'app/components/user-auth/user-auth.module.js';
 
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/module/module.module.js', 'app.module')
+  it('import uiRouter', () =>
+    assert.fileContent(
+      fileDir,
+      'import uiRouter from \'@uirouter/angularjs\';'
+    )
+  );
+
+  it('declare config', () =>
+    assert.fileContent(
+      fileDir,
+      '.config($stateProvider => {'
+    )
+  );
+
+  it('declare $stateProvider', () =>
+    assert.fileContent(
+      fileDir,
+      '$stateProvider'
+    )
   );
 });
 
-describe('generator-batangularjs:module module-name', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['module-name']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module-name/moduleName.module.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/module-name/moduleName.module.js', 'app.moduleName')
-  );
-});
-
-describe('generator-batangularjs:module moduleName', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['moduleName']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module-name/moduleName.module.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/module-name/moduleName.module.js', 'app.moduleName')
-  );
-});
