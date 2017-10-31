@@ -1,22 +1,18 @@
-(function(){
-  'use strict';
+import templateUrl from '<%= templateUrl %>';
 
-  angular
-    .module('<%= moduleName %>')
-    .directive('<%= directiveName %>', <%= directiveName %>Directive);
-
-  function <%= directiveName %>Directive() {
-    return {
-      restrict: 'AE',
-      templateUrl: '<%= folder %><%= fileName %>.template.html',
-      scope: {},
-      transclude: false,
-      link: <%= directiveName %>Link
-    }
-
-		function <%= directiveName %>Link(scope, element, attrs){
-
-		}
+export const <%= directiveName %>Directive = {
+  restrict: 'AE',
+  scope: {},
+  transclude: false,
+  templateUrl,
+  link: class <%= directiveName %>Link {
+    constructor(scope, element, attrs){
+      this.scope = scope;
+      this.element = element;
+      this.attrs = attrs;
+    } 
+  },
+  controller: class <%= directiveName %>Controller {
+    constructor(){}
   }
-
-})();
+};
