@@ -10,7 +10,7 @@ describe('Testing component with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.component.js';
+  const fileDir = 'app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -45,12 +45,12 @@ describe('Testing components with isolated template', () => {
       .withOptions({i: true});
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.component.js';
+  const fileDir = 'app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([
       fileDir,
-      fileDir.replace('.component.js', '.html') // Html file
+      fileDir.replace('component.js', 'component.html') // Html file
     ]);
   });
 
@@ -69,19 +69,19 @@ describe('Testing components with isolated template', () => {
   );
 });
 
-describe('Testing components with succession modules', () => {
+describe('Testing components with modules folders', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/component'))
-      .withArguments(['userAuth.foo.bar.fooBar'])
+      .withArguments(['userAuth/foo/bar/fooBar'])
       .withOptions({i: true});
   });
 
-  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.component.js';
+  const fileDir = 'app/user-auth/foo/bar/foo-bar/foo-bar.component.js';
 
   it('creates files', () => {
     assert.file([
       fileDir,
-      fileDir.replace('.component.js', '.html') // Html file
+      fileDir.replace('.component.js', '.component.html') // Html file
     ]);
   });
 });
