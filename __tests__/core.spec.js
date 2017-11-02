@@ -30,6 +30,7 @@ test('lowerCaseFirst', () => {
 test('folderPath', () => {
   expect(Batangularjs.folderPath('foo/bar/foo')).toBe('app/foo/bar');
   expect(Batangularjs.folderPath('fooBar/foo')).toBe('app/foo-bar');
+  expect(Batangularjs.folderPath('fooBar')).toBe('app');
 });
 
 test('namePath', () => {
