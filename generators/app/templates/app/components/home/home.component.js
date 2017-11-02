@@ -1,4 +1,4 @@
-import templateUrl from './home.html';
+import templateUrl from './home.component.html';
 
 export const HomeComponent = {
   templateUrl
