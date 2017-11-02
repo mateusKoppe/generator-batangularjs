@@ -22,7 +22,7 @@ describe('generator-batangularjs:app', () => {
     'app/components/components.module.js',
     'app/components/home/home.module.js',
     'app/components/home/home.component.js',
-    'app/components/home/home.html',
+    'app/components/home/home.component.html',
     'app/common/common.module.js'
   ];
 
