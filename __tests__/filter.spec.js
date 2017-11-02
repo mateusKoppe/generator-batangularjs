@@ -27,7 +27,7 @@ describe('Testing filter with camelCase module', () => {
 describe('Testing filter with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/filter'))
-      .withArguments(['userAuth.foo.bar.fooBar']);
+      .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
   const fileDir = 'app/user-auth/foo/bar/foo-bar.filter.js';

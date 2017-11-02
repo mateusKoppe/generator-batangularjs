@@ -27,7 +27,7 @@ describe('Testing service with camelCase module', () => {
 describe('Testing service with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/service'))
-      .withArguments(['userAuth.foo.bar.fooBar']);
+      .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
   const fileDir = 'app/user-auth/foo/bar/foo-bar.service.js';

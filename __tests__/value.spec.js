@@ -10,7 +10,7 @@ describe('Testing value with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/user-auth/user-auth.value.js';
+  const fileDir = 'app/user-auth.value.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -27,7 +27,7 @@ describe('Testing value with camelCase module', () => {
 describe('Testing value with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/value'))
-      .withArguments(['userAuth.foo.bar.fooBar']);
+      .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
   const fileDir = 'app/user-auth/foo/bar/foo-bar.value.js';
