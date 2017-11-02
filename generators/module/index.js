@@ -20,6 +20,7 @@ module.exports = class extends Generator {
     this.moduleName = Batangularjs.upperCaseFirst(
       Batangularjs.namePath(this.modulePath)
     );
+    this.optRoute = this.opts.r;
   }
 
   writing() {
@@ -29,7 +30,7 @@ module.exports = class extends Generator {
       {
         moduleName: this.moduleName,
         capitalizeModuleName: Batangularjs.upperCaseFirst(this.moduleName),
-        route: this.opts.r
+        route: this.optRoute
       }
     );
   }
