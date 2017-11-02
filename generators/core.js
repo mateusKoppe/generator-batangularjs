@@ -30,6 +30,9 @@ function kebabCase(string) {
 
 function folderPath(path) {
   let folders = path.split('/');
+  if (folders.length < 2) {
+    return 'app';
+  }
   folders.pop();
   folders = folders.join('/');
   return `app/${kebabCase(folders)}`;
