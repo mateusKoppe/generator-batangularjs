@@ -18,14 +18,14 @@ module.exports = class extends Generator {
     }
     this.modulePath = this.args[0];
     this.directiveName = Batangularjs.upperCaseFirst(
-      Batangularjs.nameByModule(this.modulePath)
+      Batangularjs.namePath(this.modulePath)
     );
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('directive.js'),
-      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'directive')}`),
+      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'directive')}`),
       {
         directiveName: this.directiveName
       }

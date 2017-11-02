@@ -17,7 +17,7 @@ module.exports = class extends Generator {
     }
     this.modulePath = this.args[0];
     this.componentName = Batangularjs.upperCaseFirst(
-      Batangularjs.nameByModule(this.modulePath)
+      Batangularjs.namePath(this.modulePath)
     );
   }
 
@@ -32,10 +32,10 @@ module.exports = class extends Generator {
 
   _copyFileByTemplate(templateName) {
     let extension = templateName.split('.').reverse()[0];
-    let destiny = Batangularjs.fileDirByModule(this.modulePath, 'component');
+    let destiny = Batangularjs.fileDirPath(this.modulePath, 'component', true);
     if (extension === 'html') {
-      templateName = templateName.replace('.component.js', '.html');
-      destiny = destiny.replace('.component.js', '.html');
+      templateName = templateName.replace('.component.js', '.component.html');
+      destiny = destiny.replace('.component.js', '.component.html');
     }
 
     this.fs.copyTpl(
@@ -43,7 +43,7 @@ module.exports = class extends Generator {
       this.destinationPath(destiny),
       {
         componentName: Batangularjs.upperCaseFirst(this.componentName),
-        templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.html`
+        templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.component.html`
       }
     );
   }

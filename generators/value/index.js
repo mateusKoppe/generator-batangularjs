@@ -19,14 +19,14 @@ module.exports = class extends Generator {
     this.modulePath = this.args[0];
     this.valueValue = this.args[1];
     this.valueName = Batangularjs.upperCaseFirst(
-      Batangularjs.nameByModule(this.modulePath)
+      Batangularjs.namePath(this.modulePath)
     );
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('value.js'),
-      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'value')}`),
+      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'value')}`),
       {
         valueName: this.valueName,
         valueValue: this.valueValue

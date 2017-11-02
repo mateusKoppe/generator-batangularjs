@@ -18,14 +18,14 @@ module.exports = class extends Generator {
     }
     this.modulePath = this.args[0];
     this.serviceName = Batangularjs.upperCaseFirst(
-      Batangularjs.nameByModule(this.modulePath)
+      Batangularjs.namePath(this.modulePath)
     );
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('service.js'),
-      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'service')}`),
+      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'service')}`),
       {
         serviceName: this.serviceName
       }

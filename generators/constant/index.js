@@ -19,14 +19,14 @@ module.exports = class extends Generator {
     this.modulePath = this.args[0];
     this.constantValue = this.args[1];
     this.constanteName = Batangularjs.upperCaseFirst(
-      Batangularjs.nameByModule(this.modulePath)
+      Batangularjs.namePath(this.modulePath)
     );
   }
 
   writing() {
     this.fs.copyTpl(
       this.templatePath('constant.js'),
-      this.destinationPath(`${Batangularjs.fileDirByModule(this.modulePath, 'constant')}`),
+      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'constant')}`),
       {
         constantName: this.constanteName,
         constantValue: this.constantValue
