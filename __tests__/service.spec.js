@@ -10,7 +10,7 @@ describe('Testing service with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.service.js';
+  const fileDir = 'app/user-auth.service.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -30,7 +30,7 @@ describe('Testing service with succession modules', () => {
       .withArguments(['userAuth.foo.bar.fooBar']);
   });
 
-  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.service.js';
+  const fileDir = 'app/user-auth/foo/bar/foo-bar.service.js';
 
   it('creates files', () => {
     assert.file([

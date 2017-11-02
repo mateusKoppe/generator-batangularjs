@@ -10,7 +10,7 @@ describe('Testing module with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.module.js';
+  const fileDir = 'app/user-auth/user-auth.module.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -31,7 +31,7 @@ describe('Testing module with route', () => {
       .withOptions({r: true});
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.module.js';
+  const fileDir = 'app/user-auth/user-auth.module.js';
 
   it('import uiRouter', () =>
     assert.fileContent(

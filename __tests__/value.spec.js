@@ -10,7 +10,7 @@ describe('Testing value with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.value.js';
+  const fileDir = 'app/user-auth/user-auth.value.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -30,7 +30,7 @@ describe('Testing value with succession modules', () => {
       .withArguments(['userAuth.foo.bar.fooBar']);
   });
 
-  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.value.js';
+  const fileDir = 'app/user-auth/foo/bar/foo-bar.value.js';
 
   it('creates files', () => {
     assert.file([
@@ -45,7 +45,7 @@ describe('Testing value with two arguments', () => {
       .withArguments(['userAuth', 'foobar']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.value.js';
+  const fileDir = 'app/user-auth.value.js';
 
   it('define value', () =>
     assert.fileContent(

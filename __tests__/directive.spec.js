@@ -10,7 +10,7 @@ describe('Testing directive with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.directive.js';
+  const fileDir = 'app/user-auth.directive.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -27,10 +27,10 @@ describe('Testing directive with camelCase module', () => {
 describe('Testing directive with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/directive'))
-      .withArguments(['userAuth.foo.bar.fooBar']);
+      .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
-  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.directive.js';
+  const fileDir = 'app/user-auth/foo/bar/foo-bar.directive.js';
 
   it('creates files', () => {
     assert.file([

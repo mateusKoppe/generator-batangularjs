@@ -27,22 +27,37 @@ test('lowerCaseFirst', () => {
   expect(Batangularjs.lowerCaseFirst('TestTest')).toBe('testTest');
 });
 
-test('folderByModule', () => {
-  expect(Batangularjs.folderByModule('foo.bar.foo')).toBe('app/components/foo/bar/foo');
-  expect(Batangularjs.folderByModule('fooBar.foo')).toBe('app/components/foo-bar/foo');
+test('folderPath', () => {
+  expect(Batangularjs.folderPath('foo/bar/foo')).toBe('app/foo/bar');
+  expect(Batangularjs.folderPath('fooBar/foo')).toBe('app/foo-bar');
 });
 
-test('nameByModule', () => {
-  expect(Batangularjs.nameByModule('foo.bar.foo')).toBe('foo');
-  expect(Batangularjs.nameByModule('bar.foo-bar')).toBe('fooBar');
-  expect(Batangularjs.nameByModule('bar.fooBar')).toBe('fooBar');
+test('namePath', () => {
+  expect(Batangularjs.namePath('foo/bar/foo')).toBe('foo');
+  expect(Batangularjs.namePath('bar/foo-bar')).toBe('fooBar');
+  expect(Batangularjs.namePath('bar/fooBar')).toBe('fooBar');
 });
 
-test('fileDirByModule', () => {
-  expect(Batangularjs.fileDirByModule('foo.bar.foo', 'component'))
-    .toBe('app/components/foo/bar/foo/foo.component.js');
-  expect(Batangularjs.fileDirByModule('foo.bar.fooBar', 'module'))
-    .toBe('app/components/foo/bar/foo-bar/foo-bar.module.js');
-  expect(Batangularjs.fileDirByModule('foo.fooBar', 'directive'))
-    .toBe('app/components/foo/foo-bar/foo-bar.directive.js');
+test('fileDirPath', () => {
+  let path = 'foo/bar/fooBar';
+  expect(Batangularjs.fileDirPath(path, 'component', true))
+    .toBe('app/foo/bar/foo-bar/foo-bar.component.js');
+
+  expect(Batangularjs.fileDirPath(path, 'constant'))
+    .toBe('app/foo/bar/foo-bar.constant.js');
+
+  expect(Batangularjs.fileDirPath(path, 'directive'))
+    .toBe('app/foo/bar/foo-bar.directive.js');
+
+  expect(Batangularjs.fileDirPath(path, 'filter'))
+    .toBe('app/foo/bar/foo-bar.filter.js');
+
+  expect(Batangularjs.fileDirPath(path, 'module', true))
+    .toBe('app/foo/bar/foo-bar/foo-bar.module.js');
+
+  expect(Batangularjs.fileDirPath(path, 'service'))
+    .toBe('app/foo/bar/foo-bar.service.js');
+
+  expect(Batangularjs.fileDirPath(path, 'value'))
+    .toBe('app/foo/bar/foo-bar.value.js');
 });

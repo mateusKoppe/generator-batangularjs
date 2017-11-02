@@ -10,7 +10,7 @@ describe('Testing constant with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.constant.js';
+  const fileDir = 'app/user-auth.constant.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -27,10 +27,10 @@ describe('Testing constant with camelCase module', () => {
 describe('Testing constant with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['userAuth.foo.bar.fooBar']);
+      .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
-  const fileDir = 'app/components/user-auth/foo/bar/foo-bar/foo-bar.constant.js';
+  const fileDir = 'app/user-auth/foo/bar/foo-bar.constant.js';
 
   it('creates files', () => {
     assert.file([
@@ -45,7 +45,7 @@ describe('Testing constant with two arguments', () => {
       .withArguments(['userAuth', 'foobar']);
   });
 
-  const fileDir = 'app/components/user-auth/user-auth.constant.js';
+  const fileDir = 'app/user-auth.constant.js';
 
   it('define value', () =>
     assert.fileContent(
