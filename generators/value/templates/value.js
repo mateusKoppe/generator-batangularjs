@@ -1,1 +1,1 @@
-export let <%= valueName %>Value = '<%= valueValue %>';
+export let <%= name %>Value = '<%= value %>';

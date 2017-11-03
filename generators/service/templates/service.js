@@ -1,4 +1,4 @@
-export class <%= serviceName %>Service {
+export class <%= name %>Service {
   constructor(){}
 
   doStuf(){

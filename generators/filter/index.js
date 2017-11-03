@@ -23,12 +23,13 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('filter.js'),
-      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'filter')}`),
+    Batangularjs.generateFile(
+      `${Batangularjs.fileDirPath(this.modulePath, 'filter')}`,
+      'filter.js',
       {
-        filterName: this.filterName
-      }
+        name: this.filterName
+      },
+      this
     );
   }
 };

@@ -23,12 +23,13 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('directive.js'),
-      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'directive')}`),
+    Batangularjs.generateFile(
+      `${Batangularjs.fileDirPath(this.modulePath, 'directive')}`,
+      'directive.js',
       {
-        directiveName: this.directiveName
-      }
+        name: this.directiveName
+      },
+      this
     );
   }
 };

@@ -13,7 +13,7 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (!this.args.length) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [-r]');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [-r][-c]');
       return;
     }
     this.modulePath = this.args[0];
@@ -24,14 +24,17 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('module.js'),
-      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'module', true)}`),
-      {
-        moduleName: this.moduleName,
-        capitalizeModuleName: Batangularjs.upperCaseFirst(this.moduleName),
-        route: this.optRoute
-      }
+    let data = {
+      name: this.moduleName,
+      capitalizeName: Batangularjs.upperCaseFirst(this.moduleName),
+      route: this.optRoute
+    };
+
+    Batangularjs.generateFile(
+      Batangularjs.fileDirPath(this.modulePath, 'module', true),
+      'module.js',
+      data,
+      this
     );
   }
 };

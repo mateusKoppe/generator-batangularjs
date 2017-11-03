@@ -1,4 +1,4 @@
-export const <%= filterName %>Filter = () =>
+export const <%= name %>Filter = () =>
   (input) => {
     return `${input}...`;
   }

@@ -1,10 +1,10 @@
-export const <%= componentName %>Component = {
+export const <%= name %>Component = {
   bindings: {},
   transclude: false,
   template: `
     <div></div>
   `,
-  controller: class <%= componentName %>Controller {
+  controller: class <%= name %>Controller {
     constructor(){}
   }
 };

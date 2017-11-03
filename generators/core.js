@@ -5,7 +5,8 @@ module.exports = {
   kebabCase,
   folderPath,
   namePath,
-  fileDirPath
+  fileDirPath,
+  generateFile
 };
 
 function upperCaseFirst(string) {
@@ -50,4 +51,12 @@ function fileDirPath(path, type, insideFolder) {
   }
   let fileName = `${kebabCase(name)}.${type}.js`;
   return `${folder}/${fileName}`;
+}
+
+function generateFile(file, template, data, contex) {
+  contex.fs.copyTpl(
+    contex.templatePath(template),
+    contex.destinationPath(file),
+    data
+  );
 }

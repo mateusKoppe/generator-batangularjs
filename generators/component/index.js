@@ -22,29 +22,26 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    let data = {
+      name: this.componentName,
+      templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.component.html`
+    };
+    let javascriptTemplate = 'component.js';
     if (this.opts.i) {
-      this._copyFileByTemplate('component-separated.js');
-      this._copyFileByTemplate('component-separated.html');
-    } else {
-      this._copyFileByTemplate('component.js');
+      javascriptTemplate = 'component-separated.js';
+      Batangularjs.generateFile(
+        Batangularjs.fileDirPath(this.modulePath, 'component', true)
+          .replace('.component.js', '.component.html'),
+        javascriptTemplate,
+        data,
+        this
+      );
     }
-  }
-
-  _copyFileByTemplate(templateName) {
-    let extension = templateName.split('.').reverse()[0];
-    let destiny = Batangularjs.fileDirPath(this.modulePath, 'component', true);
-    if (extension === 'html') {
-      templateName = templateName.replace('.component.js', '.component.html');
-      destiny = destiny.replace('.component.js', '.component.html');
-    }
-
-    this.fs.copyTpl(
-      this.templatePath(templateName),
-      this.destinationPath(destiny),
-      {
-        componentName: Batangularjs.upperCaseFirst(this.componentName),
-        templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.component.html`
-      }
+    Batangularjs.generateFile(
+      Batangularjs.fileDirPath(this.modulePath, 'component', true),
+      javascriptTemplate,
+      data,
+      this
     );
   }
 };

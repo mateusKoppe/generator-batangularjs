@@ -24,13 +24,14 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('constant.js'),
-      this.destinationPath(`${Batangularjs.fileDirPath(this.modulePath, 'constant')}`),
+    Batangularjs.generateFile(
+      `${Batangularjs.fileDirPath(this.modulePath, 'constant')}`,
+      'constant.js',
       {
-        constantName: this.constanteName,
-        constantValue: this.constantValue
-      }
+        name: this.constanteName,
+        value: this.constantValue
+      },
+      this
     );
   }
 };

@@ -1,10 +1,10 @@
 import templateUrl from '<%= templateUrl %>';
 
-export const <%= componentName %>Component = {
+export const <%= name %>Component = {
   bindings: {},
   transclude: false,
   templateUrl,
-  controller: class <%= componentName %>Controller {
+  controller: class <%= name %>Controller {
     constructor(){}
   }
 };

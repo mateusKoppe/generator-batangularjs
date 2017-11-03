@@ -1,1 +1,1 @@
-export const <%= constantName %>Constant = '<%= constantValue %>';
+export const <%= name %>Constant = '<%= value %>';

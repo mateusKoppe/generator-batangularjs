@@ -1,4 +1,4 @@
-export const <%= directiveName %>Directive = () => {
+export const <%= name %>Directive = () => {
   return {
     restrict: 'A',
     scope: {},
