@@ -13,7 +13,7 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (!this.args.length) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [-r][-c]');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [-r][-c][-t]');
       return;
     }
     this.modulePath = this.args[0];
@@ -21,12 +21,15 @@ module.exports = class extends Generator {
       Batangularjs.namePath(this.modulePath)
     );
     this.optRoute = this.opts.r;
+    this.optComponent = this.opts.c;
+    this.optTemplate = this.opts.t;
   }
 
   writing() {
     let data = {
       name: this.moduleName,
       capitalizeName: Batangularjs.upperCaseFirst(this.moduleName),
+      templateUrl: `./${Batangularjs.kebabCase(this.moduleName)}.component.html`,
       route: this.optRoute
     };
 
@@ -36,5 +39,31 @@ module.exports = class extends Generator {
       data,
       this
     );
+
+    this._writeComponent(data);
+  }
+
+  _writeComponent(data) {
+    let nameTemplate = 'component.js';
+    const dirTemplate = '../../component/templates';
+    if (this.optTemplate) {
+      nameTemplate = 'component-separated.js';
+      Batangularjs.generateFile(
+        Batangularjs.fileDirPath(this.modulePath, 'component', true)
+          .replace('.component.js', '.component.html'),
+        `${dirTemplate}/component-separated.html`,
+        data,
+        this
+      );
+    }
+
+    if (this.optComponent) {
+      Batangularjs.generateFile(
+        Batangularjs.fileDirPath(this.modulePath, 'component', true),
+        `${dirTemplate}/${nameTemplate}`,
+        data,
+        this
+      );
+    }
   }
 };
