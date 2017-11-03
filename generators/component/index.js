@@ -13,12 +13,13 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (this.args.length < 1) {
-      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [-i]');
+      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [-t]');
     }
     this.modulePath = this.args[0];
     this.componentName = Batangularjs.upperCaseFirst(
       Batangularjs.namePath(this.modulePath)
     );
+    this.optTemplate = this.opts.t;
   }
 
   writing() {
@@ -27,7 +28,7 @@ module.exports = class extends Generator {
       templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.component.html`
     };
     let javascriptTemplate = 'component.js';
-    if (this.opts.i) {
+    if (this.optTemplate) {
       javascriptTemplate = 'component-separated.js';
       Batangularjs.generateFile(
         Batangularjs.fileDirPath(this.modulePath, 'component', true)
