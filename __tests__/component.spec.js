@@ -42,7 +42,7 @@ describe('Testing components with isolated template', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/component'))
       .withArguments(['userAuth'])
-      .withOptions({i: true});
+      .withOptions({t: true});
   });
 
   const fileDir = 'app/user-auth/user-auth.component.js';
@@ -73,7 +73,7 @@ describe('Testing components with modules folders', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/component'))
       .withArguments(['userAuth/foo/bar/fooBar'])
-      .withOptions({i: true});
+      .withOptions({t: true});
   });
 
   const fileDir = 'app/user-auth/foo/bar/foo-bar/foo-bar.component.js';
