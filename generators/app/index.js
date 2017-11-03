@@ -1,13 +1,12 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
 const yosay = require('yosay');
 
 module.exports = class extends Generator {
   prompting() {
     this.log(yosay(
-      'Welcome to the ' + chalk.red('generator-batangularjs') + '!'
+      'Welcome to the generator-batangularjs!'
     ));
 
     const prompts = [
@@ -31,7 +30,7 @@ module.exports = class extends Generator {
 
   install() {
     if (this.props.autoInstall) {
-      this.installDependencies();
+      this.npmInstall();
     }
   }
 
