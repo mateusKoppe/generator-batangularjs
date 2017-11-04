@@ -120,3 +120,34 @@ describe('Testing module with components and template', () => {
     )
   );
 });
+
+describe('Testing module with components and template using another params', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['userAuth'])
+      .withOptions({component: true, template: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.js';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir,
+      fileDir.replace('component.js', 'component.html') // Html file
+    ]);
+  });
+
+  it('not define template', () =>
+    assert.noFileContent(
+      fileDir,
+      'template: '
+    )
+  );
+
+  it('define templateUrl', () =>
+    assert.fileContent(
+      fileDir,
+      'templateUrl'
+    )
+  );
+});

@@ -69,6 +69,37 @@ describe('Testing components with isolated template', () => {
   );
 });
 
+describe('Testing components with isolated template with another param', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/component'))
+      .withArguments(['userAuth'])
+      .withOptions({template: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.js';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir,
+      fileDir.replace('component.js', 'component.html') // Html file
+    ]);
+  });
+
+  it('not define template', () =>
+    assert.noFileContent(
+      fileDir,
+      'template: '
+    )
+  );
+
+  it('define templateUrl', () =>
+    assert.fileContent(
+      fileDir,
+      'templateUrl'
+    )
+  );
+});
+
 describe('Testing components with modules folders', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/component'))
