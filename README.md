@@ -63,8 +63,8 @@ $ npm run build
 
 ## Subgenerators
 You can use all the subgenerators above;
-* `$ yo batangularjs:module <name> [--route|-r][--component|-c][--template|-t]`
-* `$ yo batangularjs:component <name> [--template|-t]`
+* `$ yo batangularjs:module <name> [--route|-r][--component|-c][--template|-t][--style|-s]`
+* `$ yo batangularjs:component <name> [--template|-t][--style|-s]`
 * `$ yo batangularjs:constant <name> [<value's value>]`
 * `$ yo batangularjs:directive <name>`
 * `$ yo batangularjs:filter <name>`
