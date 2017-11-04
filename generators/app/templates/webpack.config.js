@@ -33,6 +33,12 @@ module.exports = {
         })
       },
       {
+        test: /\.css$/,
+        use: extractPlugin.extract({
+          use: ['css-loader']
+        })
+      },
+      {
         test: /\.html$/,
         use: [
           { loader: 'ngtemplate-loader?relativeTo=' + __dirname + '/' },
