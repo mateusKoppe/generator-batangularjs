@@ -71,6 +71,37 @@ You can use all the subgenerators above;
 * `$ yo batangularjs:services <name>`
 * `$ yo batangularjs:value <name> [<value's value>]`
 
+### Some examples
+
+You can use `[<folder>/]<name>` format to generate your files:
+
+```bash
+yo batangularjs:component components/newComponent
+# This will generate:
+# app/components/new-component/new-component.component.js
+
+yo batangularjs:module common/newModule -rtcs
+# This will generate:
+# app/common/new-module/new-module.module.js
+# app/common/new-module/new-module.component.js
+# app/common/new-module/new-module.component.html
+# app/common/new-module/new-module.component.scss
+
+yo batangularjs:service components/fooBar/newService
+# This will generate
+# app/components/foo-bar/new-service.service.js
+
+yo batangularjs:service newFilter
+# This will generate
+# app/new-filter.js
+
+yo batangularjs:component common/newComponent -st
+# This will generate:
+# app/components/new-component/new-component.component.js
+# app/components/new-component/new-component.component.html
+# app/components/new-component/new-component.component.scss
+```
+
 ## Contributing
 
 Help me to improve this documentation.
