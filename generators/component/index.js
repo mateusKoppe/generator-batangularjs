@@ -13,19 +13,21 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (this.args.length < 1) {
-      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [--template|-t]');
+      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [--template|-t][--style|-s]');
     }
     this.modulePath = this.args[0];
     this.componentName = Batangularjs.upperCaseFirst(
       Batangularjs.namePath(this.modulePath)
     );
     this.optTemplate = this.opts.t || this.opts.template;
+    this.optStyle = this.opts.s || this.opts.style;
   }
 
   writing() {
     let data = {
       name: this.componentName,
-      templateUrl: `./${Batangularjs.kebabCase(this.componentName)}.component.html`
+      file: `./${Batangularjs.kebabCase(this.componentName)}`,
+      style: this.optStyle
     };
     let javascriptTemplate = 'component.js';
     if (this.optTemplate) {
@@ -37,6 +39,10 @@ module.exports = class extends Generator {
         data,
         this
       );
+    }
+    if (this.optStyle) {
+      this.fs.write(`${Batangularjs.fileDirPath(this.modulePath, 'component', true)
+        .replace('.component.js', '.component.scss')}`, '');
     }
     Batangularjs.generateFile(
       Batangularjs.fileDirPath(this.modulePath, 'component', true),

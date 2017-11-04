@@ -1,4 +1,6 @@
-export const <%= name %>Component = {
+<% if(style){ %>import '<%= file %>.component.scss';
+
+<% } %>export const <%= name %>Component = {
   bindings: {},
   transclude: false,
   template: `

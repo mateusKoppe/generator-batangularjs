@@ -13,7 +13,7 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (!this.args.length) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [--route|-r][--component|-c][--template|-t]');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [--route|-r][--component|-c][--template|-t][--style|-s]');
       return;
     }
     this.modulePath = this.args[0];
@@ -23,14 +23,16 @@ module.exports = class extends Generator {
     this.optRoute = this.opts.r || this.opts.route;
     this.optComponent = this.opts.c || this.opts.component;
     this.optTemplate = this.opts.t || this.opts.template;
+    this.optStyle = this.opts.s || this.opts.style;
   }
 
   writing() {
     let data = {
       name: this.moduleName,
       capitalizeName: Batangularjs.upperCaseFirst(this.moduleName),
-      templateUrl: `./${Batangularjs.kebabCase(this.moduleName)}.component.html`,
-      route: this.optRoute
+      file: `./${Batangularjs.kebabCase(this.moduleName)}`,
+      route: this.optRoute,
+      style: this.optStyle
     };
 
     Batangularjs.generateFile(
@@ -41,6 +43,7 @@ module.exports = class extends Generator {
     );
 
     this._writeComponent(data);
+    this._writeStyle(data);
   }
 
   _writeComponent(data) {
@@ -64,6 +67,13 @@ module.exports = class extends Generator {
         data,
         this
       );
+    }
+  }
+
+  _writeStyle() {
+    if (this.optStyle) {
+      this.fs.write(`${Batangularjs.fileDirPath(this.modulePath, 'component', true)
+        .replace('.component.js', '.component.scss')}`, '');
     }
   }
 };

@@ -1,4 +1,5 @@
-import templateUrl from '<%= templateUrl %>';
+import templateUrl from '<%= file %>.component.html';<% if(style){ %>
+import '<%= file %>.component.scss';<% } %>
 
 export const <%= name %>Component = {
   bindings: {},
