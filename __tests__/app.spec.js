@@ -18,11 +18,12 @@ describe('generator-batangularjs:app', () => {
     '.yo-rc.json',
     'app/app.component.js',
     'app/app.module.js',
-    'app/app.scss',
+    'app/app.component.scss',
     'app/components/components.module.js',
     'app/components/home/home.module.js',
     'app/components/home/home.component.js',
     'app/components/home/home.component.html',
+    'app/components/home/home.component.scss',
     'app/common/common.module.js'
   ];
 
