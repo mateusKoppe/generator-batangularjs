@@ -17,7 +17,7 @@ module.exports = class extends Generator {
       return;
     }
     this.modulePath = this.args[0];
-    this.moduleName = Batangularjs.upperCaseFirst(
+    this.moduleName = Batangularjs.camelCase(
       Batangularjs.namePath(this.modulePath)
     );
     this.optRoute = this.opts.r || this.opts.route;
@@ -28,8 +28,9 @@ module.exports = class extends Generator {
 
   writing() {
     let data = {
-      name: this.moduleName,
-      capitalizeName: Batangularjs.upperCaseFirst(this.moduleName),
+      moduleName: this.moduleName,
+      name: Batangularjs.upperCaseFirst(this.moduleName),
+      stateUrl: Batangularjs.kebabCase(this.moduleName),
       file: `./${Batangularjs.kebabCase(this.moduleName)}`,
       route: this.optRoute,
       style: this.optStyle
