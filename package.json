@@ -1,7 +1,7 @@
 {
   "name": "generator-batangularjs",
-  "version": "0.2.6",
-  "description": "Scaffold out a AngularJs Application and give to you a development kit",
+  "version": "1.0.0",
+  "description": "Scaffold a AngularJs Application with ES2015 features and give to you a development kit",
   "homepage": "",
   "author": {
     "name": "Mateus Koppe",
