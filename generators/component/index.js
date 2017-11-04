@@ -13,13 +13,13 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (this.args.length < 1) {
-      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [-t]');
+      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [--template|-t]');
     }
     this.modulePath = this.args[0];
     this.componentName = Batangularjs.upperCaseFirst(
       Batangularjs.namePath(this.modulePath)
     );
-    this.optTemplate = this.opts.t;
+    this.optTemplate = this.opts.t || this.opts.template;
   }
 
   writing() {

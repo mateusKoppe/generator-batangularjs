@@ -13,16 +13,16 @@ module.exports = class extends Generator {
 
   validateArgs() {
     if (!this.args.length) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [-r][-c][-t]');
+      this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [--route|-r][--component|-c][--template|-t]');
       return;
     }
     this.modulePath = this.args[0];
     this.moduleName = Batangularjs.upperCaseFirst(
       Batangularjs.namePath(this.modulePath)
     );
-    this.optRoute = this.opts.r;
-    this.optComponent = this.opts.c;
-    this.optTemplate = this.opts.t;
+    this.optRoute = this.opts.r || this.opts.route;
+    this.optComponent = this.opts.c || this.opts.component;
+    this.optTemplate = this.opts.t || this.opts.template;
   }
 
   writing() {
