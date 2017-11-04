@@ -35,7 +35,7 @@ module.exports = class extends Generator {
       Batangularjs.generateFile(
         Batangularjs.fileDirPath(this.modulePath, 'component', true)
           .replace('.component.js', '.component.html'),
-        javascriptTemplate,
+        'component-separated.html',
         data,
         this
       );
