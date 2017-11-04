@@ -97,9 +97,9 @@ yo batangularjs:service newFilter
 
 yo batangularjs:component common/newComponent -st
 # This will generate:
-# app/components/new-component/new-component.component.js
-# app/components/new-component/new-component.component.html
-# app/components/new-component/new-component.component.scss
+# app/common/new-component/new-component.component.js
+# app/common/new-component/new-component.component.html
+# app/common/new-component/new-component.component.scss
 ```
 
 ## Contributing
