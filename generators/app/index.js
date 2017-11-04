@@ -1,13 +1,12 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
 const yosay = require('yosay');
 
 module.exports = class extends Generator {
   prompting() {
     this.log(yosay(
-      'Welcome to the ' + chalk.red('generator-batangularjs') + '!'
+      'Welcome to the generator-batangularjs!'
     ));
 
     const prompts = [
@@ -26,12 +25,13 @@ module.exports = class extends Generator {
   writing() {
     this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath(`.`));
     this.fs.copy(this.templatePath('app/'), this.destinationPath(`./app/`));
-    this._installHideFiles(['bowerrc', 'editorconfig', 'gitignore', 'jscsrc', 'yo-rc.json']);
+    this.fs.copy(this.templatePath('dist/'), this.destinationPath(`./dist/`));
+    this._installHideFiles(['editorconfig', 'gitignore', 'eslintrc.js', 'yo-rc.json']);
   }
 
   install() {
     if (this.props.autoInstall) {
-      this.installDependencies();
+      this.npmInstall();
     }
   }
 

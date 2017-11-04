@@ -2,130 +2,55 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
-var TestHelper = require('./test-helper');
+// Var TestHelper = require('./test-helper');
 
-describe('generator-batangularjs:constant app name', () => {
+describe('Testing constant with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['app', 'name']);
+      .withArguments(['userAuth']);
   });
+
+  const fileDir = 'app/user-auth.constant.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/name.constant.js'
-    ]);
+    assert.file([fileDir]);
   });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/name.constant.js', 'app')
-  );
-
-  it('define type', () =>
-    TestHelper.checkType('app/name.constant.js', 'constant')
-  );
 
   it('define name', () =>
-    TestHelper.checkName('app/name.constant.js', 'name')
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthConstant = '
+    )
   );
 });
 
-describe('generator-batangularjs:constant module name', () => {
+describe('Testing constant with succession modules', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['module', 'name']);
+      .withArguments(['userAuth/foo/bar/fooBar']);
   });
+
+  const fileDir = 'app/user-auth/foo/bar/foo-bar.constant.js';
 
   it('creates files', () => {
     assert.file([
-      'app/module/name.constant.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/module/name.constant.js', 'app.module')
-  );
-});
-
-describe('generator-batangularjs:constant module name -t', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['module', 'name'])
-      .withOptions({t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/constants/name.constant.js'
+      fileDir
     ]);
   });
 });
 
-describe('generator-batangularjs:constant module name -c', () => {
+describe('Testing constant with two arguments', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true});
+      .withArguments(['userAuth', 'foobar']);
   });
 
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/name.constant.js'
-    ]);
-  });
-});
+  const fileDir = 'app/user-auth.constant.js';
 
-describe('generator-batangularjs:constant module name -tc', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['module', 'name'])
-      .withOptions({c: true, t: true});
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/module/core/constants/name.constant.js'
-    ]);
-  });
-});
-
-describe('generator-batangularjs:constant module-multiple name-multiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['module-multiple', 'name-multiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.constant.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.constant.js', 'app.moduleMultiple')
-  );
-
-  it('define constant name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.constant.js', 'nameMultiple')
-  );
-});
-
-describe('generator-batangularjs:constant moduleMultiple nameMultiple', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/constant'))
-      .withArguments(['moduleMultiple', 'nameMultiple']);
-  });
-
-  it('creates files', () => {
-    assert.file([
-      'app/moduleMultiple/name-multiple.constant.js'
-    ]);
-  });
-
-  it('define module name', () =>
-    TestHelper.checkModuleName('app/moduleMultiple/name-multiple.constant.js', 'app.moduleMultiple')
-  );
-
-  it('define constant name', () =>
-    TestHelper.checkName('app/moduleMultiple/name-multiple.constant.js', 'nameMultiple')
+  it('define value', () =>
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthConstant = \'foobar\''
+    )
   );
 });

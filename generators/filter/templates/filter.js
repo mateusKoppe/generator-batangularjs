@@ -1,14 +1,6 @@
-(function(){
-  'use strict';
-
-  angular
-    .module('<%= moduleName %>')
-    .filter('<%= filterName %>', <%= filterName %>Filter);
-
-  function <%= filterName %>Filter() {
-    return function(input) {
-      return input + '...';
-    }
+export const <%= name %>Filter = () => {
+  'ngInject';
+  return (input) => {
+    return `${input}...`;
   }
-
-})();
+}

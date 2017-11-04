@@ -12,49 +12,26 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 2) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:constant <module> <constant> [<[value]>] [-t][-c]');
+    if (!this.args.length) {
+      this.env.error('Sintax error, you must use the sintax: batangularjs:constant <module>');
+      return;
     }
-  }
-
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-    this.constantName = Batangularjs.camelCase(this.args[1]);
-    this.constantValue = this.args[2] || '';
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = this.module.replace('.', '/');
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-    if (this.opts.c) {
-      this.dest += `core/`;
-    }
-    if (this.opts.t) {
-      this.dest += `constants/`;
-    }
-  }
-
-  file() {
-    this.file = `${Batangularjs.kebabCase(this.constantName)}.constant.js`;
+    this.modulePath = this.args[0];
+    this.constantValue = this.args[1];
+    this.constanteName = Batangularjs.upperCaseFirst(
+      Batangularjs.namePath(this.modulePath)
+    );
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('constant.js'),
-      this.destinationPath(`${this.dest}${this.file}`),
+    Batangularjs.generateFile(
+      `${Batangularjs.fileDirPath(this.modulePath, 'constant')}`,
+      'constant.js',
       {
-        moduleName: this.moduleName,
-        constantName: this.constantName,
-        constantValue: this.constantValue
-      }
+        name: this.constanteName,
+        value: this.constantValue
+      },
+      this
     );
   }
 };

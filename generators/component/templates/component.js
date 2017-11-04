@@ -1,23 +1,14 @@
-(function(){
-  'use strict';
+<% if(style){ %>import '<%= file %>.component.scss';
 
-  angular
-    .module('<%= moduleName %>')
-    .component('<%= componentName %>', <%= componentName %>Component());
-
-  function <%= componentName %>Component() {
-    return {
-      template: '',
-      bindings: {},
-      controller: <%= capitalizeComponentName %>Controller,
-      controllerAs: '$ctrl',
-      transclude: false
+<% } %>export const <%= name %>Component = {
+  bindings: {},
+  transclude: false,
+  template: `
+    <div></div>
+  `,
+  controller: class <%= name %>Controller {
+    constructor(){
+      'ngInject';
     }
   }
-
-  function <%= capitalizeComponentName %>Controller() {
-    let vm = this;
-
-  }
-
-})();
+};

@@ -12,65 +12,24 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 2) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:directive <module> <directive> [-t][-c][-i]');
+    if (!this.args.length) {
+      this.env.error('Sintax error, you must use the sintax: batangularjs:directive <module>');
+      return;
     }
-  }
-
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-    this.directiveName = Batangularjs.camelCase(this.args[1]);
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = this.module.replace('.', '/');
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-    if (this.opts.c) {
-      this.dest += `core/`;
-    }
-    if (this.opts.t) {
-      this.dest += `directives/`;
-    }
+    this.modulePath = this.args[0];
+    this.directiveName = Batangularjs.upperCaseFirst(
+      Batangularjs.namePath(this.modulePath)
+    );
   }
 
   writing() {
-    if (this.opts.i) {
-      this._copyFileByTemplate('directive-separated.js');
-      this._copyFileByTemplate('directive-separated.html');
-    } else {
-      this._copyFileByTemplate('directive.js');
-    }
-  }
-
-  _copyFileByTemplate(templateName) {
-    let extension = templateName.split('.').reverse()[0];
-    let type = 'directive';
-    if (extension === 'html') {
-      type = 'template';
-    }
-
-    let folderInApp = this.dest.split('/');
-    folderInApp.shift();
-    folderInApp = folderInApp.join('/');
-    let fileName = Batangularjs.kebabCase(this.directiveName);
-    this.fs.copyTpl(
-      this.templatePath(templateName),
-      this.destinationPath(`${this.dest}${fileName}.${type}.${extension}`),
+    Batangularjs.generateFile(
+      `${Batangularjs.fileDirPath(this.modulePath, 'directive')}`,
+      'directive.js',
       {
-        moduleName: this.moduleName,
-        directiveName: this.directiveName,
-        fileName,
-        capitalizeDirectiveName: Batangularjs.upperCaseFirst(this.directiveName),
-        folder: folderInApp
-      }
+        name: this.directiveName
+      },
+      this
     );
   }
 };

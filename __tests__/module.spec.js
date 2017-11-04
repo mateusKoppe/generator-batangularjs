@@ -2,72 +2,185 @@
 var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
-var TestHelper = require('./test-helper');
+// Var TestHelper = require('./test-helper');
 
-describe('generator-batangularjs:module app', () => {
+describe('Testing module with camelCase module', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['app']);
+      .withArguments(['userAuth']);
   });
+
+  const fileDir = 'app/user-auth/user-auth.module.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/app.module.js'
-    ]);
+    assert.file([fileDir]);
   });
 
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/app.module.js', 'app')
+  it('define name', () =>
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthModule = angular'
+    )
   );
 });
 
-describe('generator-batangularjs:module module', () => {
+describe('Testing module with route', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['module']);
+      .withArguments(['userAuth'])
+      .withOptions({r: true});
   });
 
-  it('creates files', () => {
-    assert.file([
-      'app/module/module.module.js'
-    ]);
-  });
+  const fileDir = 'app/user-auth/user-auth.module.js';
 
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/module/module.module.js', 'app.module')
+  it('import uiRouter', () =>
+    assert.fileContent(
+      fileDir,
+      'import uiRouter from \'@uirouter/angularjs\';'
+    )
+  );
+
+  it('declare config', () =>
+    assert.fileContent(
+      fileDir,
+      '.config($stateProvider => {'
+    )
+  );
+
+  it('declare $stateProvider', () =>
+    assert.fileContent(
+      fileDir,
+      '$stateProvider'
+    )
   );
 });
 
-describe('generator-batangularjs:module module-name', () => {
+describe('Testing module with component', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['module-name']);
+      .withArguments(['userAuth'])
+      .withOptions({c: true});
   });
+
+  const fileDir = 'app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
-    assert.file([
-      'app/module-name/moduleName.module.js'
-    ]);
+    assert.file([fileDir]);
   });
 
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/module-name/moduleName.module.js', 'app.moduleName')
+  it('define name', () =>
+    assert.fileContent(
+      fileDir,
+      'export const UserAuthComponent = {'
+    )
+  );
+
+  it('define template', () =>
+    assert.fileContent(
+      fileDir,
+      'template: '
+    )
+  );
+
+  it('not define templateUrl', () =>
+    assert.noFileContent(
+      fileDir,
+      'templateUrl'
+    )
   );
 });
 
-describe('generator-batangularjs:module moduleName', () => {
+describe('Testing module with components and template', () => {
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/module'))
-      .withArguments(['moduleName']);
+      .withArguments(['userAuth'])
+      .withOptions({c: true, t: true});
   });
+
+  const fileDir = 'app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([
-      'app/module-name/moduleName.module.js'
+      fileDir,
+      fileDir.replace('component.js', 'component.html') // Html file
     ]);
   });
 
-  it('define module name', () =>
-    TestHelper.checkNewModuleName('app/module-name/moduleName.module.js', 'app.moduleName')
+  it('not define template', () =>
+    assert.noFileContent(
+      fileDir,
+      'template: '
+    )
+  );
+
+  it('define templateUrl', () =>
+    assert.fileContent(
+      fileDir,
+      'templateUrl'
+    )
   );
 });
+
+describe('Testing module with components and template using another params', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['userAuth'])
+      .withOptions({component: true, template: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.js';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir,
+      fileDir.replace('component.js', 'component.html') // Html file
+    ]);
+  });
+
+  it('not define template', () =>
+    assert.noFileContent(
+      fileDir,
+      'template: '
+    )
+  );
+
+  it('define templateUrl', () =>
+    assert.fileContent(
+      fileDir,
+      'templateUrl'
+    )
+  );
+});
+
+describe('Testing module with style', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['userAuth'])
+      .withOptions({s: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.scss';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir
+    ]);
+  });
+});
+
+describe('Testing module with style using describe param', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['userAuth'])
+      .withOptions({style: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.scss';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir
+    ]);
+  });
+});
+

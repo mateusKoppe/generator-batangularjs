@@ -1,9 +1,16 @@
-(function(){
-  'use strict';
+import angular from 'angular';<% if(route){ %>
+import uiRouter from '@uirouter/angularjs';<% } %>
 
-  angular
-    .module('<%= moduleName %>', [
-
-    ])
-
-})();
+export const <%= name %>Module = angular
+  .module('<%= moduleName %>', [<% if(route){ %>
+    uiRouter,<% } %>
+  ])<% if(route){ %>
+  .config($stateProvider => {
+    'ngInject';
+    $stateProvider
+      .state('<%= moduleName %>', {
+        url: '/<%= stateUrl %>',
+        component: '<%= moduleName %>',
+      });
+  })<% } %>
+  .name;

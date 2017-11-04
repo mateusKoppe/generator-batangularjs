@@ -4,13 +4,13 @@ var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 // Var TestHelper = require('./test-helper');
 
-describe('Testing filter with camelCase module', () => {
+describe('Testing service with camelCase module', () => {
   beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
+    return helpers.run(path.join(__dirname, '../generators/service'))
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/user-auth.filter.js';
+  const fileDir = 'app/user-auth.service.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -19,18 +19,18 @@ describe('Testing filter with camelCase module', () => {
   it('define name', () =>
     assert.fileContent(
       fileDir,
-      'export const UserAuthFilter = () =>'
+      'export class UserAuthService {'
     )
   );
 });
 
-describe('Testing filter with succession modules', () => {
+describe('Testing service with succession modules', () => {
   beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/filter'))
+    return helpers.run(path.join(__dirname, '../generators/service'))
       .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
-  const fileDir = 'app/user-auth/foo/bar/foo-bar.filter.js';
+  const fileDir = 'app/user-auth/foo/bar/foo-bar.service.js';
 
   it('creates files', () => {
     assert.file([

@@ -12,65 +12,43 @@ module.exports = class extends Generator {
   }
 
   validateArgs() {
-    if (this.args.length < 2) {
-      this.env.error('Sintax error, you must use the sintax: batangularjs:component <module> <component> [-t][-c][-i]');
+    if (this.args.length < 1) {
+      this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [--template|-t][--style|-s]');
     }
-  }
-
-  args() {
-    this.module = Batangularjs.camelCase(this.args[0]);
-    this.componentName = Batangularjs.camelCase(this.args[1]);
-
-    this.moduleName = 'app';
-    if (this.module !== 'app') {
-      this.moduleName += `.${this.module}`;
-    }
-  }
-
-  folder() {
-    let moduleFolder = this.module.replace('.', '/');
-    this.dest = 'app/';
-    if (this.module !== 'app') {
-      this.dest += `${moduleFolder}/`;
-    }
-    if (this.opts.c) {
-      this.dest += `core/`;
-    }
-    if (this.opts.t) {
-      this.dest += `components/`;
-    }
+    this.modulePath = this.args[0];
+    this.componentName = Batangularjs.upperCaseFirst(
+      Batangularjs.namePath(this.modulePath)
+    );
+    this.optTemplate = this.opts.t || this.opts.template;
+    this.optStyle = this.opts.s || this.opts.style;
   }
 
   writing() {
-    if (this.opts.i) {
-      this._copyFileByTemplate('component-separated.js');
-      this._copyFileByTemplate('component-separated.html');
-    } else {
-      this._copyFileByTemplate('component.js');
+    let data = {
+      name: this.componentName,
+      file: `./${Batangularjs.kebabCase(this.componentName)}`,
+      style: this.optStyle
+    };
+    let javascriptTemplate = 'component.js';
+    if (this.optTemplate) {
+      javascriptTemplate = 'component-separated.js';
+      Batangularjs.generateFile(
+        Batangularjs.fileDirPath(this.modulePath, 'component', true)
+          .replace('.component.js', '.component.html'),
+        'component-separated.html',
+        data,
+        this
+      );
     }
-  }
-
-  _copyFileByTemplate(templateName) {
-    let extension = templateName.split('.').reverse()[0];
-    let type = 'component';
-    if (extension === 'html') {
-      type = 'template';
+    if (this.optStyle) {
+      this.fs.write(`${Batangularjs.fileDirPath(this.modulePath, 'component', true)
+        .replace('.component.js', '.component.scss')}`, '');
     }
-
-    let folderInApp = this.dest.split('/');
-    folderInApp.shift();
-    folderInApp = folderInApp.join('/');
-    let fileName = Batangularjs.kebabCase(this.componentName);
-    this.fs.copyTpl(
-      this.templatePath(templateName),
-      this.destinationPath(`${this.dest}${fileName}.${type}.${extension}`),
-      {
-        moduleName: this.moduleName,
-        componentName: this.componentName,
-        fileName,
-        capitalizeComponentName: Batangularjs.upperCaseFirst(this.componentName),
-        folder: folderInApp
-      }
+    Batangularjs.generateFile(
+      Batangularjs.fileDirPath(this.modulePath, 'component', true),
+      javascriptTemplate,
+      data,
+      this
     );
   }
 };
