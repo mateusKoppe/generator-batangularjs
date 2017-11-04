@@ -7,6 +7,8 @@
     <div></div>
   `,
   controller: class <%= name %>Controller {
-    constructor(){}
+    constructor(){
+      'ngInject';
+    }
   }
 };

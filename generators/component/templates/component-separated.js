@@ -6,6 +6,8 @@ export const <%= name %>Component = {
   transclude: false,
   templateUrl,
   controller: class <%= name %>Controller {
-    constructor(){}
+    constructor(){
+      'ngInject';
+    }
   }
 };

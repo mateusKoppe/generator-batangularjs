@@ -1,5 +1,7 @@
 export class <%= name %>Service {
-  constructor(){}
+  constructor(){
+    'ngInject';
+  }
 
   doStuf(){
 

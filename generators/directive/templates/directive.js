@@ -1,4 +1,5 @@
 export const <%= name %>Directive = () => {
+  'ngInject';
   return {
     restrict: 'A',
     scope: {},
