@@ -1,6 +1,6 @@
 # BatAngularJs | Yeoman Generator [![Build Status](https://travis-ci.org/mateusKoppe/generator-batangularjs.svg?branch=development)](https://travis-ci.org/mateusKoppe/generator-batangularjs)
 
-Generator-batangularjs is a awesome AngularJs generator, that scaffold your AngularJs application and give to you a awesome development kit with subgenerators, webpack, eslint and ES2015 features!
+Generator-batangularjs is a awesome AngularJs generator, that scaffold your AngularJs application and give to you a awesome development kit with subgenerators, webpack, eslint, sass and ES2015 features!
 
 Based on [angular-cli](https://github.com/angular/angular-cli) and [Todd Motto - AngularJS styleguide (ES2015)](https://github.com/toddmotto/angularjs-styleguide).
 
@@ -63,13 +63,13 @@ $ npm run build
 
 ## Subgenerators
 You can use all the subgenerators above;
-* `$ yo batangularjs:module <module> [-r][-c][-t]`
-* `$ yo batangularjs:component <module> [-t]`
-* `$ yo batangularjs:constant <module> <value> [<value's value>]`
-* `$ yo batangularjs:directive <module>`
-* `$ yo batangularjs:filter <module>`
-* `$ yo batangularjs:services <module>`
-* `$ yo batangularjs:value <module> <value> [<value's value>]`
+* `$ yo batangularjs:module <name> [-r][-c][-t]`
+* `$ yo batangularjs:component <name> [-t]`
+* `$ yo batangularjs:constant <name> [<value's value>]`
+* `$ yo batangularjs:directive <name>`
+* `$ yo batangularjs:filter <name>`
+* `$ yo batangularjs:services <name>`
+* `$ yo batangularjs:value <name> [<value's value>]`
 
 ## Contributing
 
