@@ -116,3 +116,35 @@ describe('Testing components with modules folders', () => {
     ]);
   });
 });
+
+describe('Testing components with style', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/component'))
+      .withArguments(['userAuth/fooBar'])
+      .withOptions({s: true});
+  });
+
+  const fileDir = 'app/user-auth/foo-bar/foo-bar.component.scss';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir
+    ]);
+  });
+});
+
+describe('Testing components with style param describe', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/component'))
+      .withArguments(['userAuth/fooBar'])
+      .withOptions({style: true});
+  });
+
+  const fileDir = 'app/user-auth/foo-bar/foo-bar.component.scss';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir
+    ]);
+  });
+});

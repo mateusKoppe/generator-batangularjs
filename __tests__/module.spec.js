@@ -151,3 +151,36 @@ describe('Testing module with components and template using another params', () 
     )
   );
 });
+
+describe('Testing module with style', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['userAuth'])
+      .withOptions({s: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.scss';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir
+    ]);
+  });
+});
+
+describe('Testing module with style using describe param', () => {
+  beforeAll(() => {
+    return helpers.run(path.join(__dirname, '../generators/module'))
+      .withArguments(['userAuth'])
+      .withOptions({style: true});
+  });
+
+  const fileDir = 'app/user-auth/user-auth.component.scss';
+
+  it('creates files', () => {
+    assert.file([
+      fileDir
+    ]);
+  });
+});
+
