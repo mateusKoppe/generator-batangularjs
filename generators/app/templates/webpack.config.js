@@ -48,7 +48,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|svg)$/,
         use:[
-          { loader: 'url-loader?limit=100000' }
+          { loader: 'url-loader' }
         ]
       }
     ]
