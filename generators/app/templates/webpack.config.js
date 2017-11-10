@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        use: [ 'file-loader?name=imagens/[name].[ext]', 'image-webpack-loader' ]
+        use: [ 'file-loader' ]
       },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
