@@ -63,6 +63,7 @@ describe('Testing module with component', () => {
   });
 
   const fileDir = 'src/app/user-auth/user-auth.component.js';
+  const moduleDir = 'src/app/user-auth/user-auth.module.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -88,6 +89,17 @@ describe('Testing module with component', () => {
       'templateUrl'
     )
   );
+
+  it('import component', () => {
+    assert.fileContent(
+      moduleDir,
+      'import { UserAuthComponent } from \'./user-auth.component\';'
+    );
+    assert.fileContent(
+      moduleDir,
+      '.component(\'userAuth\', UserAuthComponent)'
+    );
+  });
 });
 
 describe('Testing module with components and template', () => {
