@@ -10,7 +10,7 @@ describe('Testing module with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/user-auth/user-auth.module.js';
+  const fileDir = 'src/app/user-auth/user-auth.module.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -31,7 +31,7 @@ describe('Testing module with route', () => {
       .withOptions({r: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.module.js';
+  const fileDir = 'src/app/user-auth/user-auth.module.js';
 
   it('import uiRouter', () =>
     assert.fileContent(
@@ -62,7 +62,7 @@ describe('Testing module with component', () => {
       .withOptions({c: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.js';
+  const fileDir = 'src/app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -97,7 +97,7 @@ describe('Testing module with components and template', () => {
       .withOptions({c: true, t: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.js';
+  const fileDir = 'src/app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([
@@ -128,7 +128,7 @@ describe('Testing module with components and template using another params', () 
       .withOptions({component: true, template: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.js';
+  const fileDir = 'src/app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([
@@ -159,7 +159,7 @@ describe('Testing module with style', () => {
       .withOptions({s: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.scss';
+  const fileDir = 'src/app/user-auth/user-auth.component.scss';
 
   it('creates files', () => {
     assert.file([
@@ -175,7 +175,7 @@ describe('Testing module with style using describe param', () => {
       .withOptions({style: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.scss';
+  const fileDir = 'src/app/user-auth/user-auth.component.scss';
 
   it('creates files', () => {
     assert.file([
@@ -183,4 +183,3 @@ describe('Testing module with style using describe param', () => {
     ]);
   });
 });
-

@@ -28,9 +28,9 @@ test('lowerCaseFirst', () => {
 });
 
 test('folderPath', () => {
-  expect(Batangularjs.folderPath('foo/bar/foo')).toBe('app/foo/bar');
-  expect(Batangularjs.folderPath('fooBar/foo')).toBe('app/foo-bar');
-  expect(Batangularjs.folderPath('fooBar')).toBe('app');
+  expect(Batangularjs.folderPath('foo/bar/foo')).toBe('src/app/foo/bar');
+  expect(Batangularjs.folderPath('fooBar/foo')).toBe('src/app/foo-bar');
+  expect(Batangularjs.folderPath('fooBar')).toBe('src/app');
 });
 
 test('namePath', () => {
@@ -42,23 +42,23 @@ test('namePath', () => {
 test('fileDirPath', () => {
   let path = 'foo/bar/fooBar';
   expect(Batangularjs.fileDirPath(path, 'component', true))
-    .toBe('app/foo/bar/foo-bar/foo-bar.component.js');
+    .toBe('src/app/foo/bar/foo-bar/foo-bar.component.js');
 
   expect(Batangularjs.fileDirPath(path, 'constant'))
-    .toBe('app/foo/bar/foo-bar.constant.js');
+    .toBe('src/app/foo/bar/foo-bar.constant.js');
 
   expect(Batangularjs.fileDirPath(path, 'directive'))
-    .toBe('app/foo/bar/foo-bar.directive.js');
+    .toBe('src/app/foo/bar/foo-bar.directive.js');
 
   expect(Batangularjs.fileDirPath(path, 'filter'))
-    .toBe('app/foo/bar/foo-bar.filter.js');
+    .toBe('src/app/foo/bar/foo-bar.filter.js');
 
   expect(Batangularjs.fileDirPath(path, 'module', true))
-    .toBe('app/foo/bar/foo-bar/foo-bar.module.js');
+    .toBe('src/app/foo/bar/foo-bar/foo-bar.module.js');
 
   expect(Batangularjs.fileDirPath(path, 'service'))
-    .toBe('app/foo/bar/foo-bar.service.js');
+    .toBe('src/app/foo/bar/foo-bar.service.js');
 
   expect(Batangularjs.fileDirPath(path, 'value'))
-    .toBe('app/foo/bar/foo-bar.value.js');
+    .toBe('src/app/foo/bar/foo-bar.value.js');
 });

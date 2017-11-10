@@ -10,7 +10,7 @@ describe('Testing component with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.js';
+  const fileDir = 'src/app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -45,7 +45,7 @@ describe('Testing components with isolated template', () => {
       .withOptions({t: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.js';
+  const fileDir = 'src/app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([
@@ -76,7 +76,7 @@ describe('Testing components with isolated template with another param', () => {
       .withOptions({template: true});
   });
 
-  const fileDir = 'app/user-auth/user-auth.component.js';
+  const fileDir = 'src/app/user-auth/user-auth.component.js';
 
   it('creates files', () => {
     assert.file([
@@ -107,7 +107,7 @@ describe('Testing components with modules folders', () => {
       .withOptions({t: true});
   });
 
-  const fileDir = 'app/user-auth/foo/bar/foo-bar/foo-bar.component.js';
+  const fileDir = 'src/app/user-auth/foo/bar/foo-bar/foo-bar.component.js';
 
   it('creates files', () => {
     assert.file([
@@ -124,7 +124,7 @@ describe('Testing components with style', () => {
       .withOptions({s: true});
   });
 
-  const fileDir = 'app/user-auth/foo-bar/foo-bar.component.scss';
+  const fileDir = 'src/app/user-auth/foo-bar/foo-bar.component.scss';
 
   it('creates files', () => {
     assert.file([
@@ -140,7 +140,7 @@ describe('Testing components with style param describe', () => {
       .withOptions({style: true});
   });
 
-  const fileDir = 'app/user-auth/foo-bar/foo-bar.component.scss';
+  const fileDir = 'src/app/user-auth/foo-bar/foo-bar.component.scss';
 
   it('creates files', () => {
     assert.file([

@@ -10,7 +10,7 @@ describe('Testing filter with camelCase module', () => {
       .withArguments(['userAuth']);
   });
 
-  const fileDir = 'app/user-auth.filter.js';
+  const fileDir = 'src/app/user-auth.filter.js';
 
   it('creates files', () => {
     assert.file([fileDir]);
@@ -30,7 +30,7 @@ describe('Testing filter with succession modules', () => {
       .withArguments(['userAuth/foo/bar/fooBar']);
   });
 
-  const fileDir = 'app/user-auth/foo/bar/foo-bar.filter.js';
+  const fileDir = 'src/app/user-auth/foo/bar/foo-bar.filter.js';
 
   it('creates files', () => {
     assert.file([
