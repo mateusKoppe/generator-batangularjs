@@ -24,23 +24,24 @@ $ yo batangularjs
 This will create the following architecture:
 
 ```
-├── app/                                  # The primary folder
-│   ├── common/                           # Common module
-│   │   └── common.module.js
-│   ├── components/                       # components module
-│   │   ├── components.module.js
-│   │   ├── home/                         # Home module
-│   ├── app.component.js                  # The main component
-│   ├── app.module.js                     # The main module
-│   ├── app.scss                          # The main style file
+├── src/
+│   ├── app/                             # The primary folder
+│   |   ├── common/                      # Common module
+│   |   │   └── common.module.js
+│   |   ├── components/                  # components module
+│   |   │   ├── components.module.js
+│   |   │   └── home/                    # Home module
+│   |   ├── app.component.js             # The main component
+│   |   ├── app.module.js                # The main module
+│   |   ├── app.scss                     # The main style file
 ├── index.html
-├── webpack.config.js                     # https://webpack.js.org/ for more info
+├── webpack.config.js                    # https://webpack.js.org/ for more info
 ├── package.json
 ├── package-lock.json
-├── .editorconfig                         # http://editorconfig.org/ for more info
-├── .eslintrc.js                          # https://eslint.org/ for more info
+├── .editorconfig                        # http://editorconfig.org/ for more info
+├── .eslintrc.js                         # https://eslint.org/ for more info
 ├── .gitignore
-└── .yo-rc.json                           # Define root of the project
+└── .yo-rc.json                          # Define root of the project
 ```
 
 * To start the application just hit:
@@ -78,28 +79,28 @@ You can use `[<folder>/]<name>` format to generate your files:
 ```bash
 yo batangularjs:component components/newComponent
 # This will generate:
-# app/components/new-component/new-component.component.js
+# src/app/components/new-component/new-component.component.js
 
 yo batangularjs:module common/newModule -rtcs
 # This will generate:
-# app/common/new-module/new-module.module.js
-# app/common/new-module/new-module.component.js
-# app/common/new-module/new-module.component.html
-# app/common/new-module/new-module.component.scss
+# src/app/common/new-module/new-module.module.js
+# src/app/common/new-module/new-module.component.js
+# src/app/common/new-module/new-module.component.html
+# src/app/common/new-module/new-module.component.scss
 
 yo batangularjs:service components/fooBar/newService
 # This will generate
-# app/components/foo-bar/new-service.service.js
+# src/app/components/foo-bar/new-service.service.js
 
 yo batangularjs:service newFilter
 # This will generate
-# app/new-filter.js
+# src/app/new-filter.js
 
 yo batangularjs:component common/newComponent -st
 # This will generate:
-# app/common/new-component/new-component.component.js
-# app/common/new-component/new-component.component.html
-# app/common/new-component/new-component.component.scss
+# src/app/common/new-component/new-component.component.js
+# src/app/common/new-component/new-component.component.html
+# src/app/common/new-component/new-component.component.scss
 ```
 
 ## Contributing

@@ -33,7 +33,8 @@ module.exports = class extends Generator {
       stateUrl: Batangularjs.kebabCase(this.moduleName),
       file: `./${Batangularjs.kebabCase(this.moduleName)}`,
       route: this.optRoute,
-      style: this.optStyle
+      style: this.optStyle,
+      component: this.optComponent
     };
 
     Batangularjs.generateFile(
