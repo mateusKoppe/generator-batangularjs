@@ -32,11 +32,11 @@ function kebabCase(string) {
 function folderPath(path) {
   let folders = path.split('/');
   if (folders.length < 2) {
-    return 'app';
+    return 'src/app';
   }
   folders.pop();
   folders = folders.join('/');
-  return `app/${kebabCase(folders)}`;
+  return `src/app/${kebabCase(folders)}`;
 }
 
 function namePath(path) {

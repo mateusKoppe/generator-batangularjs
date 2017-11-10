@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractPlugin = new ExtractTextPlugin({
@@ -6,11 +7,10 @@ const extractPlugin = new ExtractTextPlugin({
 })
 
 module.exports = {
-  entry: './app/app.module.js',
+  entry: './src/app/app.module.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist'
   },
   module: {
     rules: [
@@ -39,7 +39,11 @@ module.exports = {
         })
       },
       {
-        test: /\.html$/,
+        test: value => {
+          if(/src\/index\.html$/.test(value)) return false;
+          if(/\.html$/.test(value)) return true;
+          return false;
+        },
         use: [
           { loader: 'ngtemplate-loader?relativeTo=' + __dirname + '/' },
           { loader: 'html-loader' }
@@ -95,5 +99,8 @@ module.exports = {
   },
   plugins: [
     extractPlugin,
+    new HtmlWebpackPlugin({
+        template: 'src/index.html'
+    }),
   ]
 };
