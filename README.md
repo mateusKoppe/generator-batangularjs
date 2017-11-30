@@ -69,7 +69,7 @@ You can use all the subgenerators above;
 * `$ yo batangularjs:constant <name> [<value's value>]`
 * `$ yo batangularjs:directive <name>`
 * `$ yo batangularjs:filter <name>`
-* `$ yo batangularjs:services <name>`
+* `$ yo batangularjs:service <name>`
 * `$ yo batangularjs:value <name> [<value's value>]`
 
 ### Some examples
