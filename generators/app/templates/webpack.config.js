@@ -57,7 +57,7 @@ module.exports = {
       },
       {
         test: value => {
-          if(/src\/index\.html$/.test(value)) return false;
+          if(/src[\/\\]index\.html$/.test(value)) return false;
           if(/\.html$/.test(value)) return true;
           return false;
         },
