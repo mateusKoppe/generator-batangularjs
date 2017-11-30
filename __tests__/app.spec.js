@@ -20,11 +20,11 @@ describe('generator-batangularjs:app', () => {
     'src/app/app.module.js',
     'src/app/app.component.scss',
     'src/app/components/components.module.js',
-    'src/app/components/home/home.module.js',
-    'src/app/components/home/home.component.js',
-    'src/app/components/home/home.component.html',
-    'src/app/components/home/home.component.scss',
-    'src/app/common/common.module.js'
+    'src/app/common/common.module.js',
+    'src/app/common/home/home.module.js',
+    'src/app/common/home/home.component.js',
+    'src/app/common/home/home.component.html',
+    'src/app/common/home/home.component.scss'
   ];
 
   files.forEach(file => it(`create ${file}`, () => assert.file([file])));
