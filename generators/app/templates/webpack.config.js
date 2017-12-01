@@ -8,11 +8,16 @@ const extractPlugin = new ExtractTextPlugin({
 })
 
 module.exports = {
-  entry: './src/app/app.module.js',
+  entry: './app/app.module.js',
+  context: path.resolve(__dirname, 'src'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), "node_modules"],
+  },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -30,7 +35,18 @@ module.exports = {
       {
         test: /\.scss$/,
         use: extractPlugin.extract({
-          use: ['css-loader', 'sass-loader']
+          use: [
+            {
+              loader: "css-loader", options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: "sass-loader", options: {
+                sourceMap: true
+              }
+            }
+          ]
         })
       },
       {
@@ -41,7 +57,7 @@ module.exports = {
       },
       {
         test: value => {
-          if(/src\/index\.html$/.test(value)) return false;
+          if(/src[\/\\]index\.html$/.test(value)) return false;
           if(/\.html$/.test(value)) return true;
           return false;
         },
@@ -51,7 +67,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg|woff?2|ttf|eot)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?.*$|$)/,
         use: [ 'file-loader' ]
       },
     ]
@@ -59,7 +75,7 @@ module.exports = {
   plugins: [
     extractPlugin,
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'index.html'
     }),
     new CleanWebpackPlugin(['dist'])
   ]
