@@ -102,9 +102,3 @@ yo batangularjs:component common/newComponent -st
 # src/app/common/new-component/new-component.component.html
 # src/app/common/new-component/new-component.component.scss
 ```
-
-## Contributing
-
-Help me to improve this documentation.
-
-Pull requests, helping others solving issues, among other tasks, are all valid, and more than welcome, contributions - don't hesitate.
