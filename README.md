@@ -28,9 +28,9 @@ This will create the following architecture:
 │   ├── app/                             # The primary folder
 │   |   ├── common/                      # Common module
 │   |   │   └── common.module.js
+│   |   │   └── home/                    # Home module
 │   |   ├── components/                  # components module
 │   |   │   ├── components.module.js
-│   |   │   └── home/                    # Home module
 │   |   ├── app.component.js             # The main component
 │   |   ├── app.module.js                # The main module
 │   |   ├── app.scss                     # The main style file
