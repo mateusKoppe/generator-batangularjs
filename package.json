@@ -1,6 +1,6 @@
 {
   "name": "generator-batangularjs",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "description": "Scaffold a AngularJs Application with ES2015 features and give to you a development kit",
   "homepage": "",
   "author": {
