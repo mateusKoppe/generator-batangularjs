@@ -32,19 +32,4 @@
       text-decoration: none;
     }
   }
-
-  &__easter-egg{
-    color: #FFFF21;
-    left: 50%;
-    opacity: 0;
-    position: absolute;
-    transition: .1s all ease;
-    text-align: center;
-    text-decoration: none;
-    top: 85px;
-    transform: translatex(-50%);
-    &:hover{
-      opacity: 1;
-    }
-  }
 }
