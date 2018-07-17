@@ -12,27 +12,26 @@
     "build": "webpack -p",
     "lint": "eslint src --fix || true"
   },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.18",
+    "angular": "^1.7.2"
+  },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "clean-webpack-plugin": "^0.1.17",
-    "css-loader": "^0.28.7",
-    "eslint": "^4.10.0",
-    "extract-text-webpack-plugin": "^3.0.1",
-    "file-loader": "^1.1.5",
-    "html-loader": "^0.5.1",
-    "html-webpack-plugin": "^2.30.1",
-    "image-webpack-loader": "^3.4.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "ng-annotate-loader": "^0.6.1",
     "ngtemplate-loader": "^2.0.1",
-    "node-sass": "^4.5.3",
-    "sass-loader": "^6.0.6",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.3"
-  },
-  "dependencies": {
-    "@uirouter/angularjs": "^1.0.10",
-    "angular": "^1.6.6"
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3",
+    "webpack": "^4.16.1",
+    "webpack-dev-server": "^3.1.4"
   }
 }
