@@ -8,6 +8,7 @@ describe('generator-batangularjs:app', () => {
 
   const files = [
     'package.json',
+    'package-lock.json',
     'webpack.config.js',
     '.editorconfig',
     '.eslintrc.js',

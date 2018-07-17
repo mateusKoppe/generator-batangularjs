@@ -23,8 +23,8 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(this.templatePath('!(_.*)'), this.destinationPath('.'));
     this.fs.copy(this.templatePath('src/'), this.destinationPath('./src/'));
+    this._installFiles(['package.json', 'package-lock.json', 'webpack.config.js']);
     this._installHideFiles(['editorconfig', 'gitignore', 'eslintrc.js', 'yo-rc.json']);
   }
 
@@ -32,6 +32,10 @@ module.exports = class extends Generator {
     if (this.props.autoInstall) {
       this.npmInstall();
     }
+  }
+
+  _installFiles(files) {
+    files.forEach(file => this.fs.copy(this.templatePath(file), this.destinationPath(file)));
   }
 
   _installHideFiles(files) {
