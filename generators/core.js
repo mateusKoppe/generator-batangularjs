@@ -1,14 +1,3 @@
-module.exports = {
-  upperCaseFirst,
-  lowerCaseFirst,
-  camelCase,
-  kebabCase,
-  folderPath,
-  namePath,
-  fileDirPath,
-  generateFile
-};
-
 function upperCaseFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -18,14 +7,14 @@ function lowerCaseFirst(string) {
 }
 
 function camelCase(string) {
-  string = lowerCaseFirst(string);
-  return string.replace(/[-_]./g, match => match.substr(1).toUpperCase());
+  const lowerString = lowerCaseFirst(string);
+  return lowerString.replace(/[-_]./g, match => match.substr(1).toUpperCase());
 }
 
 function kebabCase(string) {
-  string = lowerCaseFirst(string);
-  return string
-    .replace(/[A-Z]/g, match => '-' + match.toLowerCase())
+  const lowerString = lowerCaseFirst(string);
+  return lowerString
+    .replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
     .replace(/_/g, '-');
 }
 
@@ -49,7 +38,7 @@ function fileDirPath(path, type, insideFolder) {
   if (insideFolder) {
     folder += `/${kebabCase(name)}`;
   }
-  let fileName = `${kebabCase(name)}.${type}.js`;
+  const fileName = `${kebabCase(name)}.${type}.js`;
   return `${folder}/${fileName}`;
 }
 
@@ -57,6 +46,17 @@ function generateFile(file, template, data, contex) {
   contex.fs.copyTpl(
     contex.templatePath(template),
     contex.destinationPath(file),
-    data
+    data,
   );
 }
+
+module.exports = {
+  upperCaseFirst,
+  lowerCaseFirst,
+  camelCase,
+  kebabCase,
+  folderPath,
+  namePath,
+  fileDirPath,
+  generateFile,
+};

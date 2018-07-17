@@ -1,14 +1,12 @@
-'use strict';
-var path = require('path');
-var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
+
+const path = require('path');
+const assert = require('yeoman-assert');
+const helpers = require('yeoman-test');
 
 describe('generator-batangularjs:app', () => {
-  beforeAll(() =>
-    helpers.run(path.join(__dirname, '../generators/app'))
-  );
+  beforeAll(() => helpers.run(path.join(__dirname, '../generators/app')));
 
-  let files = [
+  const files = [
     'package.json',
     'webpack.config.js',
     '.editorconfig',
@@ -24,7 +22,7 @@ describe('generator-batangularjs:app', () => {
     'src/app/common/home/home.module.js',
     'src/app/common/home/home.component.js',
     'src/app/common/home/home.component.html',
-    'src/app/common/home/home.component.scss'
+    'src/app/common/home/home.component.scss',
   ];
 
   files.forEach(file => it(`create ${file}`, () => assert.file([file])));

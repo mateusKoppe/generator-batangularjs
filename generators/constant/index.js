@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Generator = require('yeoman-generator');
 const Batangularjs = require('../core');
@@ -16,10 +16,9 @@ module.exports = class extends Generator {
       this.env.error('Sintax error, you must use the sintax: batangularjs:constant <module>');
       return;
     }
-    this.modulePath = this.args[0];
-    this.constantValue = this.args[1];
+    [this.modulePath, this.constantValue] = this.args;
     this.constanteName = Batangularjs.upperCaseFirst(
-      Batangularjs.namePath(this.modulePath)
+      Batangularjs.namePath(this.modulePath),
     );
   }
 
@@ -29,9 +28,9 @@ module.exports = class extends Generator {
       'constant.js',
       {
         name: this.constanteName,
-        value: this.constantValue
+        value: this.constantValue,
       },
-      this
+      this,
     );
   }
 };

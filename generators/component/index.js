@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Generator = require('yeoman-generator');
 const Batangularjs = require('../core');
@@ -15,19 +15,19 @@ module.exports = class extends Generator {
     if (this.args.length < 1) {
       this.env.error('Sintax error, you must use the sintax: Batangularjs:component <module> [--template|-t][--style|-s]');
     }
-    this.modulePath = this.args[0];
+    [this.modulePath] = this.args;
     this.componentName = Batangularjs.upperCaseFirst(
-      Batangularjs.namePath(this.modulePath)
+      Batangularjs.namePath(this.modulePath),
     );
     this.optTemplate = this.opts.t || this.opts.template;
     this.optStyle = this.opts.s || this.opts.style;
   }
 
   writing() {
-    let data = {
+    const data = {
       name: this.componentName,
       file: `./${Batangularjs.kebabCase(this.componentName)}`,
-      style: this.optStyle
+      style: this.optStyle,
     };
     let javascriptTemplate = 'component.js';
     if (this.optTemplate) {
@@ -37,7 +37,7 @@ module.exports = class extends Generator {
           .replace('.component.js', '.component.html'),
         'component-separated.html',
         data,
-        this
+        this,
       );
     }
     if (this.optStyle) {
@@ -48,7 +48,7 @@ module.exports = class extends Generator {
       Batangularjs.fileDirPath(this.modulePath, 'component', true),
       javascriptTemplate,
       data,
-      this
+      this,
     );
   }
 };
