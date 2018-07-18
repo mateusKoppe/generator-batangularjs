@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Generator = require('yeoman-generator');
 const Batangularjs = require('../core');
@@ -16,9 +16,9 @@ module.exports = class extends Generator {
       this.env.error('Sintax error, you must use the sintax: batangularjs:module <module> [--route|-r][--component|-c][--template|-t][--style|-s]');
       return;
     }
-    this.modulePath = this.args[0];
+    [this.modulePath] = this.args;
     this.moduleName = Batangularjs.camelCase(
-      Batangularjs.namePath(this.modulePath)
+      Batangularjs.namePath(this.modulePath),
     );
     this.optRoute = this.opts.r || this.opts.route;
     this.optComponent = this.opts.c || this.opts.component;
@@ -27,21 +27,21 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    let data = {
+    const data = {
       moduleName: this.moduleName,
       name: Batangularjs.upperCaseFirst(this.moduleName),
       stateUrl: Batangularjs.kebabCase(this.moduleName),
       file: `./${Batangularjs.kebabCase(this.moduleName)}`,
       route: this.optRoute,
       style: this.optStyle,
-      component: this.optComponent
+      component: this.optComponent,
     };
 
     Batangularjs.generateFile(
       Batangularjs.fileDirPath(this.modulePath, 'module', true),
       'module.js',
       data,
-      this
+      this,
     );
 
     this._writeComponent(data);
@@ -58,7 +58,7 @@ module.exports = class extends Generator {
           .replace('.component.js', '.component.html'),
         `${dirTemplate}/component-separated.html`,
         data,
-        this
+        this,
       );
     }
 
@@ -67,7 +67,7 @@ module.exports = class extends Generator {
         Batangularjs.fileDirPath(this.modulePath, 'component', true),
         `${dirTemplate}/${nameTemplate}`,
         data,
-        this
+        this,
       );
     }
   }

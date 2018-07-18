@@ -1,7 +1,7 @@
-'use strict';
+
 const Batangularjs = require('../generators/core');
 
-let conventionTest = (callback, toBe) => {
+const conventionTest = (callback, toBe) => {
   expect(callback('test-multiple-words')).toBe(toBe);
   expect(callback('test_multiple_words')).toBe(toBe);
   expect(callback('Test_multiple_words')).toBe(toBe);
@@ -40,7 +40,7 @@ test('namePath', () => {
 });
 
 test('fileDirPath', () => {
-  let path = 'foo/bar/fooBar';
+  const path = 'foo/bar/fooBar';
   expect(Batangularjs.fileDirPath(path, 'component', true))
     .toBe('src/app/foo/bar/foo-bar/foo-bar.component.js');
 

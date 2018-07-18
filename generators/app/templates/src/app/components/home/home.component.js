@@ -4,8 +4,8 @@ import './home.component.scss';
 export const HomeComponent = {
   templateUrl,
   controller: class HomeController{
-    godDamn(){
-      alert('God Damn');
+    doSomething(){
+      // your code
     }
   }
 };

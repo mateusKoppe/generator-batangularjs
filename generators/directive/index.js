@@ -1,4 +1,4 @@
-'use strict';
+
 
 const Generator = require('yeoman-generator');
 const Batangularjs = require('../core');
@@ -16,9 +16,9 @@ module.exports = class extends Generator {
       this.env.error('Sintax error, you must use the sintax: batangularjs:directive <module>');
       return;
     }
-    this.modulePath = this.args[0];
+    [this.modulePath] = this.args;
     this.directiveName = Batangularjs.upperCaseFirst(
-      Batangularjs.namePath(this.modulePath)
+      Batangularjs.namePath(this.modulePath),
     );
   }
 
@@ -27,9 +27,9 @@ module.exports = class extends Generator {
       `${Batangularjs.fileDirPath(this.modulePath, 'directive')}`,
       'directive.js',
       {
-        name: this.directiveName
+        name: this.directiveName,
       },
-      this
+      this,
     );
   }
 };

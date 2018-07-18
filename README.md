@@ -1,8 +1,10 @@
 # BatAngularJs | Yeoman Generator [![Build Status](https://travis-ci.org/mateusKoppe/generator-batangularjs.svg?branch=development)](https://travis-ci.org/mateusKoppe/generator-batangularjs)
 
-Generator-batangularjs is a awesome AngularJs generator, that scaffold your AngularJs application and give to you a awesome development kit with subgenerators, webpack, eslint, sass and ES2015 features!
+Generator-BatAngularJs is a awesome AngularJs generator, that scaffold your AngularJs application and give to you a awesome development kit with subgenerators, webpack, eslint, sass and ES2015 features!
 
 Based on [angular-cli](https://github.com/angular/angular-cli) and [Todd Motto - AngularJS styleguide (ES2015)](https://github.com/toddmotto/angularjs-styleguide).
+
+:warning: **This is just a study project and may be not safe for production.**
 
 ## Install
 
@@ -28,9 +30,9 @@ This will create the following architecture:
 │   ├── app/                             # The primary folder
 │   |   ├── common/                      # Common module
 │   |   │   └── common.module.js
-│   |   │   └── home/                    # Home module
 │   |   ├── components/                  # components module
 │   |   │   ├── components.module.js
+│   |   │   └── home/                    # Home module
 │   |   ├── app.component.js             # The main component
 │   |   ├── app.module.js                # The main module
 │   |   ├── app.scss                     # The main style file
